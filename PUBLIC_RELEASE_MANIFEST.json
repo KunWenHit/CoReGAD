@@ -1,0 +1,21 @@
+{
+  "source_of_truth_local_path": "LOCAL_RESEARCH_SNAPSHOT_RECORDED_IN_EXTERNAL_AUDIT",
+  "source_commit": "NA_UNTRACKED_LOCAL_SNAPSHOT",
+  "research_repository_head": "2da537cad1584a219da725902972a1b21fd8b840",
+  "refactor_date": "2026-08-08",
+  "method_name": "CoReGAD",
+  "residual_strength": 0.75,
+  "tests": {
+    "status": "passed",
+    "count": 19,
+    "command": "python -m pytest tests -q"
+  },
+  "parity_status": {
+    "status": "passed",
+    "kind": "executable legacy-to-formal intermediate parity",
+    "max_abs_diff": 0.0,
+    "tolerance": 1e-06,
+    "reference_parameter_count": 139,
+    "public_parameter_count": 139
+  }
+}

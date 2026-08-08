@@ -1,0 +1,74 @@
+method:
+  name: CoReGAD
+  outer_oof_folds: 5
+
+normality_core:
+  task: normal_unlabeled
+  hidden_dim: 64
+  dropout: 0.2
+  optimizer: Adam
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  epochs: 200
+  early_stopping: false
+  full_batch: true
+
+graph_context_shaping:
+  training_only: true
+  context_weight: 0.8498013479600357
+  anchor_weight: 0.18573695284155523
+  continuation_learning_rate: 0.0005
+  context_warmup_ratio: 0.1
+  neighbor_dropout: 0.1
+  epochs: 200
+
+global_spectral_reference:
+  components: [low, band, high]
+  shared_logits: [1.0, 0.0, 0.0]
+  node_specific_weights: false
+
+spectral_discrepancy:
+  channels: [embedding_discrepancy, decision_discrepancy]
+  input_dim: 2
+
+structural_statistics:
+  channels: [log_degree, support_ratio, local_embedding_variation]
+  input_dim: 3
+
+nuisance_estimator:
+  type: rbf_random_fourier_ridge
+  inner_folds: 5
+  random_fourier_dimension: 256
+  ridge_lambda: 0.01
+  hash_seed: 7319
+  random_feature_seed_base: 7319
+  chunk_size: 65536
+  bandwidth_sample_limit: 8192
+
+controlled_structural_residualization:
+  residual_strength: 0.75
+  learnable: false
+
+spectral_residual_energy:
+  architecture: [Linear(2,16), GELU, LayerNorm(16), Linear(16,1), Softplus]
+
+structural_reliability:
+  architecture: [Linear(3,8), GELU, Linear(8,1), Sigmoid]
+
+bounded_graph_residual_correction:
+  gamma_initial: 0.1
+  base_logit_coefficient: 1.0
+  formula: gamma_times_reliability_times_tanh_energy
+
+residual_training:
+  optimizer: Adam
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  epochs: 300
+  early_stopping: false
+  correction_penalty: 0.001
+
+seed_policy:
+  released_validation_seeds: [0, 1, 2]
+  split_seed: 0
+  deterministic_fold_ownership: true

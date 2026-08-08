@@ -1,0 +1,697 @@
+{
+  "schema_version": 1,
+  "generated_on": "2026-08-08",
+  "protocol": "protocol/NORMAL_ONLY_OOF_PROTOCOL.md",
+  "baseline_root_env": "COREGAD_BASELINE_ROOT",
+  "counts": {
+    "target": 24,
+    "code_workspaces": 22,
+    "fair_ready": 13,
+    "pu_auxiliary_ready": 0,
+    "external_reference_ready": 9
+  },
+  "baselines": [
+    {
+      "method": "DOMINANT",
+      "paper_title": "Deep Anomaly Detection on Attributed Networks",
+      "protocol_class": "FAIR_NORMAL_ONLY_OR_UNSUPERVISED",
+      "official_repo": "https://github.com/kaize0409/GCN_AnomalyDetection_pytorch.git",
+      "implementation_source": "https://github.com/kaize0409/GCN_AnomalyDetection_pytorch.git",
+      "local_path": "repos/DOMINANT",
+      "upstream_commit": "83fa93931164aee5386fdc74c12a5d5c46a5d62f",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "6481d1a7534cd17e3efcecb503ba1ccf5e02521b",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": false,
+      "fair_ranking": true,
+      "uses_pseudo_anomalies": false,
+      "uses_external_teacher": false,
+      "datasets_supported": [
+        "Amazon",
+        "BlogCatalog",
+        "Flickr"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "Author-linked PyTorch repository."
+    },
+    {
+      "method": "AnomalyDAE",
+      "paper_title": "AnomalyDAE: Dual Autoencoder for Anomaly Detection on Attributed Networks",
+      "protocol_class": "FAIR_NORMAL_ONLY_OR_UNSUPERVISED",
+      "official_repo": "https://github.com/haoyfan/AnomalyDAE.git",
+      "implementation_source": "https://github.com/haoyfan/AnomalyDAE.git",
+      "local_path": "repos/AnomalyDAE",
+      "upstream_commit": "1199bae1820cd923efb5a6ec2d32ab758968f465",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "b0e53eba3aaa7dfec956f4dfdeb2fecab8b5f0ac",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": false,
+      "fair_ranking": true,
+      "uses_pseudo_anomalies": false,
+      "uses_external_teacher": false,
+      "datasets_supported": [
+        "Attributed-network datasets"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "Paper-author repository."
+    },
+    {
+      "method": "OCGNN",
+      "paper_title": "One-Class Graph Neural Networks for Anomaly Detection in Attributed Networks",
+      "protocol_class": "FAIR_NORMAL_ONLY_OR_UNSUPERVISED",
+      "official_repo": "https://github.com/WangXuhongCN/OCGNN.git",
+      "implementation_source": "https://github.com/WangXuhongCN/OCGNN.git",
+      "local_path": "repos/OCGNN",
+      "upstream_commit": "ec7d11c5ae2f91f4165e384131c6a8358836ff58",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "628ff5a2d7e340c40feb3709756321ec4421d51b",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": false,
+      "fair_ranking": true,
+      "uses_pseudo_anomalies": false,
+      "uses_external_teacher": false,
+      "datasets_supported": [
+        "Attributed-network datasets"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "Paper-author repository; upstream default branch was ocgnn-in-ant."
+    },
+    {
+      "method": "AEGIS",
+      "paper_title": "Inductive Anomaly Detection on Attributed Networks",
+      "protocol_class": "FAIR_NORMAL_ONLY_OR_UNSUPERVISED",
+      "official_repo": null,
+      "implementation_source": "https://github.com/mala-lab/GGAD.git",
+      "local_path": "repos/AEGIS",
+      "upstream_commit": "358fb4d4b4ee5b8b195445791a9e2b6d52487f2b",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "cd864a7c1adf622c9ae255582828b631580b6840",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": false,
+      "fair_ranking": true,
+      "uses_pseudo_anomalies": true,
+      "uses_external_teacher": false,
+      "datasets_supported": [
+        "Amazon",
+        "Photo",
+        "Reddit",
+        "T-Finance",
+        "Elliptic",
+        "DGraph"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "No author standalone repository was found. Source is the verified GGAD official benchmark reimplementation, not an AEGIS-author repository."
+    },
+    {
+      "method": "GAAN",
+      "paper_title": "Generative Adversarial Attributed Network Anomaly Detection",
+      "protocol_class": "FAIR_NORMAL_ONLY_OR_UNSUPERVISED",
+      "official_repo": null,
+      "implementation_source": "https://github.com/mala-lab/GGAD.git",
+      "local_path": "repos/GAAN",
+      "upstream_commit": "358fb4d4b4ee5b8b195445791a9e2b6d52487f2b",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "8c5f5f2f7f7076eb791b7df62baf89dd466cdf81",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": false,
+      "fair_ranking": true,
+      "uses_pseudo_anomalies": true,
+      "uses_external_teacher": false,
+      "datasets_supported": [
+        "Amazon",
+        "Photo",
+        "Reddit",
+        "T-Finance",
+        "Elliptic",
+        "DGraph"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "No author standalone repository was found. Source is the verified GGAD official benchmark reimplementation, not a GAAN-author repository."
+    },
+    {
+      "method": "TAM",
+      "paper_title": "Truncated Affinity Maximization: One-class Homophily Modeling for Graph Anomaly Detection",
+      "protocol_class": "FAIR_NORMAL_ONLY_OR_UNSUPERVISED",
+      "official_repo": "https://github.com/mala-lab/TAM-master.git",
+      "implementation_source": "https://github.com/mala-lab/TAM-master.git",
+      "local_path": "repos/TAM",
+      "upstream_commit": "e82ead0584b9b807d4db56a9ffdf89ff94c74dfa",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "683d84f592586187ccfd467ec86588d03b9fea0c",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": false,
+      "fair_ranking": true,
+      "uses_pseudo_anomalies": false,
+      "uses_external_teacher": false,
+      "datasets_supported": [
+        "Amazon",
+        "Reddit",
+        "Photo",
+        "Elliptic",
+        "DGraph"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "Official author repository, safely copied from the active research workspace."
+    },
+    {
+      "method": "GAD-NR",
+      "paper_title": "GAD-NR: Graph Anomaly Detection via Neighborhood Reconstruction",
+      "protocol_class": "FAIR_NORMAL_ONLY_OR_UNSUPERVISED",
+      "official_repo": "https://github.com/Graph-COM/GAD-NR.git",
+      "implementation_source": "https://github.com/Graph-COM/GAD-NR.git",
+      "local_path": "repos/GAD-NR",
+      "upstream_commit": "b0a9590b10d0b9490e6d6cdfa60e7c50eb232c0d",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "cb69bc73adb076aa52f8fd3a9fb58c737772ead4",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": false,
+      "fair_ranking": true,
+      "uses_pseudo_anomalies": false,
+      "uses_external_teacher": false,
+      "datasets_supported": [
+        "Attributed-network datasets"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "Official author repository, safely copied."
+    },
+    {
+      "method": "ADA-GAD",
+      "paper_title": "ADA-GAD: Anomaly-Denoised Autoencoders for Graph Anomaly Detection",
+      "protocol_class": "FAIR_NORMAL_ONLY_OR_UNSUPERVISED",
+      "official_repo": "https://github.com/jweihe/ADA-GAD.git",
+      "implementation_source": "https://github.com/jweihe/ADA-GAD.git",
+      "local_path": "repos/ADA-GAD",
+      "upstream_commit": "71a3aca936ccfe430e3809864f256d4bf80b22ee",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "60f3b224e352ab0f232bc6df82a09cfa46847778",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": false,
+      "fair_ranking": true,
+      "uses_pseudo_anomalies": false,
+      "uses_external_teacher": false,
+      "datasets_supported": [
+        "PyGOD-compatible datasets"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "Official author repository."
+    },
+    {
+      "method": "GGAD",
+      "paper_title": "Generative Semi-supervised Graph Anomaly Detection",
+      "protocol_class": "FAIR_NORMAL_ONLY_OR_UNSUPERVISED",
+      "official_repo": "https://github.com/mala-lab/GGAD.git",
+      "implementation_source": "https://github.com/mala-lab/GGAD.git",
+      "local_path": "repos/GGAD",
+      "upstream_commit": "358fb4d4b4ee5b8b195445791a9e2b6d52487f2b",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "c25456e4a294203f0d37978118f34f68d88a6104",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": false,
+      "fair_ranking": true,
+      "uses_pseudo_anomalies": true,
+      "uses_external_teacher": false,
+      "datasets_supported": [
+        "Amazon",
+        "Photo",
+        "Reddit",
+        "T-Finance",
+        "Elliptic",
+        "DGraph"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "Official author repository; pseudo anomalies are native to the method and do not use true anomaly labels."
+    },
+    {
+      "method": "RHO",
+      "paper_title": "Semi-supervised Graph Anomaly Detection via Robust Homophily Learning",
+      "protocol_class": "FAIR_NORMAL_ONLY_OR_UNSUPERVISED",
+      "official_repo": "https://github.com/mala-lab/RHO.git",
+      "implementation_source": "https://github.com/mala-lab/RHO.git",
+      "local_path": "repos/RHO",
+      "upstream_commit": "a394d5575dea6745215b15e0453e1f925ffcc1f2",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "e26d11085b9c15a79ac52091abeb886572ac338c",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": false,
+      "fair_ranking": true,
+      "uses_pseudo_anomalies": false,
+      "uses_external_teacher": false,
+      "datasets_supported": [
+        "Amazon",
+        "Photo",
+        "Reddit",
+        "T-Finance",
+        "Elliptic",
+        "Questions",
+        "Tolokers",
+        "DGraph"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "Official repository. Sparse checkout excludes videos, checkpoints, datasets, and the Windows-invalid path Run process/Ds.; Git history and upstream commit are preserved."
+    },
+    {
+      "method": "GraphNC",
+      "paper_title": "Normality Calibration in Semi-supervised Graph Anomaly Detection",
+      "protocol_class": "FAIR_NORMAL_ONLY_OR_UNSUPERVISED",
+      "official_repo": "https://github.com/mala-lab/GraphNC.git",
+      "implementation_source": "https://github.com/mala-lab/GraphNC.git",
+      "local_path": "repos/GraphNC",
+      "upstream_commit": "4985138639d96c43b85001eefa3a54eee1caebf1",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "94c3e5524b84b98a664ba1b9e8e4e556529ab897",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": false,
+      "fair_ranking": true,
+      "uses_pseudo_anomalies": false,
+      "uses_external_teacher": true,
+      "datasets_supported": [
+        "Photo",
+        "Tolokers",
+        "other upstream datasets"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "Official repository. Any teacher must be trained under the same fold without held-out anomaly labels."
+    },
+    {
+      "method": "PAGE",
+      "paper_title": "PAGE: Progressive Anomaly Generation Network for Semi-supervised Graph Anomaly Detection",
+      "protocol_class": "FAIR_NORMAL_ONLY_OR_UNSUPERVISED",
+      "official_repo": "https://github.com/TingGuo301/PAGE.git",
+      "implementation_source": "https://github.com/TingGuo301/PAGE.git",
+      "local_path": "repos/PAGE",
+      "upstream_commit": "b0ae63eefb85a4340850cf1de09f84455e264012",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "06ef61d24f491eeb6938302cd37822e91db237a0",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": false,
+      "fair_ranking": true,
+      "uses_pseudo_anomalies": true,
+      "uses_external_teacher": false,
+      "datasets_supported": [
+        "Photo",
+        "Reddit"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "Author repository currently publishes source as PAGE.zip; archive identity and entrypoint were inspected."
+    },
+    {
+      "method": "TAQ",
+      "paper_title": "Topological Anomaly Quantification for Semi-supervised Graph Anomaly Detection",
+      "protocol_class": "FAIR_NORMAL_ONLY_OR_UNSUPERVISED",
+      "official_repo": "https://github.com/TingGuo301/TAQ-GAD.git",
+      "implementation_source": "https://github.com/TingGuo301/TAQ-GAD.git",
+      "local_path": "repos/TAQ",
+      "upstream_commit": "290d64b6ae5df691d49710481d041636cf57abbd",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "bfc24efa57840fe75f4a789df443c876d9b5e428",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": false,
+      "fair_ranking": true,
+      "uses_pseudo_anomalies": true,
+      "uses_external_teacher": false,
+      "datasets_supported": [
+        "Reddit",
+        "other upstream datasets"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "Author repository currently publishes source as TAQ-GAD.zip; archive identity and entrypoint were inspected."
+    },
+    {
+      "method": "BMP",
+      "paper_title": "Binary Message Passing for Generalizable Semi-Supervised Graph Anomaly Detection",
+      "protocol_class": "FAIR_NORMAL_ONLY_OR_UNSUPERVISED",
+      "official_repo": "https://github.com/Thankstaro/BMP.git",
+      "implementation_source": null,
+      "local_path": null,
+      "upstream_commit": null,
+      "protocol_branch": null,
+      "protocol_commit": null,
+      "adapter_status": "DOWNLOAD_FAILED",
+      "status": "DOWNLOAD_FAILED",
+      "ready_for_server_reproduction": false,
+      "requires_anomaly_labels": null,
+      "fair_ranking": false,
+      "uses_pseudo_anomalies": false,
+      "uses_external_teacher": false,
+      "datasets_supported": [],
+      "dependencies": [],
+      "notes": "The AAAI 2026 paper points to this URL, but GitHub returned Repository not found on 2026-08-08. No substitute fork was used."
+    },
+    {
+      "method": "Structure-aware PU-GNN",
+      "paper_title": "Positive-Unlabeled Node Classification with Structure-aware Graph Learning",
+      "protocol_class": "PU_AUXILIARY",
+      "official_repo": null,
+      "implementation_source": null,
+      "local_path": null,
+      "upstream_commit": null,
+      "protocol_branch": null,
+      "protocol_commit": null,
+      "adapter_status": "NO_OFFICIAL_REPO_FOUND",
+      "status": "NO_OFFICIAL_REPO_FOUND",
+      "ready_for_server_reproduction": false,
+      "requires_anomaly_labels": false,
+      "fair_ranking": false,
+      "uses_pseudo_anomalies": false,
+      "uses_external_teacher": false,
+      "datasets_supported": [],
+      "dependencies": [],
+      "notes": "Paper identity was verified, but no author/official code repository was found. It is not counted as a primary GAD baseline."
+    },
+    {
+      "method": "BWGNN",
+      "paper_title": "Rethinking Graph Neural Networks for Anomaly Detection",
+      "protocol_class": "EXTERNAL_SUPERVISED_REFERENCE",
+      "official_repo": "https://github.com/squareRoot3/Rethinking-Anomaly-Detection.git",
+      "implementation_source": "https://github.com/squareRoot3/Rethinking-Anomaly-Detection.git",
+      "local_path": "repos/BWGNN",
+      "upstream_commit": "de0631f039bbd19c1890b483cc01f1007f596af7",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "eba0759513947a79cfcd3bd960437de831a2c110",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": true,
+      "fair_ranking": false,
+      "uses_pseudo_anomalies": false,
+      "uses_external_teacher": false,
+      "datasets_supported": [
+        "Amazon",
+        "YelpChi",
+        "T-Finance",
+        "T-Social"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "Official repository; BWGNN is retained with its supervised training semantics. Only loader, node ordering, OOF score ownership, and evaluation are normalized; the original supervised contract is retained."
+    },
+    {
+      "method": "GHRN",
+      "paper_title": "Addressing Heterophily in Graph Anomaly Detection: A Perspective of Graph Spectrum",
+      "protocol_class": "EXTERNAL_SUPERVISED_REFERENCE",
+      "official_repo": "https://github.com/blacksingular/GHRN.git",
+      "implementation_source": "https://github.com/blacksingular/GHRN.git",
+      "local_path": "repos/GHRN",
+      "upstream_commit": "d47e047b76df429c0c0a8444f5d9a5dea57f6801",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "5e549da9e6175775934e6c81431b1e94d4073cab",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": true,
+      "fair_ranking": false,
+      "uses_pseudo_anomalies": false,
+      "uses_external_teacher": false,
+      "datasets_supported": [
+        "YelpChi",
+        "T-Finance"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "Official author repository. Only loader, node ordering, OOF score ownership, and evaluation are normalized; the original supervised contract is retained."
+    },
+    {
+      "method": "GADBench",
+      "paper_title": "GADBench: Revisiting and Benchmarking Supervised Graph Anomaly Detection",
+      "protocol_class": "EXTERNAL_SUPERVISED_REFERENCE",
+      "official_repo": "https://github.com/squareRoot3/GADBench.git",
+      "implementation_source": "https://github.com/squareRoot3/GADBench.git",
+      "local_path": "repos/GADBench",
+      "upstream_commit": "f9aa021ce9b6c6580427fb633b596843be76ddc6",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "3b8acc2def66baf22fe0b25eb977bc0dbd8e391b",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": true,
+      "fair_ranking": false,
+      "uses_pseudo_anomalies": false,
+      "uses_external_teacher": false,
+      "datasets_supported": [
+        "GADBench datasets"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "Official repository; registry method covers the XGBGraph/GADBench reference. Only loader, node ordering, OOF score ownership, and evaluation are normalized; the original supervised contract is retained."
+    },
+    {
+      "method": "ConsisGAD",
+      "paper_title": "Consistency Training with Learnable Data Augmentation for Graph Anomaly Detection with Limited Supervision",
+      "protocol_class": "EXTERNAL_SUPERVISED_REFERENCE",
+      "official_repo": "https://github.com/Xtra-Computing/ConsisGAD.git",
+      "implementation_source": "https://github.com/Xtra-Computing/ConsisGAD.git",
+      "local_path": "repos/ConsisGAD",
+      "upstream_commit": "36811c5bc79be49c9740f25a1f260496bb4736af",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "5c37b3f3232524ebe3497af7b28d5fd6ab20250f",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": true,
+      "fair_ranking": false,
+      "uses_pseudo_anomalies": false,
+      "uses_external_teacher": false,
+      "datasets_supported": [
+        "Amazon",
+        "YelpChi",
+        "T-Finance",
+        "T-Social"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "Official repository, safely copied. Only loader, node ordering, OOF score ownership, and evaluation are normalized; the original supervised contract is retained."
+    },
+    {
+      "method": "SpaceGNN",
+      "paper_title": "SpaceGNN: Multi-Space Graph Neural Network for Node Anomaly Detection with Extremely Limited Labels",
+      "protocol_class": "EXTERNAL_SUPERVISED_REFERENCE",
+      "official_repo": "https://github.com/xydong127/SpaceGNN.git",
+      "implementation_source": "https://github.com/xydong127/SpaceGNN.git",
+      "local_path": "repos/SpaceGNN",
+      "upstream_commit": "921c03ff879b239dab9b319b296fef3bc3bda2d2",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "cc5a32823d776c5a11a9162d267284682717825c",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": true,
+      "fair_ranking": false,
+      "uses_pseudo_anomalies": false,
+      "uses_external_teacher": false,
+      "datasets_supported": [
+        "nine upstream datasets"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "Official author repository. Only loader, node ordering, OOF score ownership, and evaluation are normalized; the original supervised contract is retained."
+    },
+    {
+      "method": "DSGAD",
+      "paper_title": "Dynamic Spectral Graph Anomaly Detection",
+      "protocol_class": "EXTERNAL_SUPERVISED_REFERENCE",
+      "official_repo": "https://github.com/IWantBe/Dynamic-Spectral-Graph-Anomaly-Detection.git",
+      "implementation_source": "https://github.com/IWantBe/Dynamic-Spectral-Graph-Anomaly-Detection.git",
+      "local_path": "repos/DSGAD",
+      "upstream_commit": "bf7e0ac31a4d28c82c796b339d06b4a1a5308158",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "6975a0046e04df55d33da795b3e9cfeffbc274c1",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": true,
+      "fair_ranking": false,
+      "uses_pseudo_anomalies": false,
+      "uses_external_teacher": false,
+      "datasets_supported": [
+        "YelpChi",
+        "T-Finance",
+        "Amazon",
+        "Tolokers"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "Official code URL from the AAAI paper. Only loader, node ordering, OOF score ownership, and evaluation are normalized; the original supervised contract is retained."
+    },
+    {
+      "method": "APF",
+      "paper_title": "Towards Anomaly-Aware Pre-Training and Fine-Tuning for Graph Anomaly Detection",
+      "protocol_class": "EXTERNAL_SUPERVISED_REFERENCE",
+      "official_repo": "https://github.com/Cloudy1225/APF.git",
+      "implementation_source": "https://github.com/Cloudy1225/APF.git",
+      "local_path": "repos/APF",
+      "upstream_commit": "0f42fd9344fa4c54e175fae45cb40e6981e6b54a",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "d22be42b41bdd56fd421d84d30ca733119c5d528",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": true,
+      "fair_ranking": false,
+      "uses_pseudo_anomalies": false,
+      "uses_external_teacher": false,
+      "datasets_supported": [
+        "ten GADBench datasets"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "Official ICLR 2026 repository. Only loader, node ordering, OOF score ownership, and evaluation are normalized; the original supervised contract is retained."
+    },
+    {
+      "method": "SAGAD",
+      "paper_title": "Mitigating Homophily Disparity in Graph Anomaly Detection: A Scalable and Adaptive Approach",
+      "protocol_class": "EXTERNAL_SUPERVISED_REFERENCE",
+      "official_repo": "https://github.com/Cloudy1225/SAGAD.git",
+      "implementation_source": "https://github.com/Cloudy1225/SAGAD.git",
+      "local_path": "repos/SAGAD",
+      "upstream_commit": "faddcbca117b475c8468e87a65c8428b616b694b",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "90ca8084b4989920bc4fcbb343d46124918bc928",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": true,
+      "fair_ranking": false,
+      "uses_pseudo_anomalies": false,
+      "uses_external_teacher": false,
+      "datasets_supported": [
+        "ten upstream datasets"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "Official WWW 2026 repository. Only loader, node ordering, OOF score ownership, and evaluation are normalized; the original supervised contract is retained."
+    },
+    {
+      "method": "HSMAD",
+      "paper_title": "HSMAD: Heterophily-Driven Spectral and Manifold Learning for Graph Anomaly Detection",
+      "protocol_class": "EXTERNAL_SUPERVISED_REFERENCE",
+      "official_repo": "https://github.com/cozy24/HSMAD.git",
+      "implementation_source": "https://github.com/cozy24/HSMAD.git",
+      "local_path": "repos/HSMAD",
+      "upstream_commit": "7810e8e7dfe2143c4e4aa2ba804a0bfdc6543a5a",
+      "protocol_branch": "coregad-protocol",
+      "protocol_commit": "d60a2fd5154bf2b0b628274f917851f1b19e54cf",
+      "adapter_status": "ADAPTED_STATIC_TESTED",
+      "status": "ADAPTED_STATIC_TESTED",
+      "ready_for_server_reproduction": true,
+      "requires_anomaly_labels": true,
+      "fair_ranking": false,
+      "uses_pseudo_anomalies": false,
+      "uses_external_teacher": false,
+      "datasets_supported": [
+        "YelpChi",
+        "Weibo",
+        "Amazon",
+        "Elliptic",
+        "Tolokers"
+      ],
+      "dependencies": [
+        "numpy",
+        "scikit-learn",
+        "upstream method requirements"
+      ],
+      "notes": "Official author repository, safely copied; untracked cache files were not copied. Only loader, node ordering, OOF score ownership, and evaluation are normalized; the original supervised contract is retained."
+    }
+  ]
+}

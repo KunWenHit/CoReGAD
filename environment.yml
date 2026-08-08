@@ -1,0 +1,13 @@
+name: coregad
+channels:
+  - pytorch
+  - conda-forge
+dependencies:
+  - python=3.10
+  - numpy>=1.24
+  - pyyaml>=6.0
+  - scikit-learn>=1.3
+  - scipy>=1.10
+  - pytorch>=2.1
+  - pytest>=8.0
+  - pip
