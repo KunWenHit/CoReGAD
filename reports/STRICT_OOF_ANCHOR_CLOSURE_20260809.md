@@ -90,7 +90,7 @@ test:
 
 ```text
 .....................................                                    [100%]
-37 passed in 3.26s
+37 passed in 3.27s
 ```
 
 The test log is
@@ -131,7 +131,10 @@ commit does not alter the snapshot used by tests and launcher preflight.
 ## Exact eight-dataset seed-0 audit launcher
 
 The source contract and all eight exact split/support manifests passed
-preflight. The launcher has no model-seed, epoch, optimizer, learning-rate,
+preflight. A read-only `--verify-raw-hash` pass also matched all eight raw
+assets to their recovered SHA256 identities; its evidence is
+`/data1/wk/codes/CoReGAD_RELEASE/logs/strict_oof/seed0_launcher_preflight_raw_verified.json`.
+The launcher has no model-seed, epoch, optimizer, learning-rate,
 support, split, evaluator, or node-order override. The model seed is fixed to
 zero. Outputs are isolated under:
 
