@@ -80,6 +80,10 @@ def _paths() -> dict[str, Path]:
     }
 
 
+def _training_bundle_path(dataset: str) -> Path:
+    return _paths()["outputs"] / "training_bundles" / dataset / "graph.pt"
+
+
 def _dataset_contract(dataset: str, *, verify_raw_hash: bool = False) -> dict[str, Any]:
     if dataset not in DATASETS:
         raise ValueError(f"unsupported dataset: {dataset}")
@@ -205,11 +209,12 @@ def _undirected_edges(edges: np.ndarray, num_nodes: int) -> torch.Tensor:
     return torch.stack([flat // int(num_nodes), flat % int(num_nodes)], dim=0).long()
 
 
-def _load_training_graph(dataset: str, contract: dict[str, Any]) -> tuple[torch.Tensor, torch.Tensor, dict[str, Any]]:
-    """Load features and edges without requesting or indexing a label tensor."""
+def _load_raw_training_fields(dataset: str, contract: dict[str, Any]) -> tuple[torch.Tensor, torch.Tensor, dict[str, Any]]:
+    """Extract feature/edge fields in the data-preparation process only."""
 
     source = contract["raw_path"]
-    label_tensor_accessed = False
+    label_field_indexed = False
+    raw_container_may_include_label_payload = dataset not in {"Amazon", "Elliptic", "Tolokers"}
     if dataset == "Amazon":
         payload = sio.loadmat(source, variable_names=["features", "homo"])
         features = _dense_features(payload["features"])
@@ -255,7 +260,77 @@ def _load_training_graph(dataset: str, contract: dict[str, Any]) -> tuple[torch.
         raise RuntimeError(f"{dataset}: canonical graph identity mismatch: {observed} != {expected}")
     return features, edge_index, {
         "loader": loader,
-        "label_tensor_accessed": label_tensor_accessed,
+        "label_field_indexed": label_field_indexed,
+        "raw_container_may_include_label_payload": raw_container_may_include_label_payload,
+        "optimizer_or_model_imported_in_preparation_process": False,
+        **observed,
+    }
+
+
+def _prepare_training_bundle(dataset: str) -> Path:
+    contract = _dataset_contract(dataset, verify_raw_hash=True)
+    features, edge_index, loader_audit = _load_raw_training_fields(dataset, contract)
+    target = _training_bundle_path(dataset)
+    temporary = target.with_suffix(".pt.incomplete")
+    if target.exists() or temporary.exists():
+        raise FileExistsError(f"refusing to overwrite training bundle or partial file: {target}")
+    target.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "features": features,
+        "edge_index": edge_index,
+        "node_id": torch.arange(int(features.shape[0]), dtype=torch.long),
+        "provenance": {
+            "dataset": dataset,
+            "raw_sha256": contract["manifest"]["raw_sha256"],
+            "node_order_sha256": contract["manifest"]["node_order_sha256"],
+            "edge_order_sha256": contract["manifest"]["edge_order_sha256"],
+            "feature_sha256": contract["manifest"]["feature_sha256"],
+            "contains_y_or_labels": False,
+            "preparation_process_is_separate_from_training": True,
+            "loader_audit": loader_audit,
+        },
+    }
+    torch.save(payload, temporary)
+    os.replace(temporary, target)
+    print(target)
+    return target
+
+
+def _load_training_bundle(dataset: str, contract: dict[str, Any]) -> tuple[torch.Tensor, torch.Tensor, dict[str, Any]]:
+    path = _training_bundle_path(dataset)
+    if not path.is_file():
+        raise FileNotFoundError(
+            f"label-free training bundle is missing: {path}; run prepare-training-bundle first"
+        )
+    try:
+        payload = torch.load(path, map_location="cpu", weights_only=False)
+    except TypeError:
+        payload = torch.load(path, map_location="cpu")
+    expected_keys = {"features", "edge_index", "node_id", "provenance"}
+    if set(payload) != expected_keys:
+        raise RuntimeError(f"{dataset}: training bundle keys are not label-free: {sorted(payload)}")
+    provenance = payload["provenance"]
+    if provenance.get("contains_y_or_labels") is not False:
+        raise RuntimeError(f"{dataset}: training bundle label-isolation flag is invalid")
+    if provenance.get("raw_sha256") != contract["manifest"]["raw_sha256"]:
+        raise RuntimeError(f"{dataset}: training bundle raw identity mismatch")
+    features = torch.as_tensor(payload["features"], dtype=torch.float32).contiguous()
+    edge_index = torch.as_tensor(payload["edge_index"], dtype=torch.long).contiguous()
+    node_id = torch.as_tensor(payload["node_id"], dtype=torch.long)
+    if not torch.equal(node_id, torch.arange(int(features.shape[0]), dtype=torch.long)):
+        raise RuntimeError(f"{dataset}: training bundle node order mismatch")
+    observed = {
+        "num_nodes": int(features.shape[0]),
+        "num_features": int(features.shape[1]),
+        "num_edges": int(edge_index.shape[1]),
+    }
+    expected = {key: int(contract["manifest"][key]) for key in observed}
+    if observed != expected:
+        raise RuntimeError(f"{dataset}: training bundle graph identity mismatch")
+    return features, edge_index, {
+        "bundle_path": str(path),
+        "bundle_keys": sorted(payload),
+        "contains_y_or_labels": False,
         **observed,
     }
 
@@ -276,12 +351,12 @@ def _train_version(version: str, dataset: str, device: str) -> None:
     paths = _paths()
     source = paths["strict"] if version == "strict" else paths["legacy_executable"]
     source_state = _source_contract()
-    contract = _dataset_contract(dataset, verify_raw_hash=True)
+    contract = _dataset_contract(dataset, verify_raw_hash=False)
     imported = _activate_source(source)
     from coregad.data.oof import assemble_oof_scores
     from coregad.training.pipeline import train_fold
 
-    features, edge_index, loader_audit = _load_training_graph(dataset, contract)
+    features, edge_index, loader_audit = _load_training_bundle(dataset, contract)
     output = paths["outputs"] / f"{version}_seed0" / dataset / "seed_0"
     if output.exists() and any(output.iterdir()):
         raise FileExistsError(f"refusing to overwrite existing audit output: {output}")
@@ -337,7 +412,7 @@ def _train_version(version: str, dataset: str, device: str) -> None:
         "node_order_sha256": contract["manifest"]["node_order_sha256"],
         "split_sha256": contract["manifest"]["split_sha256"],
         "support_sha256": contract["manifest"]["support_sha256"],
-        "label_tensor_accessed_during_training": False,
+        "label_tensor_present_or_accessed_during_training": False,
         "loader_audit": loader_audit,
         "diagnostics_used_for_training_or_selection": False,
         "formal_historical_outputs_overwritten": False,
@@ -358,6 +433,7 @@ def _pair_plan(dataset: str, device: str) -> dict[str, Any]:
         "epochs": {"base": NORMALITY_EPOCHS, "context": CONTEXT_EPOCHS, "residual": RESIDUAL_EPOCHS},
         "legacy_output": str(paths["outputs"] / "legacy_seed0" / dataset / "seed_0"),
         "strict_output": str(paths["outputs"] / "strict_seed0" / dataset / "seed_0"),
+        "label_free_training_bundle": str(_training_bundle_path(dataset)),
         "split_sha256": data["manifest"]["split_sha256"],
         "support_sha256": data["manifest"]["support_sha256"],
         "node_order_sha256": data["manifest"]["node_order_sha256"],
@@ -373,6 +449,19 @@ def _run_pair(dataset: str, device: str, execute: bool) -> None:
     if not execute:
         print("PREPARATION_ONLY: add --execute for a future user-authorized seed0 pair run")
         return
+    if not _training_bundle_path(dataset).is_file():
+        subprocess.run(
+            [
+                sys.executable,
+                str(Path(__file__).resolve()),
+                "prepare-training-bundle",
+                "--dataset",
+                dataset,
+                "--execute-preparation",
+            ],
+            check=True,
+            env={**os.environ, "PYTHONNOUSERSITE": "1"},
+        )
     for version in ("legacy", "strict"):
         command = [
             sys.executable,
@@ -400,6 +489,9 @@ def parse_args() -> argparse.Namespace:
     pair.add_argument("--dataset", required=True, choices=DATASETS)
     pair.add_argument("--device", required=True)
     pair.add_argument("--execute", action="store_true")
+    preparation = sub.add_parser("prepare-training-bundle", help=argparse.SUPPRESS)
+    preparation.add_argument("--dataset", required=True, choices=DATASETS)
+    preparation.add_argument("--execute-preparation", action="store_true")
     internal = sub.add_parser("train-version", help=argparse.SUPPRESS)
     internal.add_argument("--version", required=True, choices=("legacy", "strict"))
     internal.add_argument("--dataset", required=True, choices=DATASETS)
@@ -429,6 +521,10 @@ def main() -> int:
         print(json.dumps(result, indent=2, sort_keys=True))
     elif args.action == "run-pair":
         _run_pair(args.dataset, args.device, args.execute)
+    elif args.action == "prepare-training-bundle":
+        if not args.execute_preparation:
+            raise SystemExit("data preparation requires --execute-preparation")
+        _prepare_training_bundle(args.dataset)
     elif args.action == "train-version":
         if not args.execute_internal:
             raise SystemExit("internal training action requires --execute-internal")
