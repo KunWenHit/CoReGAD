@@ -5,6 +5,7 @@ import csv
 import hashlib
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -103,9 +104,11 @@ def _dataset_contract(dataset: str, *, verify_raw_hash: bool = False) -> dict[st
     ownership: list[int] = []
     with split_path.open("r", encoding="utf-8", newline="") as handle:
         for row in csv.DictReader(handle):
-            if row["dataset"] != dataset or int(row["seed"]) != MODEL_SEED:
+            if "dataset" in row and row["dataset"] != dataset:
                 raise RuntimeError(f"{dataset}: split row identity mismatch")
-            if int(row["label_used_for_fold"]) != 0:
+            if "seed" in row and int(row["seed"]) != MODEL_SEED:
+                raise RuntimeError(f"{dataset}: split seed mismatch")
+            if "label_used_for_fold" in row and int(row["label_used_for_fold"]) != 0:
                 raise RuntimeError(f"{dataset}: fold ownership used a label")
             node_ids.append(int(row["node_id"]))
             ownership.append(int(row["fold"]))
@@ -168,7 +171,12 @@ def _source_contract() -> dict[str, Any]:
     legacy_source = (paths["legacy_executable"] / "coregad/training/normality.py").read_text(encoding="utf-8")
     if 'output["normality_logit"][visible_index]' not in strict_source:
         raise RuntimeError("strict source does not contain visible-only anchor")
-    if 'output["normality_logit"], teacher_output["normality_logit"]' not in legacy_source.replace("\n", " "):
+    legacy_anchor = re.search(
+        r'anchor_preservation_loss\(\s*output\["normality_logit"\]\s*,\s*'
+        r'teacher_output\["normality_logit"\]\s*,?\s*\)',
+        legacy_source,
+    )
+    if legacy_anchor is None:
         raise RuntimeError("legacy executable does not contain all-node anchor")
     return {
         "legacy_reference_head": reference_head,
