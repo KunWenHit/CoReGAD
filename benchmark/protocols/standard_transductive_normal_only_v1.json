@@ -1,0 +1,19 @@
+{
+  "name": "STANDARD_TRANSDUCTIVE_NORMAL_ONLY",
+  "main_table": true,
+  "shared_canonical_x": true,
+  "shared_canonical_a": true,
+  "shared_node_order": true,
+  "shared_normal_support": true,
+  "shared_seed_schedule": true,
+  "shared_evaluator": true,
+  "complete_unlabeled_graph_covariates_visible": true,
+  "ground_truth_anomaly_labels_visible_to_normal_only_training": false,
+  "mandatory_outer_ownership": false,
+  "mandatory_baseline_cross_fitting": false,
+  "native_training_preserved": true,
+  "score_direction": "higher_is_more_anomalous",
+  "primary_metric": "AUPRC",
+  "secondary_metrics": ["AUROC", "Recall@K", "Precision@K", "NDCG@K"],
+  "secondary_robustness_protocol": "STRICT_OOF"
+}

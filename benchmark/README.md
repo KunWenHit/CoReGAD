@@ -1,23 +1,33 @@
-# Normal-only OOF baseline protocol
+# CoReGAD baseline benchmark
 
-The active repository-verified pool is limited to GGAD, RHO, GraphNC, PAGE,
-TAQ-GAD, TAM, HUGE, OCGNN, and GAD-NR. Third-party code is not vendored here;
-each rebuildable patch records the official URL, frozen upstream SHA, and patch
-SHA256 in [`patches/manifest.json`](patches/manifest.json).
+The paper main table uses
+[`STANDARD_TRANSDUCTIVE_NORMAL_ONLY`](protocol/STANDARD_TRANSDUCTIVE_NORMAL_ONLY.md):
+shared canonical graph and supervision, native method optimization, and a
+single label-isolated evaluator. Complete unlabeled graph covariates are visible
+during training. CoReGAD's internal cross-fitting is not imposed on baselines.
 
-`ACTIVE` means the author/official repository identity and current
-reachability passed the hard gate. It does not hide protocol blockers. PAGE's
-official archive currently states that training code is not released and only
-reloads checkpoints. TAQ-GAD's released runner uses ground-truth validation
-metrics for checkpoint selection. They are therefore explicitly marked
-`PROTOCOL_INCOMPATIBLE`, not silently treated as same-protocol results.
+The active inventory contains exactly 22 methods:
 
-GGAD, RHO, GraphNC, TAM, HUGE, OCGNN, and GAD-NR remain `ADAPTER_REQUIRED`
-until their native optimizer is connected to exact node-ID manifests without
-in-loop label reads. No published metric is copied into the formal result
-table, and no formal baseline training was run during this preparation.
+- Primary normal-only/unsupervised: DOMINANT, AnomalyDAE, OCGNN, AEGIS,
+  GAAN, TAM, GAD-NR, ADA-GAD, GGAD, RHO, GraphNC, and BMP.
+- PU auxiliary: Structure-aware PU-GNN.
+- External supervised references: BWGNN, GHRN, GADBench / XGBGraph,
+  ConsisGAD, SpaceGNN, DSGAD, APF, SAGAD, and HSMAD.
 
-The normative rules are in
-[`NORMAL_ONLY_OOF_PROTOCOL.md`](protocol/NORMAL_ONLY_OOF_PROTOCOL.md). AUPRC
-is primary; AUROC, Recall@K, Precision@K, and NDCG@K are secondary, with `K`
-equal to the anomaly count in the fixed evaluation mask.
+External supervised references keep their published anomaly supervision and
+are excluded from the fair normal-only ranking. The registry distinguishes
+author source, official benchmark reimplementation, and paper-derived code and
+does not turn source recovery into a claim of successful reproduction.
+
+PAGE and TAQ/TAQ-GAD are inactive and absent from the registry and launchers.
+Historical source and patch provenance may remain in the archive only. HUGE is
+also archived because it is not part of the frozen 22-method inventory.
+
+`STRICT_OOF` remains a secondary robustness option and its existing CoReGAD
+implementation and tests are preserved. It is not a mandatory baseline wrapper.
+
+Use `python benchmark/run_baseline.py --list-methods`, `--validate`, or
+`--smoke` for preparation. A training process can start only with the explicit
+`--execute` flag and only after the registry marks its native bridge executable.
+The batch launcher is dry-run by default. No formal benchmark is run by these
+preparation commands.

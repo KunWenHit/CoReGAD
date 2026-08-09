@@ -1,21 +1,21 @@
 # Baseline execution plan
 
-Do not execute this plan until every selected method is `READY` in the server
-support matrix.
+1. Validate the exact 22-method registry and eight frozen dataset identities:
+   `python benchmark/run_baseline.py --validate`.
+2. Run the label-isolation/data-contract smoke:
+   `python benchmark/run_baseline.py --smoke`.
+3. Inspect a single dry-run plan, for example:
+   `python benchmark/run_baseline.py --method DOMINANT --dataset Amazon --seed 0`.
+4. Review `reports/BASELINE_TRANSDUCTIVE_PROTOCOL_CLOSURE_20260809.md`, resolve
+   every native bridge, environment, source, and native sanity blocker, then
+   explicitly set `execute_enabled` only for methods that pass those gates.
+5. Only after user approval, run seed 0 with an explicit `--execute`.
 
-Method order:
+`benchmark/run_all_baselines_seed0.sh` is dry-run by default. It does not train
+unless invoked with `--execute`; the current registry intentionally blocks all
+formal execution until method-level native reproduction sanity is recorded.
 
-1. Direct competitors: GGAD, RHO, GraphNC.
-2. Recent direct competitors: PAGE, TAQ-GAD.
-3. Mechanism references: TAM, HUGE.
-4. Anchors: OCGNN, GAD-NR.
-
-Dataset order:
-
-1. Stage A: Amazon, Tolokers, Elliptic.
-2. Stage B: YelpChi, Weibo, T-Finance.
-3. Stage C: T-Social, DGraph-Fin.
-
-Run the medium graphs first so protocol defects are discovered before the two
-large scalable jobs. Model seeds are `0, 1, 2`; exact support and fold ownership
-remain seed-independent.
+The main protocol is `transductive`. `strict_oof` is a secondary robustness
+option and is refused unless the selected method has a separately audited
+strict adapter. CoReGAD's internal cross-fitting is unchanged and is never
+injected into baseline training.

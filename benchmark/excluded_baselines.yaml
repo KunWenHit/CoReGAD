@@ -1,25 +1,11 @@
 {
-  "excluded": [
-    {
-      "method": "BMP",
-      "notes": "Previously reported official URL was not reliably accessible; no substitute fork allowed.",
-      "status": "EXCLUDED_NO_VERIFIED_OFFICIAL_REPO"
-    },
-    {
-      "method": "HAGAN",
-      "notes": "No verified author/official runnable repository.",
-      "status": "EXCLUDED_NO_VERIFIED_OFFICIAL_REPO"
-    },
-    {
-      "method": "DGAM",
-      "notes": "No verified author/official runnable repository.",
-      "status": "EXCLUDED_NO_VERIFIED_OFFICIAL_REPO"
-    },
-    {
-      "method": "Structure-aware PU-GNN",
-      "notes": "No verified author/official runnable repository.",
-      "status": "EXCLUDED_NO_VERIFIED_OFFICIAL_REPO"
-    }
-  ],
-  "schema_version": 1
+  "schema_version": 2,
+  "inactive": [
+    {"method": "PAGE", "status": "INACTIVE_EXPLICITLY_REMOVED", "historical_source_preserved": true},
+    {"method": "TAQ", "status": "INACTIVE_EXPLICITLY_REMOVED", "historical_source_preserved": true},
+    {"method": "TAQ-GAD", "status": "INACTIVE_EXPLICITLY_REMOVED", "historical_source_preserved": true},
+    {"method": "HUGE", "status": "INACTIVE_NOT_IN_FROZEN_22", "historical_source_preserved": true},
+    {"method": "HAGAN", "status": "INACTIVE_NO_VERIFIED_SOURCE", "historical_source_preserved": false},
+    {"method": "DGAM", "status": "INACTIVE_NO_VERIFIED_SOURCE", "historical_source_preserved": false}
+  ]
 }
