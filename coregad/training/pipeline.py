@@ -69,6 +69,7 @@ def train_fold(
         / normality.feature_scale
     ).to(device)
     with torch.no_grad():
+        pre_context_output = normality.pre_context_core(scaled)
         normality_output = normality.frozen_core(scaled)
     visible_nodes = torch.cat([normal_tensor, training_unlabeled_tensor])
     engine = str(spectral_engine).strip().lower()
@@ -195,6 +196,46 @@ def train_fold(
         "heldout_nodes": np.asarray(heldout_nodes, dtype=np.int64),
         "spectral_engine": engine.upper(),
         "scalable_metadata": scalable_metadata,
+        "diagnostics": {
+            "node_id": np.asarray(heldout_nodes, dtype=np.int64),
+            "pre_context_teacher_base_anomaly_score": pre_context_output[
+                "base_anomaly_score"
+            ][heldout_index]
+            .detach()
+            .cpu()
+            .numpy()
+            .astype(np.float64),
+            "post_context_frozen_normality_score": normality_output[
+                "base_anomaly_score"
+            ][heldout_index]
+            .detach()
+            .cpu()
+            .numpy()
+            .astype(np.float64),
+            "spectral_discrepancy": discrepancy[heldout_index]
+            .detach()
+            .cpu()
+            .numpy()
+            .astype(np.float32),
+            "controlled_spectral_residual": evaluation_residual[
+                "controlled_spectral_residual"
+            ]
+            .detach()
+            .cpu()
+            .numpy()
+            .astype(np.float32),
+            "graph_correction": final["graph_correction"]
+            .detach()
+            .cpu()
+            .numpy()
+            .astype(np.float32),
+            "final_anomaly_score": final["final_anomaly_score"]
+            .detach()
+            .cpu()
+            .numpy()
+            .astype(np.float64),
+            "used_for_training_or_selection": False,
+        },
     }
     return FoldOutput(
         heldout_nodes=np.asarray(heldout_nodes, dtype=np.int64),

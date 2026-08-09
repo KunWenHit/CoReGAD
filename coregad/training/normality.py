@@ -36,6 +36,7 @@ NEIGHBOR_DROPOUT = 0.1
 
 @dataclass
 class NormalityFoldResult:
+    pre_context_core: FrozenNormalityCore
     frozen_core: FrozenNormalityCore
     graph_context_shaping: GraphContextShaping
     feature_mean: torch.Tensor
@@ -72,6 +73,12 @@ def train_cross_fitted_normality_fold(
     normal_nodes = normal_nodes.long().to(device)
     training_unlabeled_nodes = training_unlabeled_nodes.long().to(device)
     heldout_nodes = heldout_nodes.long().to(device)
+    visible_index = torch.cat(
+        [normal_nodes, training_unlabeled_nodes],
+        dim=0,
+    )
+    if heldout_nodes.numel() and bool(torch.isin(visible_index, heldout_nodes).any()):
+        raise ValueError("strict OOF requires visible_index and heldout_nodes to be disjoint")
     mean, scale = fit_feature_scaler(features, normal_nodes.cpu())
     scaled = ((features.float() - mean) / scale).to(device)
     core = CrossFittedNormalityCore(features.shape[1]).to(device)
@@ -106,7 +113,7 @@ def train_cross_fitted_normality_fold(
         lr=CONTEXT_LEARNING_RATE,
         weight_decay=WEIGHT_DECAY,
     )
-    visible_nodes = torch.cat([normal_nodes, training_unlabeled_nodes]).detach().cpu().numpy()
+    visible_nodes = visible_index.detach().cpu().numpy()
     context_centers, original_rows = context_rows_for_normal_nodes(
         edge_index,
         features.shape[0],
@@ -125,7 +132,8 @@ def train_cross_fitted_normality_fold(
             output["normality_logit"][training_unlabeled_nodes],
         )
         anchor = anchor_preservation_loss(
-            output["normality_logit"], teacher_output["normality_logit"]
+            output["normality_logit"][visible_index],
+            teacher_output["normality_logit"][visible_index],
         )
         dropped_rows = drop_context_rows(
             original_rows,
@@ -150,6 +158,7 @@ def train_cross_fitted_normality_fold(
     for parameter in shaping.parameters():
         parameter.requires_grad_(False)
     return NormalityFoldResult(
+        pre_context_core=teacher,
         frozen_core=frozen,
         graph_context_shaping=shaping,
         feature_mean=mean.cpu(),

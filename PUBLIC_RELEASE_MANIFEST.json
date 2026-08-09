@@ -18,7 +18,7 @@
   },
   "tests": {
     "status": "passed",
-    "count": 33,
+    "count": 37,
     "command": "python -m pytest -q"
   },
   "parity": {
