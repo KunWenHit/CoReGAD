@@ -93,13 +93,20 @@ def sample_non_neighbors(
         neighbors[source].add(target)
     generator = torch.Generator(device="cpu").manual_seed(seed)
     sampled: list[list[int]] = []
-    all_nodes = torch.arange(num_nodes)
+    # Rejection sampling is exactly uniform over the complement of each
+    # source's outgoing neighbourhood, but avoids constructing an O(E*N)
+    # Boolean candidate matrix.  This mechanical change is essential for the
+    # frozen canonical graphs and does not change equation 3.
     for source, _ in edges:
-        candidates = all_nodes[[node not in neighbors[source] for node in range(num_nodes)]]
-        if candidates.numel() == 0:
+        forbidden = neighbors[source]
+        if len(forbidden) >= num_nodes:
             raise ValueError("a complete graph has no structural negative samples")
-        index = torch.randint(candidates.numel(), (samples_per_edge,), generator=generator)
-        sampled.append(candidates[index].tolist())
+        row: list[int] = []
+        while len(row) < samples_per_edge:
+            draw_count = max(32, 2 * (samples_per_edge - len(row)))
+            draws = torch.randint(num_nodes, (draw_count,), generator=generator).tolist()
+            row.extend(node for node in draws if node not in forbidden)
+        sampled.append(row[:samples_per_edge])
     return torch.tensor(sampled, dtype=torch.long, device=edge_index.device)
 
 

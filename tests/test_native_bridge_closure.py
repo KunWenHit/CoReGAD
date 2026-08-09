@@ -12,8 +12,8 @@ from benchmark.resource_contract import RESOURCE_STATUSES, matrix_rows, validate
 
 ROOT = Path(__file__).resolve().parents[1]
 GATES = {
-    "SOURCE_PASS", "ENV_PASS", "NATIVE_SANITY_PASS", "LABEL_AUDIT_PASS",
-    "CANONICAL_SMOKE_PASS", "SCORE_CONTRACT_PASS",
+    "SOURCE_PASS", "ENV_PASS", "NATIVE_SANITY_PASS", "LABEL_OR_SUPERVISION_AUDIT_PASS",
+    "CANONICAL_BRIDGE_PASS", "SCORE_CONTRACT_PASS", "LAUNCHER_PASS",
 }
 
 
@@ -21,7 +21,7 @@ def _registry():
     return json.loads((ROOT / "benchmark" / "baseline_registry.yaml").read_text(encoding="utf-8"))
 
 
-def test_execute_enabled_implies_six_evidenced_pass_gates_and_native_command():
+def test_execute_enabled_implies_seven_evidenced_pass_gates_and_native_command():
     execute_enabled = 0
     for row in _registry()["baselines"]:
         if row["protocol_class"] != "PRIMARY_TRANSDUCTIVE_NORMAL_ONLY":
@@ -37,7 +37,7 @@ def test_execute_enabled_implies_six_evidenced_pass_gates_and_native_command():
                 evidence = value["evidence"]
                 evidence = evidence if isinstance(evidence, list) else [evidence]
                 assert all((ROOT / path).is_file() for path in evidence)
-    assert execute_enabled == 2
+    assert execute_enabled == 11
 
 
 def test_native_commands_do_not_receive_labels_or_cross_fitting():

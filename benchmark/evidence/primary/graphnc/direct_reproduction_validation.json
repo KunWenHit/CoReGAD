@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "method": "GraphNC",
+  "source_kind": "AUTHOR_OFFICIAL",
+  "source_commit": "4985138639d96c43b85001eefa3a54eee1caebf1",
+  "checkout_head": "94c3e5524b84b98a664ba1b9e8e4e556529ab897",
+  "environment": "/data1/wk/conda_envs/coregad_graphnc",
+  "environment_basis": "/data1/wk/conda_envs/baseline_primary_torch24",
+  "installed_additions": {"matplotlib": "3.9.4"},
+  "full_native_and_canonical_sanity": {
+    "dataset": "Weibo",
+    "seed": 0,
+    "teacher_epochs": 300,
+    "student_epochs": 1000,
+    "schedule_source": "fixed upstream Reddit defaults",
+    "real_teacher_optimizer_steps": 300,
+    "real_student_optimizer_steps": 1000,
+    "teacher_loss_first": 29.5689754486084,
+    "teacher_loss_last": 0.3251144587993622,
+    "student_loss_first": 0.9354923367500305,
+    "student_loss_last": 0.00000672239184495993,
+    "score_count": 7501,
+    "scores_finite": true,
+    "elapsed_seconds": 17.88327193260193,
+    "server_output": "/data1/wk/codes/CoReGAD_RELEASE/outputs/baselines/full_native_sanity/GraphNC/Weibo/seed_0",
+    "evidence_sha256": "58c8044fe195959b9b258ba1079367ac8837083b7f722500aee620b8db1a3df6",
+    "scores_sha256": "15f2d70b0d061098e4c450e36d403e48340d07aa9ced34c8de8fb680f17e1d5b"
+  },
+  "teacher_audit": {
+    "teacher_source": "mala-lab/GGAD",
+    "teacher_source_commit": "358fb4d4b4ee5b8b195445791a9e2b6d52487f2b",
+    "teacher_trained_fresh_on_same_label_free_bundle": true,
+    "teacher_input_contains_y": false,
+    "teacher_metric_or_checkpoint_selection": false,
+    "bundled_pretrained_teacher_used": false,
+    "bundled_pretrained_teacher_exclusion_reason": "Its support IDs and label-based checkpoint-selection provenance cannot be verified against the frozen canonical protocol."
+  },
+  "label_audit": {
+    "training_bundle_keys": ["edge_index", "features", "node_id", "provenance"],
+    "ground_truth_anomaly_label_present_or_accessed": false,
+    "normal_support_source": "frozen Weibo_seed0 support manifest",
+    "test_metrics_or_labels_called_during_training": false,
+    "early_stopping_or_checkpoint_selection": false,
+    "coregad_cross_fitting_injected": false
+  },
+  "score_contract": {"fields": ["node_id", "anomaly_score"], "higher_is_more_anomalous": true, "node_ids_unique": true, "scores_finite": true}
+}

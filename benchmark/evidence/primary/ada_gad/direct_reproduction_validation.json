@@ -1,0 +1,13 @@
+{
+  "status":"PASS",
+  "method":"ADA-GAD",
+  "source_kind":"AUTHOR_OFFICIAL",
+  "source_commit":"71a3aca936ccfe430e3809864f256d4bf80b22ee",
+  "checkout_head":"71a3aca936ccfe430e3809864f256d4bf80b22ee",
+  "environment":"/data1/wk/conda_envs/coregad_adagad",
+  "compatibility":{"python":"3.10.20","torch":"2.4.0+cu124","torch_geometric":"2.6.1","pyg_lib":"0.4.0+pt24cu124","torch_cluster":"1.6.3+pt24cu124","semantic_change":false,"note":"PyG 2.2 removed import submodules are adapter aliases to the unchanged PyG 2.6 functions."},
+  "full_native_and_canonical_sanity":{"dataset":"Weibo","seed":0,"upstream_dataset_config":"weibo","pretrain_epochs_per_encoder":20,"pretrained_encoder_count":3,"detection_epochs":20,"real_optimizer_steps":80,"score_count":7501,"scores_finite":true,"elapsed_seconds":242.9922947883606,"server_output":"/data1/wk/codes/CoReGAD_RELEASE/outputs/baselines/full_native_sanity/ADA-GAD/Weibo/seed_0","evidence_sha256":"f11aa93e8a24d9354edcda4762db95c4062ff74b0ee02347b9008fd4b60ce064","scores_sha256":"613666f45b270e24b28cf843ac983e5e9895a98bf87fed0455f5ebff78214463"},
+  "label_audit":{"training_bundle_keys":["edge_index","features","node_id","provenance"],"ground_truth_anomaly_label_present_or_accessed":false,"ADANET_y_true":null,"test_metrics_or_labels_called_during_training":false,"coregad_cross_fitting_injected":false},
+  "native_contract":{"pretrained_encoders":["attribute","structure","topology"],"detector":"vendored PyGOD ADANET","optimizer":"upstream Adam schedules"},
+  "score_contract":{"fields":["node_id","anomaly_score"],"higher_is_more_anomalous":true,"node_ids_unique":true,"scores_finite":true}
+}

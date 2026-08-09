@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "method": "GGAD",
+  "source_kind": "AUTHOR_OFFICIAL",
+  "source_commit": "358fb4d4b4ee5b8b195445791a9e2b6d52487f2b",
+  "checkout_head": "c25456e4a294203f0d37978118f34f68d88a6104",
+  "environment": "/data1/wk/conda_envs/coregad_ggad",
+  "environment_basis": "/data1/wk/conda_envs/baseline_primary_torch24",
+  "compatibility": {
+    "python": "3.10.20",
+    "torch": "2.4.0+cu124",
+    "dgl": "2.4.0+cu124",
+    "torch_geometric": "2.6.1",
+    "matplotlib": "3.9.4",
+    "upstream_declared": "Python 3.7 / PyTorch 1.6 (requirements additionally pin torch 1.11)",
+    "semantic_change": false,
+    "note": "No GGAD equation, model layer, loss term, or optimizer was changed; the adapter supplies the current device as PyTorch's default tensor device."
+  },
+  "full_native_and_canonical_sanity": {
+    "dataset": "Weibo",
+    "seed": 0,
+    "epochs": 300,
+    "schedule_source": "fixed label-free fallback matching the upstream Reddit global schedule",
+    "real_model_initialized": true,
+    "real_optimizer_steps": 300,
+    "loss_first": 29.5689754486084,
+    "loss_last": 0.3251144587993622,
+    "loss_min": 0.2970082759857178,
+    "score_count": 7501,
+    "scores_finite": true,
+    "elapsed_seconds": 6.568962812423706,
+    "server_output": "/data1/wk/codes/CoReGAD_RELEASE/outputs/baselines/full_native_sanity/GGAD/Weibo/seed_0",
+    "evidence_sha256": "c64be74db1588f7be03db843bdff7bf32954509724dd3c0f58450af0cf77459d",
+    "scores_sha256": "1121ffe89372c1f2845f757677f6ad9598e9d793f047409a1acbd8f4aaed949f"
+  },
+  "label_audit": {
+    "training_bundle_keys": ["edge_index", "features", "node_id", "provenance"],
+    "ground_truth_anomaly_label_present_or_accessed": false,
+    "normal_support_source": "frozen Weibo_seed0 support manifest",
+    "pseudo_anomalies_derived_only_from_frozen_normal_support": true,
+    "test_metrics_or_labels_called_during_training": false,
+    "early_stopping_or_checkpoint_selection": false,
+    "coregad_cross_fitting_injected": false
+  },
+  "native_contract": {
+    "model": "baselines/repos/GGAD/model.py:Model",
+    "optimizer": "torch.optim.Adam",
+    "losses": [
+      "BCE pseudo-anomaly discrimination",
+      "local-affinity margin",
+      "generated-outlier reconstruction"
+    ]
+  },
+  "score_contract": {
+    "fields": ["node_id", "anomaly_score"],
+    "higher_is_more_anomalous": true,
+    "node_ids_unique": true,
+    "scores_finite": true
+  }
+}

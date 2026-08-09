@@ -4,8 +4,9 @@
     "SOURCE_PASS": {"status": "PASS", "evidence": "benchmark/evidence/source_identity_20260809.json"},
     "ENV_PASS": {"status": "PASS", "evidence": "benchmark/evidence/environments/primary_torch24.json"},
     "NATIVE_SANITY_PASS": {"status": "PASS", "evidence": "benchmark/evidence/primary/ocgnn/native_bridge_validation.json"},
-    "LABEL_AUDIT_PASS": {"status": "PASS", "evidence": "benchmark/evidence/primary/ocgnn/native_bridge_validation.json"},
-    "CANONICAL_SMOKE_PASS": {"status": "PASS", "evidence": "benchmark/evidence/primary/ocgnn/native_bridge_validation.json"},
-    "SCORE_CONTRACT_PASS": {"status": "PASS", "evidence": "benchmark/evidence/primary/ocgnn/native_bridge_validation.json"}
+    "LABEL_OR_SUPERVISION_AUDIT_PASS": {"status": "PASS", "evidence": "benchmark/evidence/primary/ocgnn/native_bridge_validation.json"},
+    "CANONICAL_BRIDGE_PASS": {"status": "PASS", "evidence": "benchmark/evidence/primary/ocgnn/native_bridge_validation.json"},
+    "SCORE_CONTRACT_PASS": {"status": "PASS", "evidence": "benchmark/evidence/primary/ocgnn/native_bridge_validation.json"},
+    "LAUNCHER_PASS": {"status": "PASS", "evidence": "tests/test_direct_reproduction_launcher.py"}
   }
 }

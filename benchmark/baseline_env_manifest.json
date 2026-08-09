@@ -13,19 +13,44 @@
       "protected_source_environment_mutated": false,
       "critical_package_evidence": "benchmark/evidence/environments/primary_torch24.json"
     },
-    "anomalydae_tf1": {"path": null, "status": "BLOCKED_LEGACY_TENSORFLOW1_ENV", "python": "3.6 upstream", "torch": null, "cuda": null, "graph_library": "TensorFlow 1.10"},
-    "paper_derived_torch": {"path": "/data1/wk/conda_envs/pfr_gad", "status": "READ_ONLY_REUSE_FOR_UNIT_TESTS", "python": "3.10.20", "torch": "2.4.0+cu124", "cuda": "12.4", "graph_library": "sparse torch only"},
-    "gadbench_dgl": {"path": "/data1/wk/conda_envs/baseline_gadbench", "status": "DEFINITION_PENDING", "python": "3.9", "torch": "1.13.1", "cuda": "11.7", "graph_library": "DGL cu117"},
-    "consisgad": {"path": "/data1/wk/conda_envs/baseline_consisgad", "status": "DEFINITION_PENDING", "python": "3.9", "torch": "repo pinned", "cuda": "repo compatible", "graph_library": "DGL"},
-    "spacegnn": {"path": "/data1/wk/conda_envs/baseline_spacegnn", "status": "DEFINITION_PENDING", "python": "3.9", "torch": "repo pinned", "cuda": "repo compatible", "graph_library": "DGL"},
-    "dsgad": {"path": "/data1/wk/conda_envs/baseline_dsgad", "status": "DEFINITION_PENDING", "python": "3.9", "torch": "repo pinned", "cuda": "repo compatible", "graph_library": "DGL 2.0.0"},
-    "modern_dgl24": {"path": "/data1/wk/conda_envs/baseline_modern_dgl24", "status": "DEFINITION_PENDING", "python": "3.10", "torch": "2.4.0", "cuda": "12.4", "graph_library": "DGL 2.4.0+cu124"},
-    "hsmad": {"path": "/data1/wk/conda_envs/baseline_hsmad", "status": "SOURCE_RECOVERED_ENV_PENDING", "python": "upstream unspecified", "torch": "upstream unspecified", "cuda": "repo compatible", "graph_library": "PyG"}
+    "ggad_torch24_compat": {
+      "path": "/data1/wk/conda_envs/coregad_ggad",
+      "status": "PASS_READY",
+      "python": "3.10.20",
+      "torch": "2.4.0+cu124",
+      "cuda": "12.4",
+      "graph_library": "DGL 2.4.0+cu124; PyG 2.6.1",
+      "protected_source_environment_mutated": false,
+      "critical_package_evidence": "benchmark/environment_inventory.json"
+    },
+    "rho_torch24_compat": {
+      "path": "/data1/wk/conda_envs/coregad_rho", "status": "PASS_READY", "python": "3.10.20",
+      "torch": "2.4.0+cu124", "cuda": "12.4", "graph_library": "DGL 2.4.0+cu124; PyG 2.6.1",
+      "critical_additions": "matplotlib 3.9.4; ogb 1.3.6", "protected_source_environment_mutated": false,
+      "critical_package_evidence": "benchmark/environment_inventory.json"
+    },
+    "graphnc_torch24_compat": {
+      "path": "/data1/wk/conda_envs/coregad_graphnc", "status": "PASS_READY", "python": "3.10.20",
+      "torch": "2.4.0+cu124", "cuda": "12.4", "graph_library": "DGL 2.4.0+cu124; PyG 2.6.1",
+      "critical_additions": "matplotlib 3.9.4", "protected_source_environment_mutated": false,
+      "critical_package_evidence": "benchmark/environment_inventory.json"
+    },
+    "anomalydae_tf1": {"path": "/data1/wk/conda_envs/coregad_anomalydae", "status": "PASS_READY", "python": "3.10.20", "torch": "2.4.0+cu124", "cuda": "CPU execution", "graph_library": "TensorFlow 2.15.1 tensorflow.compat.v1", "protected_source_environment_mutated": false, "critical_package_evidence": "benchmark/environment_inventory.json"},
+    "tam": {"path": "/data1/wk/conda_envs/coregad_tam", "status": "PASS_READY", "python": "3.10.20", "torch": "2.4.0+cu124", "cuda": "12.4", "graph_library": "DGL 2.4.0+cu124; PyG 2.6.1", "protected_source_environment_mutated": false, "critical_package_evidence": "benchmark/environment_inventory.json"},
+    "gadnr": {"path": "/data1/wk/conda_envs/coregad_gadnr", "status": "PASS_READY", "python": "3.10.20", "torch": "2.4.0+cu124", "cuda": "12.4", "graph_library": "DGL 2.4.0+cu124; PyG 2.6.1", "protected_source_environment_mutated": false, "critical_package_evidence": "benchmark/environment_inventory.json"},
+    "adagad": {"path": "/data1/wk/conda_envs/coregad_adagad", "status": "PASS_READY", "python": "3.10.20", "torch": "2.4.0+cu124", "cuda": "12.4", "graph_library": "PyG 2.6.1 + pyg_lib/torch_cluster", "protected_source_environment_mutated": false, "critical_package_evidence": "benchmark/environment_inventory.json"},
+    "paper_derived_torch": {"path": "/data1/wk/conda_envs/coregad_pu", "status": "PASS_READY", "python": "3.10.20", "torch": "2.4.0+cu124", "cuda": "12.4", "graph_library": "sparse torch only", "protected_source_environment_mutated": false, "critical_package_evidence": "benchmark/environment_inventory.json"},
+    "gadbench_dgl": {"path": "/data1/wk/conda_envs/coregad_gadbench", "status": "PASS_READY", "python": "3.10.20", "torch": "2.4.0+cu124", "cuda": "12.4", "graph_library": "DGL 2.4.0+cu124; XGBoost 1.7.6", "protected_source_environment_mutated": false, "critical_package_evidence": "benchmark/environment_inventory.json"},
+    "consisgad": {"path": "/data1/wk/conda_envs/coregad_consisgad", "status": "PASS_READY", "python": "3.10.20", "torch": "2.4.0+cu124", "cuda": "12.4", "graph_library": "DGL 2.4.0+cu124", "protected_source_environment_mutated": false, "critical_package_evidence": "benchmark/environment_inventory.json"},
+    "spacegnn": {"path": "/data1/wk/conda_envs/coregad_spacegnn", "status": "PASS_READY", "python": "3.10.20", "torch": "2.4.0+cu124", "cuda": "12.4", "graph_library": "DGL 2.4.0+cu124", "protected_source_environment_mutated": false, "critical_package_evidence": "benchmark/environment_inventory.json"},
+    "dsgad": {"path": "/data1/wk/conda_envs/coregad_dsgad", "status": "PASS_READY", "python": "3.10.20", "torch": "2.4.0+cu124", "cuda": "12.4", "graph_library": "DGL 2.4.0+cu124", "protected_source_environment_mutated": false, "critical_package_evidence": "benchmark/environment_inventory.json"},
+    "modern_dgl24": {"path": "/data1/wk/conda_envs/coregad_modern_dgl", "status": "PASS_READY", "python": "3.10.20", "torch": "2.4.0+cu124", "cuda": "12.4", "graph_library": "DGL 2.4.0+cu124", "protected_source_environment_mutated": false, "critical_package_evidence": "benchmark/environment_inventory.json"},
+    "hsmad": {"path": "/data1/wk/conda_envs/coregad_hsmad", "status": "PASS_READY", "python": "3.10.20", "torch": "2.4.0+cu124", "cuda": "12.4", "graph_library": "DGL 2.4.0+cu124", "protected_source_environment_mutated": false, "critical_package_evidence": "benchmark/environment_inventory.json"}
   },
   "method_environment": {
     "DOMINANT": "primary_torch24", "AnomalyDAE": "anomalydae_tf1", "OCGNN": "primary_torch24",
-    "AEGIS": "primary_torch24", "GAAN": "primary_torch24", "TAM": "primary_torch24", "GAD-NR": "primary_torch24",
-    "ADA-GAD": "primary_torch24", "GGAD": "primary_torch24", "RHO": "primary_torch24", "GraphNC": "primary_torch24",
+    "AEGIS": "ggad_torch24_compat", "GAAN": "ggad_torch24_compat", "TAM": "tam", "GAD-NR": "gadnr",
+    "ADA-GAD": "adagad", "GGAD": "ggad_torch24_compat", "RHO": "rho_torch24_compat", "GraphNC": "graphnc_torch24_compat",
     "Structure-aware PU-GNN": "paper_derived_torch",
     "BWGNN": "gadbench_dgl", "GHRN": "gadbench_dgl", "GADBench / XGBGraph": "gadbench_dgl",
     "ConsisGAD": "consisgad", "SpaceGNN": "spacegnn", "DSGAD": "dsgad",
