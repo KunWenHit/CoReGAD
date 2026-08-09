@@ -1,0 +1,25 @@
+{
+  "excluded": [
+    {
+      "method": "BMP",
+      "notes": "Previously reported official URL was not reliably accessible; no substitute fork allowed.",
+      "status": "EXCLUDED_NO_VERIFIED_OFFICIAL_REPO"
+    },
+    {
+      "method": "HAGAN",
+      "notes": "No verified author/official runnable repository.",
+      "status": "EXCLUDED_NO_VERIFIED_OFFICIAL_REPO"
+    },
+    {
+      "method": "DGAM",
+      "notes": "No verified author/official runnable repository.",
+      "status": "EXCLUDED_NO_VERIFIED_OFFICIAL_REPO"
+    },
+    {
+      "method": "Structure-aware PU-GNN",
+      "notes": "No verified author/official runnable repository.",
+      "status": "EXCLUDED_NO_VERIFIED_OFFICIAL_REPO"
+    }
+  ],
+  "schema_version": 1
+}

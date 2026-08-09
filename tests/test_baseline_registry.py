@@ -8,35 +8,40 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_baseline_registry_is_complete_and_portable():
     registry = json.loads((ROOT / "benchmark" / "baseline_registry.yaml").read_text(encoding="utf-8"))
     rows = registry["baselines"]
-    assert len(rows) == 24
-    assert len({row["method"] for row in rows}) == 24
+    assert len(rows) == 9
+    assert len({row["method"] for row in rows}) == 9
     required = {
         "method",
         "paper_title",
-        "protocol_class",
+        "protocol_family",
         "official_repo",
         "local_path",
         "upstream_commit",
-        "protocol_branch",
-        "adapter_status",
-        "requires_anomaly_labels",
+        "official_repo_verified",
+        "repo_reachable",
+        "protocol_status",
+        "smoke_status",
         "uses_pseudo_anomalies",
-        "uses_external_teacher",
-        "datasets_supported",
-        "dependencies",
+        "uses_teacher",
+        "supported_datasets",
+        "native_score_meaning",
         "notes",
     }
     assert all(required <= row.keys() for row in rows)
-    assert all(not (row["fair_ranking"] and row["requires_anomaly_labels"]) for row in rows)
+    assert all(row["uses_real_anomaly_labels"] is False for row in rows)
+    assert {row["method"] for row in rows} == {
+        "GGAD", "RHO", "GraphNC", "PAGE", "TAQ-GAD", "TAM", "HUGE", "OCGNN", "GAD-NR"
+    }
     text = json.dumps(registry)
     assert "D:\\" not in text
     assert "E:\\" not in text
     assert "/data1/" not in text
 
 
-def test_supervised_references_are_excluded_from_fair_ranking():
+def test_protocol_blockers_are_explicit_not_hidden():
     rows = json.loads((ROOT / "benchmark" / "baseline_registry.yaml").read_text(encoding="utf-8"))["baselines"]
-    external = [row for row in rows if row["protocol_class"] == "EXTERNAL_SUPERVISED_REFERENCE"]
-    assert len(external) == 9
-    assert all(row["requires_anomaly_labels"] is True for row in external)
-    assert all(row["fair_ranking"] is False for row in external)
+    blocked = {row["method"]: row["smoke_status"] for row in rows if row["protocol_status"] == "PROTOCOL_INCOMPATIBLE"}
+    assert blocked == {
+        "PAGE": "BLOCKED_OFFICIAL_TRAINING_CODE_NOT_RELEASED",
+        "TAQ-GAD": "BLOCKED_GT_LABEL_EARLY_STOPPING",
+    }

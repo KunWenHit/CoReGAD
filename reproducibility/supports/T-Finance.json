@@ -1,0 +1,11 @@
+{
+  "dataset": "T-Finance",
+  "generation_rule": "exact historical labeled-normal support; never resample",
+  "node_ids_public": false,
+  "normal_label_budget": 4505,
+  "support_and_evaluation_disjoint": true,
+  "support_node_ids_sha256": "fc0315a0627683fd2b1b94c4653c04780b75fb9946cded6426ca8cd06e0334c5",
+  "support_nodes_are_normal": true,
+  "support_seed": 0,
+  "support_sha256": "9318c0e96b8f1cbbfeade3e3487fad63083dacba61f56cef037de242ce918b8c"
+}

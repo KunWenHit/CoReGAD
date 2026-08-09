@@ -1,0 +1,18 @@
+{
+  "dataset": "Tolokers",
+  "evaluation_mask_sha256": "a6920e9b3fccadf045df79ddb6423ff19654a28dd67e20488c01c354f1682f75",
+  "evaluation_node_count": 10656,
+  "evaluation_node_ids_sha256": "b551794743ce75acc151202d15c76993d7bb4010028915e0381ee40cf37e65cb",
+  "fold_counts": {
+    "0": 2132,
+    "1": 2131,
+    "2": 2131,
+    "3": 2131,
+    "4": 2131
+  },
+  "fold_seed": 0,
+  "generation_rule": "exact historical manifest recovery; never regenerate or reshuffle",
+  "node_ids_public": false,
+  "outer_folds": 5,
+  "split_sha256": "13d8fd9798b5666b46906770d6c67071be83a43d71fc2c6725c6c6b84f26479b"
+}

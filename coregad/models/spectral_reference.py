@@ -184,29 +184,24 @@ def structural_statistics(
     node_embeddings: torch.Tensor,
     visible_degree: torch.Tensor,
     support_ratio: torch.Tensor,
+    low_spectral_component: torch.Tensor | None = None,
 ) -> torch.Tensor:
+    """Return the three frozen low-order structural channels.
+
+    The historical release computes local embedding variation as the RMS
+    distance between ``H`` and its one-step low-pass propagation.  Passing the
+    already-computed low component avoids a duplicate sparse multiplication.
+    """
+
     hidden_dim = int(node_embeddings.shape[1])
-    normalized_embeddings = F.layer_norm(
-        node_embeddings, (hidden_dim,), eps=LAYER_NORM_EPS
-    )
-    adjacency = normalized_adjacency.coalesce()
-    rows, columns = adjacency.indices()
-    nonself = rows != columns
-    rows, columns = rows[nonself], columns[nonself]
-    local_sum = node_embeddings.new_zeros((node_embeddings.shape[0], hidden_dim))
-    local_square_sum = node_embeddings.new_zeros((node_embeddings.shape[0], hidden_dim))
-    if rows.numel():
-        local_sum.index_add_(0, rows, normalized_embeddings[columns])
-        local_square_sum.index_add_(0, rows, normalized_embeddings[columns].square())
-    count = visible_degree.to(node_embeddings.device).clamp_min(1.0).unsqueeze(1)
-    local_mean = local_sum / count
-    local_variance = torch.clamp(local_square_sum / count - local_mean.square(), min=0.0)
-    local_embedding_variation = torch.sqrt(local_variance).mean(dim=1)
-    local_embedding_variation = torch.where(
-        visible_degree.to(node_embeddings.device) > 0,
-        local_embedding_variation,
-        torch.zeros_like(local_embedding_variation),
-    )
+    if low_spectral_component is None:
+        propagate = torch.sparse.mm if normalized_adjacency.is_sparse else torch.matmul
+        low_spectral_component = propagate(
+            normalized_adjacency, node_embeddings
+        )
+    local_embedding_variation = torch.linalg.vector_norm(
+        node_embeddings - low_spectral_component, dim=1
+    ) / math.sqrt(hidden_dim)
     return torch.stack(
         [
             torch.log1p(visible_degree.to(node_embeddings.device)),

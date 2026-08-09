@@ -1,0 +1,11 @@
+{
+  "dataset": "YelpChi",
+  "edge_order_sha256": "fe4c4fefcd39aa1edbab3885afaf6332c183ecacd9b2099ae35f296ed3ae27aa",
+  "evaluation_mask_sha256": "ab53cd585187b6e5f6076aa7e82f674ada878e0f64bf88fc6d4ef7bab64edd26",
+  "feature_sha256": "78398b5ac65d8861e2ba879f6251dacf27da1d6e98fe64ca757ab5bb548703fa",
+  "label_sha256": "2d00f3c55ff4b4cfff81744fe3eca36f28cd91daba135b34302d9b54f630e929",
+  "node_order_sha256": "e7868f2b7cc21ad73a7ccffcb810ec259da3073cb5b0f38055d6af33fbe5dcb8",
+  "raw_sha256": "04bd2dd061c67b438fdb93e17b88b86b10fe3a0155e5a31fe350dc0652953abf",
+  "split_sha256": "ea4b034bd02b740f4753a00a46f03ae374eba076459f0e7f8f3f7c68ae3a1ef0",
+  "support_sha256": "7421748b8703a6e7cba3fa6ffdd2668509d154e2cd0fd08eca00ecf404c36dfe"
+}

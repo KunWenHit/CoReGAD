@@ -1,0 +1,11 @@
+{
+  "dataset": "Tolokers",
+  "generation_rule": "exact historical labeled-normal support; never resample",
+  "node_ids_public": false,
+  "normal_label_budget": 1102,
+  "support_and_evaluation_disjoint": true,
+  "support_node_ids_sha256": "d69aac736c2917b5e69b106e00cca4be4fcca37ecbef8b6f5354c8fd7219be96",
+  "support_nodes_are_normal": true,
+  "support_seed": 0,
+  "support_sha256": "29a52c6596683c278606aa1676620933eb91ab112600618df9b841f3580aebde"
+}
