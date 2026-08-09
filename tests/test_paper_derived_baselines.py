@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 import torch
 
 from benchmark.paper_derived.bmp import BMP, bmp_loss, build_normalized_routes
@@ -7,6 +10,18 @@ from benchmark.paper_derived.structure_aware_pu_gnn import (
     sample_non_neighbors,
     structural_regularizer,
 )
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_bmp_math_is_archived_provenance_not_active_reproduction():
+    registry = json.loads((ROOT / "benchmark" / "baseline_registry.yaml").read_text(encoding="utf-8"))
+    excluded = json.loads((ROOT / "benchmark" / "excluded_baselines.yaml").read_text(encoding="utf-8"))
+    assert "BMP" not in {row["method"] for row in registry["baselines"]}
+    bmp = next(row for row in excluded["inactive"] if row["method"] == "BMP")
+    assert bmp["status"] == "EXCLUDED_NO_RECOVERABLE_OFFICIAL_SOURCE"
+    assert bmp["active_launcher_candidate"] is False
 
 
 def test_bmp_tree_routes_forest_shape_probability_update_and_loss():

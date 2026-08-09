@@ -1,0 +1,64 @@
+diff --git a/datasets/dataloader.py b/datasets/dataloader.py
+index 43473e1..f27d67f 100644
+--- a/datasets/dataloader.py
++++ b/datasets/dataloader.py
+@@ -1,5 +1,5 @@
+ from dgl.data import load_data, tu
+-from dgl import DGLGraph, transform
++from dgl import DGLGraph
+ import torch
+ import torch.utils.data
+ import numpy as np
+@@ -13,6 +13,12 @@ def loader(args):
+     # load and preprocess dataset
+     
+     data = load_data(args)
++    if not hasattr(data, 'labels'):
++        graph = data[0]
++        data.labels = graph.ndata['label'].cpu().numpy()
++        data.features = graph.ndata['feat'].cpu().numpy()
++        data.graph = graph.to_networkx()
++
+ 
+     print(f'normal_class is {args.normal_class}')
+ 
+@@ -26,6 +32,6 @@ def loader(args):
+     test_mask = torch.BoolTensor(test_mask)
+     in_feats = features.shape[1]
+-    n_classes = data.num_labels
++    n_classes = getattr(data, 'num_labels', data.num_classes)
+     n_edges = data.graph.number_of_edges()
+     print("""----Data statistics------'
+       #Edges %d
+@@ -76,6 +82,12 @@ def emb_dataloader(args):
+     # load and preprocess dataset
+     data = load_data(args)
+     normal_class=args.normal_class
++    if not hasattr(data, 'labels'):
++        graph = data[0]
++        data.labels = graph.ndata['label'].cpu().numpy()
++        data.features = graph.ndata['feat'].cpu().numpy()
++        data.graph = graph.to_networkx()
++
+     labels,train_mask,val_mask,test_mask=one_class_processing(data,normal_class,args)
+ 
+     features = torch.FloatTensor(data.features)
+@@ -92,6 +104,6 @@ def emb_dataloader(args):
+     test_mask = torch.BoolTensor(test_mask)
+     in_feats = features.shape[1]
+-    n_classes = data.num_labels
++    n_classes = getattr(data, 'num_labels', data.num_classes)
+     n_edges = data.graph.number_of_edges()
+     print("""----Data statistics------'
+       #Edges %d
+diff --git a/datasets/TUloader.py b/datasets/TUloader.py
+index 0a7bd50..7b1fa8a 100644
+--- a/datasets/TUloader.py
++++ b/datasets/TUloader.py
+@@ -1,5 +1,5 @@
+ from dgl.data import load_data, tu
+-from dgl import DGLGraph, transform
++from dgl import DGLGraph
+ import torch
+ import torch.utils.data
+ import numpy as np

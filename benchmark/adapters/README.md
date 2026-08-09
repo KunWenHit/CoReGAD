@@ -14,3 +14,8 @@ Source recovery, a present adapter contract, and a runnable native bridge are
 separate registry states. No method is marked executable until the native
 optimizer is connected without test-label tuning and passes its native sanity
 gate.
+
+Method-specific executable bridges live under `benchmark/native_bridges/`.
+Their shared loader accepts only the frozen label-free torch bundle and rejects
+label-like keys. `resource_contract.py` defines the independent NOT_RUN/PASS/
+OOM/OOT/UNSUPPORTED/ERROR matrix and mandatory OOM/OOT evidence rules.

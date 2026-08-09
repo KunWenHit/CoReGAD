@@ -71,11 +71,22 @@ def export(root: Path) -> None:
     )
     _write_csv(
         manifest_root / "dataset_support_matrix.csv",
-        ["method", "dataset", "contract_status", "runnable_status", "no_subsampling"],
         [
-            [row["method"], dataset, "CANONICAL_CONTRACT_DECLARED", row["runnable_status"], True]
+            "method", "dataset", "benchmark_target", "native_supported",
+            "validated", "resource_status", "preflight_status",
+            "runnable_status", "no_subsampling",
+        ],
+        [
+            [
+                row["method"], dataset, True,
+                dataset in row["native_supported_datasets"],
+                dataset in row["validated_datasets"],
+                row["resource_status_by_dataset"][dataset],
+                row.get("resource_preflight_by_dataset", {}).get(dataset, "NOT_ASSESSED"),
+                row["runnable_status"], True,
+            ]
             for row in rows
-            for dataset in registry["dataset_order"]
+            for dataset in row["benchmark_targets"]
         ],
     )
     source_rows = []
@@ -98,7 +109,13 @@ def export(root: Path) -> None:
         )
     _write_json(
         manifest_root / "source_recovery_manifest.json",
-        {"schema_version": 1, "generated_from": "coregad/benchmark/baseline_registry.yaml", "sources": source_rows},
+        {
+            "schema_version": 2,
+            "generated_from": "coregad/benchmark/baseline_registry.yaml",
+            "active_total": len(rows),
+            "benchmark_target_cells": sum(len(row["benchmark_targets"]) for row in rows),
+            "sources": source_rows,
+        },
     )
 
 

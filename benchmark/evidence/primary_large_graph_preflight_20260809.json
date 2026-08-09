@@ -1,0 +1,96 @@
+{
+  "audit_date": "2026-08-09",
+  "contract": {
+    "resource_status_unchanged": "NOT_RUN",
+    "risk_flag": "NOT_RUN_RESOURCE_RISK",
+    "risk_is_not_oom": true,
+    "formal_oom_requires_actual_execution_evidence": true,
+    "subsampling_allowed": false
+  },
+  "datasets": {
+    "T-Finance": {
+      "num_nodes": 39357,
+      "num_edges": 42445086,
+      "edge_count_convention": "directed_edge_index_entries",
+      "float32_dense_n_by_n_bytes_each": 6195893796,
+      "float32_dense_n_by_n_gib_each": 5.77037576213479,
+      "int64_edge_index_gib": 0.6324810683727264
+    },
+    "T-Social": {
+      "num_nodes": 5781065,
+      "num_edges": 146211016,
+      "edge_count_convention": "directed_edge_index_entries",
+      "undirected_unique_edges_reported_by_some_sources": 73105508,
+      "float32_dense_n_by_n_bytes_each": 133682850136900,
+      "float32_dense_n_by_n_gib_each": 124501.85617143288,
+      "int64_edge_index_gib": 2.1787139177322388,
+      "identity_rule": "Use raw hash, node count, feature shape and node order; an approximately 2x edge-count difference alone is not a version mismatch."
+    },
+    "DGraph-Fin": {
+      "num_nodes": 3700550,
+      "num_edges": 4300999,
+      "edge_count_convention": "directed_edge_index_entries",
+      "float32_dense_n_by_n_bytes_each": 54776281210000,
+      "float32_dense_n_by_n_gib_each": 51014.38724435866,
+      "int64_edge_index_gib": 0.06408987939357758
+    }
+  },
+  "methods": {
+    "DOMINANT": {
+      "operations": {"dense_n_by_n_adjacency": true, "pairwise_n_squared": true, "full_edge_attention": false, "dense_reconstruction_target": true, "full_node_covariance": false, "all_pairs_distance": false, "dense_spectral_decomposition": false},
+      "source_evidence": ["baselines/repos/DOMINANT_PYTORCH/model.py:Structure_Decoder.forward (x @ x.T)", "benchmark/native_bridges/dominant.py:_adjacency (dense target, native objective preserved)"],
+      "preflight": {"T-Finance": "NOT_RUN_RESOURCE_RISK", "T-Social": "NOT_RUN_RESOURCE_RISK", "DGraph-Fin": "NOT_RUN_RESOURCE_RISK"}
+    },
+    "AnomalyDAE": {
+      "operations": {"dense_n_by_n_adjacency": true, "pairwise_n_squared": true, "full_edge_attention": false, "dense_reconstruction_target": true, "full_node_covariance": false, "all_pairs_distance": false, "dense_spectral_decomposition": false},
+      "source_evidence": ["baselines/repos/AnomalyDAE/src/constructor.py (tf.sparse_tensor_to_dense adj_orig)", "baselines/repos/AnomalyDAE/src/layers.py (z_u by z_u transpose structure decoder)"],
+      "preflight": {"T-Finance": "NOT_RUN_RESOURCE_RISK", "T-Social": "NOT_RUN_RESOURCE_RISK", "DGraph-Fin": "NOT_RUN_RESOURCE_RISK"}
+    },
+    "OCGNN": {
+      "operations": {"dense_n_by_n_adjacency": false, "pairwise_n_squared": false, "full_edge_attention": false, "dense_reconstruction_target": false, "full_node_covariance": false, "all_pairs_distance": false, "dense_spectral_decomposition": false},
+      "source_evidence": ["baselines/repos/OCGNN/networks/GraphSAGE.py (DGL sparse message passing)", "benchmark/native_bridges/ocgnn.py:preflight (edge-index plus feature estimate)"],
+      "preflight": {"T-Finance": "PREFLIGHT_SPARSE_FULL_BATCH_REQUIRES_FORMAL_RUN", "T-Social": "PREFLIGHT_SPARSE_FULL_BATCH_REQUIRES_FORMAL_RUN", "DGraph-Fin": "PREFLIGHT_SPARSE_FULL_BATCH_REQUIRES_FORMAL_RUN"}
+    },
+    "AEGIS": {
+      "operations": {"dense_n_by_n_adjacency": true, "pairwise_n_squared": true, "full_edge_attention": false, "dense_reconstruction_target": false, "full_node_covariance": false, "all_pairs_distance": true, "dense_spectral_decomposition": false},
+      "source_evidence": ["baselines/repos/GGAD/aegis.py (adj.todense)", "baselines/repos/GGAD/aegis.py (emb_norm by emb_norm.T)"],
+      "preflight": {"T-Finance": "NOT_RUN_RESOURCE_RISK", "T-Social": "NOT_RUN_RESOURCE_RISK", "DGraph-Fin": "NOT_RUN_RESOURCE_RISK"}
+    },
+    "GAAN": {
+      "operations": {"dense_n_by_n_adjacency": true, "pairwise_n_squared": true, "full_edge_attention": false, "dense_reconstruction_target": true, "full_node_covariance": false, "all_pairs_distance": false, "dense_spectral_decomposition": false},
+      "source_evidence": ["baselines/repos/GGAD/gaan.py (adj.todense)", "baselines/repos/GGAD/model_gaan.py (embedding matrix products produce dense adjacency)"],
+      "preflight": {"T-Finance": "NOT_RUN_RESOURCE_RISK", "T-Social": "NOT_RUN_RESOURCE_RISK", "DGraph-Fin": "NOT_RUN_RESOURCE_RISK"}
+    },
+    "TAM": {
+      "operations": {"dense_n_by_n_adjacency": true, "pairwise_n_squared": true, "full_edge_attention": false, "dense_reconstruction_target": false, "full_node_covariance": false, "all_pairs_distance": true, "dense_spectral_decomposition": false},
+      "source_evidence": ["baselines/repos/TAM/train_large_graph.py (adj.todense)", "baselines/repos/TAM/train_large_graph.py (feature by feature.T affinity)"],
+      "preflight": {"T-Finance": "NOT_RUN_RESOURCE_RISK", "T-Social": "NOT_RUN_RESOURCE_RISK", "DGraph-Fin": "NOT_RUN_RESOURCE_RISK"}
+    },
+    "GAD-NR": {
+      "operations": {"dense_n_by_n_adjacency": false, "pairwise_n_squared": false, "full_edge_attention": false, "dense_reconstruction_target": false, "full_node_covariance": false, "all_pairs_distance": false, "dense_spectral_decomposition": false},
+      "source_evidence": ["baselines/repos/GAD-NR/GAD-NR_reddit.ipynb (neighborhood reconstruction and feature-dimensional covariance)", "Official source is notebook-only; deterministic scalable entrypoint is not yet extracted."],
+      "preflight": {"T-Finance": "NOT_RUN_RESOURCE_RISK", "T-Social": "NOT_RUN_RESOURCE_RISK", "DGraph-Fin": "NOT_RUN_RESOURCE_RISK"},
+      "risk_reason": "No validated official scalable launcher for the canonical graph, not a claimed OOM."
+    },
+    "ADA-GAD": {
+      "operations": {"dense_n_by_n_adjacency": true, "pairwise_n_squared": true, "full_edge_attention": false, "dense_reconstruction_target": true, "full_node_covariance": false, "all_pairs_distance": false, "dense_spectral_decomposition": false},
+      "source_evidence": ["baselines/repos/ADA-GAD/main.py (to_dense_adj)", "baselines/repos/ADA-GAD/model/models/edcoder.py (h_recon @ h_recon.T and dense target)"],
+      "preflight": {"T-Finance": "NOT_RUN_RESOURCE_RISK", "T-Social": "NOT_RUN_RESOURCE_RISK", "DGraph-Fin": "NOT_RUN_RESOURCE_RISK"}
+    },
+    "GGAD": {
+      "operations": {"dense_n_by_n_adjacency": true, "pairwise_n_squared": true, "full_edge_attention": false, "dense_reconstruction_target": false, "full_node_covariance": false, "all_pairs_distance": true, "dense_spectral_decomposition": false},
+      "source_evidence": ["baselines/repos/GGAD/run.py (adj.todense)", "baselines/repos/GGAD/run.py (emb_norm by emb_norm.T)"],
+      "preflight": {"T-Finance": "NOT_RUN_RESOURCE_RISK", "T-Social": "NOT_RUN_RESOURCE_RISK", "DGraph-Fin": "NOT_RUN_RESOURCE_RISK"}
+    },
+    "RHO": {
+      "operations": {"dense_n_by_n_adjacency": false, "pairwise_n_squared": true, "pairwise_scope": "contrastive batch when batch_size is frozen above zero", "full_edge_attention": false, "dense_reconstruction_target": false, "full_node_covariance": false, "all_pairs_distance": false, "dense_spectral_decomposition": false},
+      "source_evidence": ["baselines/repos/RHO/get_Lap.py (SciPy sparse Laplacian)", "baselines/repos/RHO/model.py (batch_nce_loss)", "baselines/repos/RHO/reproduction.py (official comments: T-Finance 1024, DGraph-Fin 32)"],
+      "preflight": {"T-Finance": "PREFLIGHT_OFFICIAL_BATCHED_CONTRASTIVE_REQUIRES_FORMAL_RUN", "T-Social": "NOT_RUN_RESOURCE_RISK", "DGraph-Fin": "PREFLIGHT_OFFICIAL_BATCHED_CONTRASTIVE_REQUIRES_FORMAL_RUN"}
+    },
+    "GraphNC": {
+      "operations": {"dense_n_by_n_adjacency": true, "pairwise_n_squared": false, "full_edge_attention": false, "dense_reconstruction_target": false, "full_node_covariance": false, "all_pairs_distance": false, "dense_spectral_decomposition": false},
+      "source_evidence": ["baselines/repos/GraphNC/main.py (normalized and raw adjacency converted with todense)", "baselines/repos/GraphNC/model.py (dense batched adjacency multiplication)"],
+      "preflight": {"T-Finance": "NOT_RUN_RESOURCE_RISK", "T-Social": "NOT_RUN_RESOURCE_RISK", "DGraph-Fin": "NOT_RUN_RESOURCE_RISK"}
+    }
+  }
+}

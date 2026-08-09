@@ -1,6 +1,6 @@
 {
-  "schema_version": 3,
-  "active_count": 22,
+  "schema_version": 4,
+  "active_count": 21,
   "main_protocol": "STANDARD_TRANSDUCTIVE_NORMAL_ONLY",
   "secondary_protocol": "STRICT_OOF",
   "dataset_order": [
@@ -8,6 +8,7 @@
     "Elliptic", "T-Social", "DGraph-Fin"
   ],
   "score_contract": {"fields": ["node_id", "anomaly_score"], "higher_is_more_anomalous": true},
+  "resource_preflight_evidence": "benchmark/evidence/primary_large_graph_preflight_20260809.json",
   "baselines": [
     {
       "method": "DOMINANT", "method_id": "dominant",
@@ -17,14 +18,20 @@
       "native_training_preserved": true,
       "ground_truth_anomaly_labels_used_for_training": false,
       "training_label_access": "NONE", "uses_normal_support": false,
-      "source_url": "https://github.com/kaize0409/GCN_AnomalyDetection.git",
-      "source_kind": "AUTHOR_OFFICIAL", "source_commit": "04ebcf093ad7ecc28cd148c2ebea11e12f53a37c",
-      "source_checkout": "baselines/repos/DOMINANT", "license": "NO_LICENSE_FILE",
-      "native_entrypoint": "train/main.py", "adapter": "benchmark/adapters/transductive_contract.py",
-      "adapter_status": "DATA_CONTRACT_READY_NATIVE_BRIDGE_PENDING",
-      "reproduction_status": "SOURCE_RECOVERED_NOT_EXECUTED", "runnable_status": "BLOCKED_NATIVE_SANITY",
-      "environment_id": "pygod_legacy", "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
-      "strict_oof_available": false, "fair_ranking": true, "execute_enabled": false
+      "source_url": "https://github.com/kaize0409/GCN_AnomalyDetection_pytorch.git",
+      "source_kind": "AUTHOR_OFFICIAL", "source_commit": "83fa93931164aee5386fdc74c12a5d5c46a5d62f",
+      "source_checkout": "baselines/repos/DOMINANT_PYTORCH", "license": "NO_LICENSE_FILE",
+      "native_entrypoint": "run.py", "adapter": "benchmark/native_bridges/dominant.py",
+      "adapter_status": "NATIVE_BRIDGE_VALIDATED",
+      "reproduction_status": "NATIVE_AND_CANONICAL_SEED0_SMOKE_PASS", "runnable_status": "READY",
+      "environment_id": "primary_torch24", "benchmark_targets": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "native_supported_datasets": ["ACM","BlogCatalog","Flickr"], "validated_datasets": ["Amazon"],
+      "validation_evidence_by_dataset": {"Amazon":"benchmark/evidence/primary/dominant/native_bridge_validation.json"},
+      "resource_status_by_dataset": {"Amazon":"PASS","Weibo":"NOT_RUN","YelpChi":"NOT_RUN","Tolokers":"NOT_RUN","T-Finance":"NOT_RUN","Elliptic":"NOT_RUN","T-Social":"NOT_RUN","DGraph-Fin":"NOT_RUN"},
+      "resource_preflight_by_dataset": {"Amazon":"PREFLIGHT_CANONICAL_SMOKE_PASS","T-Finance":"NOT_RUN_RESOURCE_RISK","T-Social":"NOT_RUN_RESOURCE_RISK","DGraph-Fin":"NOT_RUN_RESOURCE_RISK"},
+      "gate_file": "benchmark/evidence/primary/dominant/gate_status.json",
+      "native_command": ["{environment_python}","-m","benchmark.native_bridges.dominant","--bundle","{bundle}","--score-nodes","{score_nodes}","--scores","{scores}","--evidence","{run_evidence}","--source","{source_checkout}","--seed","{seed}","--device","{device}"],
+      "strict_oof_available": false, "fair_ranking": true, "execute_enabled": true
     },
     {
       "method": "AnomalyDAE", "method_id": "anomalydae",
@@ -36,8 +43,11 @@
       "source_commit": "1199bae1820cd923efb5a6ec2d32ab758968f465", "source_checkout": "baselines/repos/AnomalyDAE",
       "license": "MIT", "native_entrypoint": "train.py", "adapter": "benchmark/adapters/transductive_contract.py",
       "adapter_status": "DATA_CONTRACT_READY_NATIVE_BRIDGE_PENDING", "reproduction_status": "SOURCE_RECOVERED_NOT_EXECUTED",
-      "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "pygod_legacy",
-      "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "anomalydae_tf1",
+      "benchmark_targets": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "native_supported_datasets": ["ACM","BlogCatalog","Flickr"], "validated_datasets": [],
+      "resource_status_by_dataset": {"Amazon":"NOT_RUN","Weibo":"NOT_RUN","YelpChi":"NOT_RUN","Tolokers":"NOT_RUN","T-Finance":"NOT_RUN","Elliptic":"NOT_RUN","T-Social":"NOT_RUN","DGraph-Fin":"NOT_RUN"},
+      "gate_file": "benchmark/evidence/primary/anomalydae/gate_status.json",
       "strict_oof_available": false, "fair_ranking": true, "execute_enabled": false
     },
     {
@@ -47,11 +57,17 @@
       "training_label_access": "NORMAL_SUPPORT_ONLY", "uses_normal_support": true,
       "source_url": "https://github.com/WangXuhongCN/OCGNN.git", "source_kind": "AUTHOR_OFFICIAL",
       "source_commit": "ec7d11c5ae2f91f4165e384131c6a8358836ff58", "source_checkout": "baselines/repos/OCGNN",
-      "license": "MIT", "native_entrypoint": "main.py", "adapter": "benchmark/adapters/transductive_contract.py",
-      "adapter_status": "DATA_CONTRACT_READY_NATIVE_BRIDGE_PENDING", "reproduction_status": "SOURCE_RECOVERED_NOT_EXECUTED",
-      "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "ocgnn_legacy",
-      "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
-      "strict_oof_available": false, "fair_ranking": true, "execute_enabled": false
+      "license": "MIT", "native_entrypoint": "main.py", "adapter": "benchmark/native_bridges/ocgnn.py",
+      "adapter_status": "NATIVE_BRIDGE_VALIDATED", "reproduction_status": "NATIVE_AND_CANONICAL_SEED0_SMOKE_PASS",
+      "runnable_status": "READY", "environment_id": "primary_torch24",
+      "benchmark_targets": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "native_supported_datasets": ["Cora","Citeseer","Pubmed"], "validated_datasets": ["Amazon"],
+      "validation_evidence_by_dataset": {"Amazon":"benchmark/evidence/primary/ocgnn/native_bridge_validation.json"},
+      "resource_status_by_dataset": {"Amazon":"PASS","Weibo":"NOT_RUN","YelpChi":"NOT_RUN","Tolokers":"NOT_RUN","T-Finance":"NOT_RUN","Elliptic":"NOT_RUN","T-Social":"NOT_RUN","DGraph-Fin":"NOT_RUN"},
+      "resource_preflight_by_dataset": {"Amazon":"PREFLIGHT_CANONICAL_SMOKE_PASS","T-Finance":"PREFLIGHT_SPARSE_FULL_BATCH_REQUIRES_FORMAL_RUN","T-Social":"PREFLIGHT_SPARSE_FULL_BATCH_REQUIRES_FORMAL_RUN","DGraph-Fin":"PREFLIGHT_SPARSE_FULL_BATCH_REQUIRES_FORMAL_RUN"},
+      "gate_file": "benchmark/evidence/primary/ocgnn/gate_status.json",
+      "native_command": ["{environment_python}","-m","benchmark.native_bridges.ocgnn","--bundle","{bundle}","--support","{support}","--score-nodes","{score_nodes}","--scores","{scores}","--evidence","{run_evidence}","--source","{source_checkout}","--seed","{seed}","--device","{device}"],
+      "strict_oof_available": false, "fair_ranking": true, "execute_enabled": true
     },
     {
       "method": "AEGIS", "method_id": "aegis", "paper_title": "Inductive Anomaly Detection on Attributed Networks",
@@ -62,8 +78,11 @@
       "source_commit": "358fb4d4b4ee5b8b195445791a9e2b6d52487f2b", "source_checkout": "baselines/repos/GGAD",
       "license": "NO_LICENSE_FILE", "native_entrypoint": "aegis.py", "adapter": "benchmark/adapters/transductive_contract.py",
       "adapter_status": "DATA_CONTRACT_READY_NATIVE_BRIDGE_PENDING", "reproduction_status": "BENCHMARK_SOURCE_RECOVERED_NOT_EXECUTED",
-      "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "ggad",
-      "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "primary_torch24",
+      "benchmark_targets": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "native_supported_datasets": ["Amazon","T-Finance","Reddit","Elliptic","Photo","DGraph-Fin"], "validated_datasets": [],
+      "resource_status_by_dataset": {"Amazon":"NOT_RUN","Weibo":"NOT_RUN","YelpChi":"NOT_RUN","Tolokers":"NOT_RUN","T-Finance":"NOT_RUN","Elliptic":"NOT_RUN","T-Social":"NOT_RUN","DGraph-Fin":"NOT_RUN"},
+      "gate_file": "benchmark/evidence/primary/aegis/gate_status.json",
       "strict_oof_available": false, "fair_ranking": true, "execute_enabled": false
     },
     {
@@ -75,8 +94,11 @@
       "source_commit": "358fb4d4b4ee5b8b195445791a9e2b6d52487f2b", "source_checkout": "baselines/repos/GGAD",
       "license": "NO_LICENSE_FILE", "native_entrypoint": "gaan.py", "adapter": "benchmark/adapters/transductive_contract.py",
       "adapter_status": "DATA_CONTRACT_READY_NATIVE_BRIDGE_PENDING", "reproduction_status": "BENCHMARK_SOURCE_RECOVERED_NOT_EXECUTED",
-      "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "ggad",
-      "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "primary_torch24",
+      "benchmark_targets": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "native_supported_datasets": ["Amazon","T-Finance","Reddit","Elliptic","Photo","DGraph-Fin"], "validated_datasets": [],
+      "resource_status_by_dataset": {"Amazon":"NOT_RUN","Weibo":"NOT_RUN","YelpChi":"NOT_RUN","Tolokers":"NOT_RUN","T-Finance":"NOT_RUN","Elliptic":"NOT_RUN","T-Social":"NOT_RUN","DGraph-Fin":"NOT_RUN"},
+      "gate_file": "benchmark/evidence/primary/gaan/gate_status.json",
       "strict_oof_available": false, "fair_ranking": true, "execute_enabled": false
     },
     {
@@ -88,8 +110,11 @@
       "source_commit": "e82ead0584b9b807d4db56a9ffdf89ff94c74dfa", "source_checkout": "baselines/repos/TAM",
       "license": "NO_LICENSE_FILE", "native_entrypoint": "train.py", "adapter": "benchmark/adapters/transductive_contract.py",
       "adapter_status": "DATA_CONTRACT_READY_NATIVE_BRIDGE_PENDING", "reproduction_status": "SOURCE_RECOVERED_NOT_EXECUTED",
-      "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "tam",
-      "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "primary_torch24",
+      "benchmark_targets": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "native_supported_datasets": ["BlogCatalog","ACM","Amazon","Facebook","Reddit","YelpChi","T-Finance","OGB-Protein"], "validated_datasets": [],
+      "resource_status_by_dataset": {"Amazon":"NOT_RUN","Weibo":"NOT_RUN","YelpChi":"NOT_RUN","Tolokers":"NOT_RUN","T-Finance":"NOT_RUN","Elliptic":"NOT_RUN","T-Social":"NOT_RUN","DGraph-Fin":"NOT_RUN"},
+      "gate_file": "benchmark/evidence/primary/tam/gate_status.json",
       "strict_oof_available": false, "fair_ranking": true, "execute_enabled": false
     },
     {
@@ -101,8 +126,11 @@
       "source_commit": "b0a9590b10d0b9490e6d6cdfa60e7c50eb232c0d", "source_checkout": "baselines/repos/GAD-NR",
       "license": "NO_LICENSE_FILE", "native_entrypoint": "GAD-NR_reddit.ipynb", "adapter": "benchmark/adapters/transductive_contract.py",
       "adapter_status": "DATA_CONTRACT_READY_NOTEBOOK_BRIDGE_PENDING", "reproduction_status": "SOURCE_RECOVERED_NOT_EXECUTED",
-      "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "gad_nr",
-      "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "primary_torch24",
+      "benchmark_targets": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "native_supported_datasets": ["Inj-Cora","Reddit","Weibo","Disney","Books","Enron"], "validated_datasets": [],
+      "resource_status_by_dataset": {"Amazon":"NOT_RUN","Weibo":"NOT_RUN","YelpChi":"NOT_RUN","Tolokers":"NOT_RUN","T-Finance":"NOT_RUN","Elliptic":"NOT_RUN","T-Social":"NOT_RUN","DGraph-Fin":"NOT_RUN"},
+      "gate_file": "benchmark/evidence/primary/gad_nr/gate_status.json",
       "strict_oof_available": false, "fair_ranking": true, "execute_enabled": false
     },
     {
@@ -114,8 +142,11 @@
       "source_commit": "71a3aca936ccfe430e3809864f256d4bf80b22ee", "source_checkout": "baselines/repos/ADA-GAD",
       "license": "Apache-2.0", "native_entrypoint": "main.py", "adapter": "benchmark/adapters/transductive_contract.py",
       "adapter_status": "DATA_CONTRACT_READY_NATIVE_BRIDGE_PENDING", "reproduction_status": "SOURCE_RECOVERED_NOT_EXECUTED",
-      "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "ada_gad",
-      "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "primary_torch24",
+      "benchmark_targets": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "native_supported_datasets": ["Books","Photo"], "validated_datasets": [],
+      "resource_status_by_dataset": {"Amazon":"NOT_RUN","Weibo":"NOT_RUN","YelpChi":"NOT_RUN","Tolokers":"NOT_RUN","T-Finance":"NOT_RUN","Elliptic":"NOT_RUN","T-Social":"NOT_RUN","DGraph-Fin":"NOT_RUN"},
+      "gate_file": "benchmark/evidence/primary/ada_gad/gate_status.json",
       "strict_oof_available": false, "fair_ranking": true, "execute_enabled": false
     },
     {
@@ -127,8 +158,11 @@
       "source_commit": "358fb4d4b4ee5b8b195445791a9e2b6d52487f2b", "source_checkout": "baselines/repos/GGAD",
       "license": "NO_LICENSE_FILE", "native_entrypoint": "run.py", "adapter": "benchmark/adapters/transductive_contract.py",
       "adapter_status": "DATA_CONTRACT_READY_LABEL_METRIC_PATH_REMOVAL_PENDING", "reproduction_status": "SOURCE_RECOVERED_NOT_EXECUTED",
-      "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "ggad",
-      "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "primary_torch24",
+      "benchmark_targets": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "native_supported_datasets": ["Amazon","T-Finance","Reddit","Elliptic","Photo","DGraph-Fin"], "validated_datasets": [],
+      "resource_status_by_dataset": {"Amazon":"NOT_RUN","Weibo":"NOT_RUN","YelpChi":"NOT_RUN","Tolokers":"NOT_RUN","T-Finance":"NOT_RUN","Elliptic":"NOT_RUN","T-Social":"NOT_RUN","DGraph-Fin":"NOT_RUN"},
+      "gate_file": "benchmark/evidence/primary/ggad/gate_status.json",
       "strict_oof_available": false, "fair_ranking": true, "execute_enabled": false
     },
     {
@@ -140,8 +174,11 @@
       "source_commit": "a394d5575dea6745215b15e0453e1f925ffcc1f2", "source_checkout": "baselines/repos/RHO",
       "license": "NO_LICENSE_FILE", "native_entrypoint": "train.py", "adapter": "benchmark/adapters/transductive_contract.py",
       "adapter_status": "DATA_CONTRACT_READY_NATIVE_BRIDGE_PENDING", "reproduction_status": "SOURCE_RECOVERED_NOT_EXECUTED",
-      "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "rho",
-      "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "primary_torch24",
+      "benchmark_targets": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "native_supported_datasets": ["Amazon","T-Finance","Elliptic","Tolokers","DGraph-Fin","Photo","Questions","Reddit"], "validated_datasets": [],
+      "resource_status_by_dataset": {"Amazon":"NOT_RUN","Weibo":"NOT_RUN","YelpChi":"NOT_RUN","Tolokers":"NOT_RUN","T-Finance":"NOT_RUN","Elliptic":"NOT_RUN","T-Social":"NOT_RUN","DGraph-Fin":"NOT_RUN"},
+      "gate_file": "benchmark/evidence/primary/rho/gate_status.json",
       "strict_oof_available": false, "fair_ranking": true, "execute_enabled": false
     },
     {
@@ -153,21 +190,11 @@
       "source_commit": "4985138639d96c43b85001eefa3a54eee1caebf1", "source_checkout": "baselines/repos/GraphNC",
       "license": "NO_LICENSE_FILE", "native_entrypoint": "main.py", "adapter": "benchmark/adapters/transductive_contract.py",
       "adapter_status": "DATA_CONTRACT_READY_LABEL_METRIC_PATH_REMOVAL_PENDING", "reproduction_status": "SOURCE_RECOVERED_NOT_EXECUTED",
-      "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "graphnc",
-      "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
-      "strict_oof_available": false, "fair_ranking": true, "execute_enabled": false
-    },
-    {
-      "method": "BMP", "method_id": "bmp", "paper_title": "Binary Message Passing for Generalizable Semi-Supervised Graph Anomaly Detection",
-      "protocol_class": "PRIMARY_TRANSDUCTIVE_NORMAL_ONLY", "main_protocol": "STANDARD_TRANSDUCTIVE_NORMAL_ONLY",
-      "native_training_preserved": true, "ground_truth_anomaly_labels_used_for_training": false,
-      "training_label_access": "NORMAL_SUPPORT_ONLY", "uses_normal_support": true,
-      "source_url": "https://github.com/Thankstaro/BMP", "source_kind": "PAPER_DERIVED",
-      "source_commit": "paper:doi:10.1609/aaai.v40i19.38671", "source_checkout": "benchmark/paper_derived/bmp.py",
-      "license": "PAPER_DERIVED_NO_UPSTREAM_CODE_LICENSE", "native_entrypoint": "benchmark.paper_derived.bmp",
-      "adapter": "benchmark/adapters/transductive_contract.py", "adapter_status": "PAPER_DERIVED_CORE_READY_TRAINING_BRIDGE_PENDING",
-      "reproduction_status": "UPSTREAM_ADVERTISED_REPO_404_PAPER_DERIVED_UNIT_TESTED", "runnable_status": "BLOCKED_NATIVE_SANITY",
-      "environment_id": "paper_derived_torch", "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "primary_torch24",
+      "benchmark_targets": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "native_supported_datasets": ["Photo","Tolokers"], "validated_datasets": [],
+      "resource_status_by_dataset": {"Amazon":"NOT_RUN","Weibo":"NOT_RUN","YelpChi":"NOT_RUN","Tolokers":"NOT_RUN","T-Finance":"NOT_RUN","Elliptic":"NOT_RUN","T-Social":"NOT_RUN","DGraph-Fin":"NOT_RUN"},
+      "gate_file": "benchmark/evidence/primary/graphnc/gate_status.json",
       "strict_oof_available": false, "fair_ranking": true, "execute_enabled": false
     },
     {
@@ -181,7 +208,9 @@
       "license": "PAPER_DERIVED_NO_UPSTREAM_CODE_LICENSE", "native_entrypoint": "benchmark.paper_derived.structure_aware_pu_gnn",
       "adapter": "benchmark/adapters/transductive_contract.py", "adapter_status": "PAPER_DERIVED_CORE_READY_TRAINING_BRIDGE_PENDING",
       "reproduction_status": "NO_PUBLIC_CODE_FOUND_PAPER_DERIVED_UNIT_TESTED", "runnable_status": "BLOCKED_NATIVE_SANITY",
-      "environment_id": "paper_derived_torch", "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "environment_id": "paper_derived_torch", "benchmark_targets": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "native_supported_datasets": ["Cora","Citeseer","Pubmed"], "validated_datasets": [],
+      "resource_status_by_dataset": {"Amazon":"NOT_RUN","Weibo":"NOT_RUN","YelpChi":"NOT_RUN","Tolokers":"NOT_RUN","T-Finance":"NOT_RUN","Elliptic":"NOT_RUN","T-Social":"NOT_RUN","DGraph-Fin":"NOT_RUN"},
       "strict_oof_available": false, "fair_ranking": false, "execute_enabled": false
     },
     {
@@ -194,7 +223,9 @@
       "license": "NO_LICENSE_FILE", "native_entrypoint": "main.py", "adapter": "benchmark/adapters/transductive_contract.py",
       "adapter_status": "DATA_CONTRACT_READY_NATIVE_BRIDGE_PENDING", "reproduction_status": "SOURCE_RECOVERED_NOT_EXECUTED",
       "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "gadbench_dgl",
-      "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "benchmark_targets": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "native_supported_datasets": [], "validated_datasets": [],
+      "resource_status_by_dataset": {"Amazon":"NOT_RUN","Weibo":"NOT_RUN","YelpChi":"NOT_RUN","Tolokers":"NOT_RUN","T-Finance":"NOT_RUN","Elliptic":"NOT_RUN","T-Social":"NOT_RUN","DGraph-Fin":"NOT_RUN"},
       "strict_oof_available": false, "fair_ranking": false, "execute_enabled": false
     },
     {
@@ -207,7 +238,9 @@
       "license": "NO_LICENSE_FILE", "native_entrypoint": "main.py", "adapter": "benchmark/adapters/transductive_contract.py",
       "adapter_status": "DATA_CONTRACT_READY_NATIVE_BRIDGE_PENDING", "reproduction_status": "SOURCE_RECOVERED_NOT_EXECUTED",
       "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "gadbench_dgl",
-      "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "benchmark_targets": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "native_supported_datasets": [], "validated_datasets": [],
+      "resource_status_by_dataset": {"Amazon":"NOT_RUN","Weibo":"NOT_RUN","YelpChi":"NOT_RUN","Tolokers":"NOT_RUN","T-Finance":"NOT_RUN","Elliptic":"NOT_RUN","T-Social":"NOT_RUN","DGraph-Fin":"NOT_RUN"},
       "strict_oof_available": false, "fair_ranking": false, "execute_enabled": false
     },
     {
@@ -220,7 +253,9 @@
       "license": "NO_LICENSE_FILE", "native_entrypoint": "benchmark.py --models XGBGraph", "adapter": "benchmark/adapters/transductive_contract.py",
       "adapter_status": "DATA_CONTRACT_READY_NATIVE_BRIDGE_PENDING", "reproduction_status": "SOURCE_RECOVERED_NOT_EXECUTED",
       "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "gadbench_dgl",
-      "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "benchmark_targets": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "native_supported_datasets": [], "validated_datasets": [],
+      "resource_status_by_dataset": {"Amazon":"NOT_RUN","Weibo":"NOT_RUN","YelpChi":"NOT_RUN","Tolokers":"NOT_RUN","T-Finance":"NOT_RUN","Elliptic":"NOT_RUN","T-Social":"NOT_RUN","DGraph-Fin":"NOT_RUN"},
       "strict_oof_available": false, "fair_ranking": false, "execute_enabled": false
     },
     {
@@ -233,7 +268,9 @@
       "license": "MIT", "native_entrypoint": "main.py", "adapter": "benchmark/adapters/transductive_contract.py",
       "adapter_status": "DATA_CONTRACT_READY_NATIVE_BRIDGE_PENDING", "reproduction_status": "SOURCE_RECOVERED_NOT_EXECUTED",
       "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "consisgad",
-      "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "benchmark_targets": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "native_supported_datasets": [], "validated_datasets": [],
+      "resource_status_by_dataset": {"Amazon":"NOT_RUN","Weibo":"NOT_RUN","YelpChi":"NOT_RUN","Tolokers":"NOT_RUN","T-Finance":"NOT_RUN","Elliptic":"NOT_RUN","T-Social":"NOT_RUN","DGraph-Fin":"NOT_RUN"},
       "strict_oof_available": false, "fair_ranking": false, "execute_enabled": false
     },
     {
@@ -246,7 +283,9 @@
       "license": "NO_LICENSE_FILE", "native_entrypoint": "main.py", "adapter": "benchmark/adapters/transductive_contract.py",
       "adapter_status": "DATA_CONTRACT_READY_NATIVE_BRIDGE_PENDING", "reproduction_status": "SOURCE_RECOVERED_NOT_EXECUTED",
       "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "spacegnn",
-      "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "benchmark_targets": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "native_supported_datasets": [], "validated_datasets": [],
+      "resource_status_by_dataset": {"Amazon":"NOT_RUN","Weibo":"NOT_RUN","YelpChi":"NOT_RUN","Tolokers":"NOT_RUN","T-Finance":"NOT_RUN","Elliptic":"NOT_RUN","T-Social":"NOT_RUN","DGraph-Fin":"NOT_RUN"},
       "strict_oof_available": false, "fair_ranking": false, "execute_enabled": false
     },
     {
@@ -259,7 +298,9 @@
       "license": "NO_LICENSE_FILE", "native_entrypoint": "src/main.py", "adapter": "benchmark/adapters/transductive_contract.py",
       "adapter_status": "DATA_CONTRACT_READY_NATIVE_BRIDGE_PENDING", "reproduction_status": "SOURCE_RECOVERED_NOT_EXECUTED",
       "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "dsgad",
-      "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "benchmark_targets": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "native_supported_datasets": [], "validated_datasets": [],
+      "resource_status_by_dataset": {"Amazon":"NOT_RUN","Weibo":"NOT_RUN","YelpChi":"NOT_RUN","Tolokers":"NOT_RUN","T-Finance":"NOT_RUN","Elliptic":"NOT_RUN","T-Social":"NOT_RUN","DGraph-Fin":"NOT_RUN"},
       "strict_oof_available": false, "fair_ranking": false, "execute_enabled": false
     },
     {
@@ -272,7 +313,9 @@
       "license": "NO_LICENSE_FILE", "native_entrypoint": "train.py", "adapter": "benchmark/adapters/transductive_contract.py",
       "adapter_status": "DATA_CONTRACT_READY_NATIVE_BRIDGE_PENDING", "reproduction_status": "SOURCE_RECOVERED_NOT_EXECUTED",
       "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "modern_dgl24",
-      "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "benchmark_targets": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "native_supported_datasets": [], "validated_datasets": [],
+      "resource_status_by_dataset": {"Amazon":"NOT_RUN","Weibo":"NOT_RUN","YelpChi":"NOT_RUN","Tolokers":"NOT_RUN","T-Finance":"NOT_RUN","Elliptic":"NOT_RUN","T-Social":"NOT_RUN","DGraph-Fin":"NOT_RUN"},
       "strict_oof_available": false, "fair_ranking": false, "execute_enabled": false
     },
     {
@@ -285,20 +328,24 @@
       "license": "NO_LICENSE_FILE", "native_entrypoint": "main.py", "adapter": "benchmark/adapters/transductive_contract.py",
       "adapter_status": "DATA_CONTRACT_READY_NATIVE_BRIDGE_PENDING", "reproduction_status": "SOURCE_RECOVERED_NOT_EXECUTED",
       "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "modern_dgl24",
-      "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "benchmark_targets": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "native_supported_datasets": [], "validated_datasets": [],
+      "resource_status_by_dataset": {"Amazon":"NOT_RUN","Weibo":"NOT_RUN","YelpChi":"NOT_RUN","Tolokers":"NOT_RUN","T-Finance":"NOT_RUN","Elliptic":"NOT_RUN","T-Social":"NOT_RUN","DGraph-Fin":"NOT_RUN"},
       "strict_oof_available": false, "fair_ranking": false, "execute_enabled": false
     },
     {
       "method": "HSMAD", "method_id": "hsmad", "paper_title": "HSMAD: Heterophily-Driven Spectral and Manifold Learning for Graph Anomaly Detection",
       "protocol_class": "EXTERNAL_SUPERVISED_REFERENCE", "main_protocol": "STANDARD_TRANSDUCTIVE_NORMAL_ONLY",
-      "native_training_preserved": false, "ground_truth_anomaly_labels_used_for_training": true,
+      "native_training_preserved": true, "ground_truth_anomaly_labels_used_for_training": true,
       "training_label_access": "NATIVE_SUPERVISED_LABELS", "uses_normal_support": false,
-      "source_url": "https://icml.cc/virtual/2026/papers.html", "source_kind": "PAPER_DERIVED",
-      "source_commit": "UNAVAILABLE_PUBLIC_SOURCE_2026-08-09", "source_checkout": null,
-      "license": "UNKNOWN_NO_PUBLIC_SOURCE", "native_entrypoint": null, "adapter": "benchmark/adapters/transductive_contract.py",
-      "adapter_status": "BLOCKED_PUBLIC_SOURCE_UNAVAILABLE", "reproduction_status": "BLOCKED_PUBLIC_SOURCE_UNAVAILABLE",
-      "runnable_status": "BLOCKED_SOURCE", "environment_id": "unresolved_hsmad",
-      "datasets_supported": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "source_url": "https://github.com/cozy24/HSMAD.git", "source_kind": "AUTHOR_OFFICIAL",
+      "source_commit": "7810e8e7dfe2143c4e4aa2ba804a0bfdc6543a5a", "source_checkout": "baselines/repos/HSMAD",
+      "license": "NO_LICENSE_FILE", "native_entrypoint": "main.py", "adapter": "benchmark/adapters/transductive_contract.py",
+      "adapter_status": "SOURCE_RECOVERED_NATIVE_BRIDGE_PENDING", "reproduction_status": "SOURCE_RECOVERED_NOT_EXECUTED",
+      "runnable_status": "BLOCKED_NATIVE_SANITY", "environment_id": "hsmad",
+      "benchmark_targets": ["Amazon","Weibo","YelpChi","Tolokers","T-Finance","Elliptic","T-Social","DGraph-Fin"],
+      "native_supported_datasets": ["Yelp","Weibo","Amazon","Elliptic","Tolokers"], "validated_datasets": [],
+      "resource_status_by_dataset": {"Amazon":"NOT_RUN","Weibo":"NOT_RUN","YelpChi":"NOT_RUN","Tolokers":"NOT_RUN","T-Finance":"NOT_RUN","Elliptic":"NOT_RUN","T-Social":"NOT_RUN","DGraph-Fin":"NOT_RUN"},
       "strict_oof_available": false, "fair_ranking": false, "execute_enabled": false
     }
   ]

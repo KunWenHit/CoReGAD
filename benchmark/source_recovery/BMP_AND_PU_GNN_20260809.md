@@ -1,5 +1,10 @@
 # BMP and Structure-aware PU-GNN source recovery — 2026-08-09
 
+> Status update: BMP is inactive provenance. It was removed from the active
+> registry and launchers as `EXCLUDED_NO_RECOVERABLE_OFFICIAL_SOURCE`. The
+> mathematical core below is retained only to preserve the historical audit;
+> no training bridge, environment, sanity run, or benchmark result is planned.
+
 ## BMP
 
 The AAAI 2026 proceedings page and paper identify the paper, authors, DOI
@@ -16,11 +21,11 @@ At audit time:
 - General web, author, fork, institutional, and paper-index searches found no
   recoverable mirror or author-linked checkout.
 
-The registry therefore uses `PAPER_DERIVED`, not author official. The local
+The inactive provenance record therefore remains `PAPER_DERIVED`, not author official. The local
 module implements equations 3–10: probability ordering, upper/lower normalized
 routing, independent BMP trees, the BMP forest, masked consistency, supervised
 loss, and mask regularization. `T=50` and forest order 3 are recorded from the
-paper. Formal reproduction remains blocked behind native sanity.
+paper. It is not an active reproduction candidate.
 
 ## Structure-aware PU-GNN
 

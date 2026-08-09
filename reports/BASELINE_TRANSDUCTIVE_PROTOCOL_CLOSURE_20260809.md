@@ -1,5 +1,9 @@
 # CoReGAD Baseline Transductive Protocol Closure — 2026-08-09
 
+> Historical report, superseded by the Primary Native Bridge Closure. Its
+> 22/176 inventory describes the earlier closure state only. The active
+> inventory is now 21 methods / 168 targets; BMP is excluded provenance.
+
 ## Executive status
 
 This closure freezes the protocol, active inventory, source provenance, dataset

@@ -1,31 +1,34 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "policy": "isolated per incompatible dependency family; pfr_gad is read-only",
   "protected_environment": "/data1/wk/conda_envs/pfr_gad",
   "environments": {
-    "pygod_legacy": {"path": "/data1/wk/conda_envs/baseline_pygod_legacy", "status": "DEFINITION_PENDING", "python": "3.8", "torch": "paper/repo pinned", "cuda": "repo compatible", "graph_library": "PyG"},
-    "ocgnn_legacy": {"path": "/data1/wk/conda_envs/baseline_ocgnn", "status": "DEFINITION_PENDING", "python": "3.8", "torch": "repo pinned", "cuda": "repo compatible", "graph_library": "PyG"},
-    "ggad": {"path": "/data1/wk/conda_envs/baseline_ggad", "status": "DEFINITION_PRESENT_INSTALL_PENDING", "python": "3.8", "torch": "1.12.x", "cuda": "repo compatible", "graph_library": "PyG"},
-    "tam": {"path": "/data1/wk/conda_envs/baseline_tam", "status": "DEFINITION_PRESENT_INSTALL_PENDING", "python": "3.8", "torch": "repo pinned", "cuda": "repo compatible", "graph_library": "PyG"},
-    "gad_nr": {"path": "/data1/wk/conda_envs/baseline_gad_nr", "status": "DEFINITION_PRESENT_INSTALL_PENDING", "python": "3.8", "torch": "repo pinned", "cuda": "repo compatible", "graph_library": "PyG"},
-    "ada_gad": {"path": "/data1/wk/conda_envs/baseline_ada_gad", "status": "DEFINITION_PENDING", "python": "3.8", "torch": "repo pinned", "cuda": "repo compatible", "graph_library": "PyG"},
-    "rho": {"path": "/data1/wk/conda_envs/baseline_rho", "status": "DEFINITION_PRESENT_INSTALL_PENDING", "python": "3.8", "torch": "repo pinned", "cuda": "repo compatible", "graph_library": "PyG"},
-    "graphnc": {"path": "/data1/wk/conda_envs/baseline_graphnc", "status": "DEFINITION_PRESENT_INSTALL_PENDING", "python": "3.8", "torch": "repo pinned", "cuda": "repo compatible", "graph_library": "PyG"},
+    "primary_torch24": {
+      "path": "/data1/wk/conda_envs/baseline_primary_torch24",
+      "status": "PASS_READY",
+      "python": "3.10.20",
+      "torch": "2.4.0+cu124",
+      "cuda": "12.4",
+      "graph_library": "DGL 2.4.0+cu124; PyG 2.6.1",
+      "protected_source_environment_mutated": false,
+      "critical_package_evidence": "benchmark/evidence/environments/primary_torch24.json"
+    },
+    "anomalydae_tf1": {"path": null, "status": "BLOCKED_LEGACY_TENSORFLOW1_ENV", "python": "3.6 upstream", "torch": null, "cuda": null, "graph_library": "TensorFlow 1.10"},
     "paper_derived_torch": {"path": "/data1/wk/conda_envs/pfr_gad", "status": "READ_ONLY_REUSE_FOR_UNIT_TESTS", "python": "3.10.20", "torch": "2.4.0+cu124", "cuda": "12.4", "graph_library": "sparse torch only"},
     "gadbench_dgl": {"path": "/data1/wk/conda_envs/baseline_gadbench", "status": "DEFINITION_PENDING", "python": "3.9", "torch": "1.13.1", "cuda": "11.7", "graph_library": "DGL cu117"},
     "consisgad": {"path": "/data1/wk/conda_envs/baseline_consisgad", "status": "DEFINITION_PENDING", "python": "3.9", "torch": "repo pinned", "cuda": "repo compatible", "graph_library": "DGL"},
     "spacegnn": {"path": "/data1/wk/conda_envs/baseline_spacegnn", "status": "DEFINITION_PENDING", "python": "3.9", "torch": "repo pinned", "cuda": "repo compatible", "graph_library": "DGL"},
     "dsgad": {"path": "/data1/wk/conda_envs/baseline_dsgad", "status": "DEFINITION_PENDING", "python": "3.9", "torch": "repo pinned", "cuda": "repo compatible", "graph_library": "DGL 2.0.0"},
     "modern_dgl24": {"path": "/data1/wk/conda_envs/baseline_modern_dgl24", "status": "DEFINITION_PENDING", "python": "3.10", "torch": "2.4.0", "cuda": "12.4", "graph_library": "DGL 2.4.0+cu124"},
-    "unresolved_hsmad": {"path": null, "status": "BLOCKED_PUBLIC_SOURCE_UNAVAILABLE", "python": null, "torch": null, "cuda": null, "graph_library": null}
+    "hsmad": {"path": "/data1/wk/conda_envs/baseline_hsmad", "status": "SOURCE_RECOVERED_ENV_PENDING", "python": "upstream unspecified", "torch": "upstream unspecified", "cuda": "repo compatible", "graph_library": "PyG"}
   },
   "method_environment": {
-    "DOMINANT": "pygod_legacy", "AnomalyDAE": "pygod_legacy", "OCGNN": "ocgnn_legacy",
-    "AEGIS": "ggad", "GAAN": "ggad", "TAM": "tam", "GAD-NR": "gad_nr",
-    "ADA-GAD": "ada_gad", "GGAD": "ggad", "RHO": "rho", "GraphNC": "graphnc",
-    "BMP": "paper_derived_torch", "Structure-aware PU-GNN": "paper_derived_torch",
+    "DOMINANT": "primary_torch24", "AnomalyDAE": "anomalydae_tf1", "OCGNN": "primary_torch24",
+    "AEGIS": "primary_torch24", "GAAN": "primary_torch24", "TAM": "primary_torch24", "GAD-NR": "primary_torch24",
+    "ADA-GAD": "primary_torch24", "GGAD": "primary_torch24", "RHO": "primary_torch24", "GraphNC": "primary_torch24",
+    "Structure-aware PU-GNN": "paper_derived_torch",
     "BWGNN": "gadbench_dgl", "GHRN": "gadbench_dgl", "GADBench / XGBGraph": "gadbench_dgl",
     "ConsisGAD": "consisgad", "SpaceGNN": "spacegnn", "DSGAD": "dsgad",
-    "APF": "modern_dgl24", "SAGAD": "modern_dgl24", "HSMAD": "unresolved_hsmad"
+    "APF": "modern_dgl24", "SAGAD": "modern_dgl24", "HSMAD": "hsmad"
   }
 }

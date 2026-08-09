@@ -11,7 +11,7 @@ fi
 
 methods=(
   "DOMINANT" "AnomalyDAE" "OCGNN" "AEGIS" "GAAN" "TAM" "GAD-NR"
-  "ADA-GAD" "GGAD" "RHO" "GraphNC" "BMP" "Structure-aware PU-GNN"
+  "ADA-GAD" "GGAD" "RHO" "GraphNC" "Structure-aware PU-GNN"
   "BWGNN" "GHRN" "GADBench / XGBGraph" "ConsisGAD" "SpaceGNN"
   "DSGAD" "APF" "SAGAD" "HSMAD"
 )

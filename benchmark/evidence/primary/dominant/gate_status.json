@@ -1,0 +1,11 @@
+{
+  "method": "DOMINANT",
+  "gates": {
+    "SOURCE_PASS": {"status": "PASS", "evidence": "benchmark/evidence/source_identity_20260809.json"},
+    "ENV_PASS": {"status": "PASS", "evidence": "benchmark/evidence/environments/primary_torch24.json"},
+    "NATIVE_SANITY_PASS": {"status": "PASS", "evidence": "benchmark/evidence/primary/dominant/native_bridge_validation.json"},
+    "LABEL_AUDIT_PASS": {"status": "PASS", "evidence": "benchmark/evidence/primary/dominant/native_bridge_validation.json"},
+    "CANONICAL_SMOKE_PASS": {"status": "PASS", "evidence": "benchmark/evidence/primary/dominant/native_bridge_validation.json"},
+    "SCORE_CONTRACT_PASS": {"status": "PASS", "evidence": "benchmark/evidence/primary/dominant/native_bridge_validation.json"}
+  }
+}
