@@ -1,7 +1,7 @@
 {
   "method_name": "CoReGAD",
-  "release_version": "0.1.1",
-  "release_kind": "reproducibility hardening; no method change",
+  "release_version": "0.1.2",
+  "release_kind": "licensing and repository metadata patch; no method change",
   "historical_source_worktree_head": "227c16d45483d129af78e5540d66e0702a1096fd",
   "residual_strength": 0.75,
   "public_execution_surface": "METADATA_ONLY_SERVER_EXECUTION_EXCLUDED",
@@ -14,7 +14,7 @@
   },
   "outer_oof_visible_only_anchor": true,
   "training_gt_label_access": false,
-  "license_decision_required": true,
+  "license_decision_required": false,
   "datasets": {
     "target": 8,
     "exact_manifests_recovered": 8,
@@ -35,5 +35,6 @@
     "historical_reference": true,
     "standard_scalable": true,
     "tolerance": 1e-06
-  }
+  },
+  "license": "MIT"
 }
