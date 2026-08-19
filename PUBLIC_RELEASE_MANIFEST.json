@@ -4,6 +4,8 @@
   "release_kind": "reproducibility hardening; no method change",
   "historical_source_worktree_head": "227c16d45483d129af78e5540d66e0702a1096fd",
   "residual_strength": 0.75,
+  "public_execution_surface": "METADATA_ONLY_SERVER_EXECUTION_EXCLUDED",
+  "server_execution_surface": "SERVER_ONLY_NOT_IN_PUBLIC_SNAPSHOT",
   "method_identity": {
     "decision": "RESTORE_GITHUB_FROZEN_IMPLEMENTATION",
     "frozen_reference": "227c16d45483d129af78e5540d66e0702a1096fd",

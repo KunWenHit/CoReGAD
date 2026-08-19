@@ -36,8 +36,9 @@ runtime failure.
 `STRICT_OOF` remains a secondary robustness option and its existing CoReGAD
 implementation and tests are preserved. It is not a mandatory baseline wrapper.
 
-Use `python benchmark/run_baseline.py --list-methods`, `--validate`, or
-`--smoke` for preparation. A training process can start only with the explicit
-`--execute` flag and only after all six native-bridge gates have evidence.
-The batch launcher is dry-run by default. No formal benchmark is run by these
-preparation commands.
+The public v0.1.1 package contains the frozen registry, protocol contracts, and
+reproducibility metadata. The preparation and execution layer remains
+server-only and is not part of this public snapshot. This keeps private
+environments, outputs, resource-gate evidence, and external source checkouts
+out of the release. No public command in this snapshot claims to execute the
+baseline inventory.
