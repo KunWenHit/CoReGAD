@@ -1,0 +1,18 @@
+{
+  "dataset": "Amazon",
+  "evaluation_mask_sha256": "9393d536c7cbe5b72e7cc649aab71c286736f0913e49f9dc006f26c9037619b0",
+  "evaluation_node_count": 10610,
+  "evaluation_node_ids_sha256": "a864630294ace2a3e6d1c0d42c70f3428140fe291d53930bc72a4a8dbddfcc43",
+  "fold_counts": {
+    "0": 2122,
+    "1": 2122,
+    "2": 2122,
+    "3": 2122,
+    "4": 2122
+  },
+  "fold_seed": 0,
+  "generation_rule": "exact historical manifest recovery; never regenerate or reshuffle",
+  "node_ids_public": false,
+  "outer_folds": 5,
+  "split_sha256": "cac87b648893813f375927fea14048aa296663db24ee2e0112b0221375d3df14"
+}

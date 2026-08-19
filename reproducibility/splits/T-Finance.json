@@ -1,0 +1,18 @@
+{
+  "dataset": "T-Finance",
+  "evaluation_mask_sha256": "39c176289d731bea78fad1b02630f2e6c33e9d1cba762cf2350c9adfce0949e3",
+  "evaluation_node_count": 34852,
+  "evaluation_node_ids_sha256": "97e26e95f73140f498767f9d2eddb3f5869af3d3a096a10baebea9bcb1f1158a",
+  "fold_counts": {
+    "0": 6971,
+    "1": 6971,
+    "2": 6970,
+    "3": 6970,
+    "4": 6970
+  },
+  "fold_seed": 0,
+  "generation_rule": "exact historical manifest recovery; never regenerate or reshuffle",
+  "node_ids_public": false,
+  "outer_folds": 5,
+  "split_sha256": "7119ae16029d6493d5664f085211f9e8ebcf3b7164db977e5f75224f7fd01783"
+}

@@ -25,6 +25,18 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--device", default="cpu")
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument(
+        "--engine",
+        choices=("standard", "scalable"),
+        default="standard",
+        help="Graph execution engine; both implement the same frozen equations.",
+    )
+    parser.add_argument(
+        "--scalable-cache",
+        type=Path,
+        default=None,
+        help="Required memmap/cache root when --engine scalable is selected.",
+    )
+    parser.add_argument(
         "--smoke",
         action="store_true",
         help="Use one epoch per stage for an installation smoke test only.",
@@ -53,6 +65,8 @@ def main() -> int:
             normality_epochs=1 if args.smoke else 200,
             context_epochs=1 if args.smoke else 200,
             residual_epochs=1 if args.smoke else 300,
+            spectral_engine=args.engine,
+            scalable_cache_dir=args.scalable_cache,
         )
         fold_outputs.append((result.heldout_nodes, result.final_anomaly_score))
         owner_outputs.append(np.full(result.heldout_nodes.size, fold, dtype=np.int8))

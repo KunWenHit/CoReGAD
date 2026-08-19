@@ -1,24 +1,44 @@
 # Reproducibility
 
-The released model uses five outer OOF folds and five inner nuisance folds.
-Training labels identify normal support only; real anomaly labels are not
-available to any optimizer, normalizer, checkpoint selector, or early-stopping
-rule.
+CoReGAD v0.1.1 is a reproducibility-hardening release; it does not change the
+paper method. The residual strength remains fixed at `0.75`, the energy head
+receives exactly `(r_emb, r_dec)`, and the reliability gate receives exactly
+`(log_degree, support_ratio, local_embedding_variation)`.
 
-For every outer fold:
+## Execution engines
 
-1. exclude the owned unlabeled nodes from normality-core training;
-2. construct graph context using visible training nodes only;
-3. freeze the normality core before graph-spectral processing;
-4. fit nuisance predictions with inner OOF ownership for training nodes;
-5. fit a full-visible nuisance model only for the outer-held-out nodes;
-6. train the residual detector for its fixed final epoch;
-7. materialize scores before the evaluator opens anomaly labels.
+`STANDARD` builds the fold-safe sparse PyTorch operator directly and is the
+default for small and medium graphs. `SCALABLE` is the same mathematical model
+with a CPU CSR graph operator, row-block sparse multiplication, and disk-backed
+spectral caches. It never constructs a dense `N x N` matrix or a full-graph
+device COO tensor.
 
-The released validation seed policy is `[0, 1, 2]`. Dataset version, node
-order, normal support, split ownership, optimizer, epoch budget, and all frozen
-constants must match [the configuration](../configs/coregad.yaml).
+```bash
+python scripts/train_coregad.py --engine standard ...
+python scripts/train_coregad.py --engine scalable --scalable-cache ./cache ...
+```
 
-Full benchmark training is intended for a server with the required datasets.
-Local verification should use import tests, formula tests, OOF ownership tests,
-and the tiny deterministic behavior-parity fixture.
+The float32 scalable parity mode follows the standard arithmetic schedule. The
+historical large-graph mode uses float16 basis caches while keeping arithmetic
+and compact summaries in float32. `T-Social` and `DGraph-Fin` should use
+`SCALABLE`; this is an engineering path, not another model version.
+
+## Frozen identity
+
+The eight dataset identities are recorded under
+[`reproducibility/`](../reproducibility/README.md). Their support and five-fold
+ownership were recovered from the final historical experiment products and
+must never be resampled. Dataset licenses prevent publishing exact node-ID
+lists, so the public repository contains hashes, budgets, source identity, and
+generation rules; the server workspace retains the exact manifests.
+
+Real anomaly labels are forbidden from training, early stopping, checkpoint
+selection, hyperparameter search, pseudo-anomaly selection, teacher fitting,
+score orientation, and threshold selection. The evaluator opens labels only
+after the five owned fold-score files have been assembled.
+
+The synthetic fixture
+`tests/fixtures/frozen_release_reference.npz` contains no real dataset and
+checks the historical spectral reference, discrepancies, structural channels,
+OOF nuisance prediction, controlled residual, energy, reliability, correction,
+and final score at `max_abs_diff <= 1e-6`.

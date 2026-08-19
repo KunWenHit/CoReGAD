@@ -1,0 +1,57 @@
+{
+  "dataset": "Elliptic",
+  "edge_order_sha256": "bae13dcc14e74ef1a60ea19272e9464b6cf86d88ba021f84ca726acf826add2a",
+  "evaluation_mask_sha256": "6692e817036b4e650286f73b04e0fda076f9ee207493ff3464da73c289b42a17",
+  "evaluation_node_count": 41523,
+  "evaluation_node_ids_sha256": "341bbd16a9bc0817cb944dd04cee7ed15d03504983edf9761238b34b6a0cd9a4",
+  "feature_sha256": "c859e682d90843f51ae110ade2c63bec668ba55e5ed4056b49eb36941bbf01b1",
+  "fold_counts": {
+    "0": 8305,
+    "1": 8305,
+    "2": 8305,
+    "3": 8304,
+    "4": 8304
+  },
+  "identity_checks": {
+    "exact_match": true,
+    "fold_ids_valid": true,
+    "node_ids_in_bounds": true,
+    "support_and_evaluation_disjoint": true,
+    "support_nodes_are_normal": true
+  },
+  "label_sha256": "5d6a863b7901c35760b2c75129f11d20e4b4fdd12b1130fbadf0f7c6a3324a49",
+  "node_ids_public": false,
+  "node_order_sha256": "32fd9589eaf0e65983e51fe422a36e81be4e448ae77dec79d80ee30b308a8891",
+  "normal_label_budget": 5041,
+  "num_edges": 73248,
+  "num_features": 93,
+  "num_nodes": 46564,
+  "outer_folds": 5,
+  "preprocessing": {
+    "edges": "historical final directed edge_index ordering",
+    "features": "historical final stored tensor; no refit or node reordering",
+    "labels": "loaded only by the evaluation bundle",
+    "node_ids": "canonical zero-based historical node order"
+  },
+  "raw_sha256": "2f502df4b87be8f8b5ed5ef8378876125c92b06afbc5b38ee58fe4b56b1b2023",
+  "raw_source_path": "SERVER_MANAGED_NOT_PUBLIC",
+  "source": {
+    "download_page": "",
+    "license_note": "MANUAL_LICENSE_REVIEW_REQUIRED",
+    "repository": "",
+    "source_manifest_sha256": "04073dff7c4a8c582bc11d63715a8678d68346c9b92c72f5859e768805efdb70",
+    "source_priority": "existing_official_asset",
+    "source_url": ""
+  },
+  "source_of_truth": {
+    "fold_seed": 0,
+    "loader_chain": "g18f2c -> g18f2 -> g18r0c.load_split -> phase_g8 contracts/splits",
+    "phase": "G18F2C_ALPHA075_FIXED_CONFIRMATION",
+    "support_seed": 0
+  },
+  "split_manifest": "reproducibility/splits/Elliptic.json",
+  "split_sha256": "0ce88ec2405cb9081fd8071382d9f2358d05ab9590a42df6f3ddb3ce0a03920e",
+  "support_manifest": "reproducibility/supports/Elliptic.json",
+  "support_node_ids_sha256": "d052d641cfdf4c74cb21e8534c08bb89aed9407905f9e9094a1db7808bfa83d9",
+  "support_sha256": "6f591887f45efadc40e5f1258b3342fe2842720529b01ebffa480329e2c6f4ca"
+}

@@ -1,0 +1,11 @@
+{
+  "dataset": "Weibo",
+  "generation_rule": "exact historical labeled-normal support; never resample",
+  "node_ids_public": false,
+  "normal_label_budget": 904,
+  "support_and_evaluation_disjoint": true,
+  "support_node_ids_sha256": "544529dc5b1d0c25643bd1c7bd7abf0b08c5821625fd0438b91d139f03863554",
+  "support_nodes_are_normal": true,
+  "support_seed": 0,
+  "support_sha256": "65de850dde0963643e2586fb2bece2cb4a84640634be8217f5b43892a912ccee"
+}

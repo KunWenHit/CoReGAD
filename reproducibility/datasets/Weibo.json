@@ -1,0 +1,57 @@
+{
+  "dataset": "Weibo",
+  "edge_order_sha256": "7c27b593319f97e756a7692338bd25a2a7d6819a83db141c36fbc93dcb0c62eb",
+  "evaluation_mask_sha256": "bb23cdfd3844e8273e0d111a416cc9ca41a63842d0af35da62842ee9250a6997",
+  "evaluation_node_count": 7501,
+  "evaluation_node_ids_sha256": "9e8202ac0d01ec6ad82412c7da6f0f528ebeae849f9154682513ffd6c3065386",
+  "feature_sha256": "942b8ef76b90866c02664c71738a9fd64fd9f2e5a2125e0c7fa60474d30e9709",
+  "fold_counts": {
+    "0": 1501,
+    "1": 1500,
+    "2": 1500,
+    "3": 1500,
+    "4": 1500
+  },
+  "identity_checks": {
+    "exact_match": true,
+    "fold_ids_valid": true,
+    "node_ids_in_bounds": true,
+    "support_and_evaluation_disjoint": true,
+    "support_nodes_are_normal": true
+  },
+  "label_sha256": "b0f228a41c5a2d1ed3cd104a8fbb7c1b776752cbcf6c91bd744df32367411b4a",
+  "node_ids_public": false,
+  "node_order_sha256": "13095ea3e12adc0f8f67a9bc5c777d8921c8e31a35a981d47fca9d7b8e09675d",
+  "normal_label_budget": 904,
+  "num_edges": 407963,
+  "num_features": 400,
+  "num_nodes": 8405,
+  "outer_folds": 5,
+  "preprocessing": {
+    "edges": "historical final directed edge_index ordering",
+    "features": "historical final stored tensor; no refit or node reordering",
+    "labels": "loaded only by the evaluation bundle",
+    "node_ids": "canonical zero-based historical node order"
+  },
+  "raw_sha256": "111402a2cb3b6a10ec586e96122da809d62bfe3617add07cb006de53fc109f05",
+  "raw_source_path": "SERVER_MANAGED_NOT_PUBLIC",
+  "source": {
+    "download_page": "",
+    "license_note": "MANUAL_LICENSE_REVIEW_REQUIRED",
+    "repository": "squareRoot3/GADBench",
+    "source_manifest_sha256": "ae6214b22abaa0a952b71bb9a6a875b52c262ea85540cb1644ff8ccf872ada2f",
+    "source_priority": "existing_official_asset",
+    "source_url": ""
+  },
+  "source_of_truth": {
+    "fold_seed": 0,
+    "loader_chain": "g18f2c -> g18f2 -> g18r0c.load_split -> phase_g8 contracts/splits",
+    "phase": "G18F2C_ALPHA075_FIXED_CONFIRMATION",
+    "support_seed": 0
+  },
+  "split_manifest": "reproducibility/splits/Weibo.json",
+  "split_sha256": "7851efcbfe5b6e350c25bc9670a2fcbbd3e548f612360ad734d9781414d7628c",
+  "support_manifest": "reproducibility/supports/Weibo.json",
+  "support_node_ids_sha256": "544529dc5b1d0c25643bd1c7bd7abf0b08c5821625fd0438b91d139f03863554",
+  "support_sha256": "65de850dde0963643e2586fb2bece2cb4a84640634be8217f5b43892a912ccee"
+}

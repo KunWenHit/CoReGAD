@@ -1,0 +1,18 @@
+{
+  "dataset": "Elliptic",
+  "evaluation_mask_sha256": "6692e817036b4e650286f73b04e0fda076f9ee207493ff3464da73c289b42a17",
+  "evaluation_node_count": 41523,
+  "evaluation_node_ids_sha256": "341bbd16a9bc0817cb944dd04cee7ed15d03504983edf9761238b34b6a0cd9a4",
+  "fold_counts": {
+    "0": 8305,
+    "1": 8305,
+    "2": 8305,
+    "3": 8304,
+    "4": 8304
+  },
+  "fold_seed": 0,
+  "generation_rule": "exact historical manifest recovery; never regenerate or reshuffle",
+  "node_ids_public": false,
+  "outer_folds": 5,
+  "split_sha256": "0ce88ec2405cb9081fd8071382d9f2358d05ab9590a42df6f3ddb3ce0a03920e"
+}

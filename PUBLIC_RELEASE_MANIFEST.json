@@ -1,21 +1,37 @@
 {
-  "source_of_truth_local_path": "LOCAL_RESEARCH_SNAPSHOT_RECORDED_IN_EXTERNAL_AUDIT",
-  "source_commit": "NA_UNTRACKED_LOCAL_SNAPSHOT",
-  "research_repository_head": "2da537cad1584a219da725902972a1b21fd8b840",
-  "refactor_date": "2026-08-08",
   "method_name": "CoReGAD",
+  "release_version": "0.1.1",
+  "release_kind": "reproducibility hardening; no method change",
+  "historical_source_worktree_head": "227c16d45483d129af78e5540d66e0702a1096fd",
   "residual_strength": 0.75,
+  "method_identity": {
+    "decision": "RESTORE_GITHUB_FROZEN_IMPLEMENTATION",
+    "frozen_reference": "227c16d45483d129af78e5540d66e0702a1096fd",
+    "new_spectral_local_variation_authorized": false,
+    "structural_statistics": "layer_normalized_visible_neighbor_mean_variance"
+  },
+  "outer_oof_visible_only_anchor": true,
+  "training_gt_label_access": false,
+  "license_decision_required": true,
+  "datasets": {
+    "target": 8,
+    "exact_manifests_recovered": 8,
+    "exact_node_ids_public": false
+  },
+  "baseline_repositories": {
+    "candidates": 9,
+    "official_verified": 9,
+    "protocol_ready": 0,
+    "formal_training_executed": false
+  },
   "tests": {
     "status": "passed",
-    "count": 19,
-    "command": "python -m pytest tests -q"
+    "count": 96,
+    "command": "python -m pytest -q"
   },
-  "parity_status": {
-    "status": "passed",
-    "kind": "executable legacy-to-formal intermediate parity",
-    "max_abs_diff": 0.0,
-    "tolerance": 1e-06,
-    "reference_parameter_count": 139,
-    "public_parameter_count": 139
+  "parity": {
+    "historical_reference": true,
+    "standard_scalable": true,
+    "tolerance": 1e-06
   }
 }

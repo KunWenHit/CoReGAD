@@ -1,0 +1,18 @@
+{
+  "dataset": "T-Social",
+  "evaluation_mask_sha256": "8f014dde2e7849fd28c2868ad114a82dd46b010316d2da83564d00c1162be332",
+  "evaluation_node_count": 5108252,
+  "evaluation_node_ids_sha256": "0d63bbb4c3b44e279d2d7ccc78f4f611e332f8320753b89f33a024a5a6cbd375",
+  "fold_counts": {
+    "0": 1021651,
+    "1": 1021651,
+    "2": 1021650,
+    "3": 1021650,
+    "4": 1021650
+  },
+  "fold_seed": 0,
+  "generation_rule": "exact historical manifest recovery; never regenerate or reshuffle",
+  "node_ids_public": false,
+  "outer_folds": 5,
+  "split_sha256": "0043f191bd2751c1ad709bd34aa4af1d46e8f524c1b8650e7032f84266e267b5"
+}

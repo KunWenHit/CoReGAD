@@ -1,0 +1,11 @@
+{
+  "dataset": "Amazon",
+  "generation_rule": "exact historical labeled-normal support; never resample",
+  "node_ids_public": false,
+  "normal_label_budget": 1334,
+  "support_and_evaluation_disjoint": true,
+  "support_node_ids_sha256": "caa35bd61b33f15446176fa890209984b890c26b24b6443568f0b58ba8fad156",
+  "support_nodes_are_normal": true,
+  "support_seed": 0,
+  "support_sha256": "ace4bca18aaae1defc0e0fc1f80552e0e25a62e49ca7fe208d3ae442f2e06796"
+}

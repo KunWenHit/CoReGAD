@@ -1,0 +1,18 @@
+{
+  "dataset": "Weibo",
+  "evaluation_mask_sha256": "bb23cdfd3844e8273e0d111a416cc9ca41a63842d0af35da62842ee9250a6997",
+  "evaluation_node_count": 7501,
+  "evaluation_node_ids_sha256": "9e8202ac0d01ec6ad82412c7da6f0f528ebeae849f9154682513ffd6c3065386",
+  "fold_counts": {
+    "0": 1501,
+    "1": 1500,
+    "2": 1500,
+    "3": 1500,
+    "4": 1500
+  },
+  "fold_seed": 0,
+  "generation_rule": "exact historical manifest recovery; never regenerate or reshuffle",
+  "node_ids_public": false,
+  "outer_folds": 5,
+  "split_sha256": "7851efcbfe5b6e350c25bc9670a2fcbbd3e548f612360ad734d9781414d7628c"
+}

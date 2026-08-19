@@ -1,0 +1,8 @@
+{
+  "contains_real_dataset": false,
+  "fixture": "tests/fixtures/frozen_release_reference.npz",
+  "sha256": "d333890c7042931172827b73df1426edb282c4c90fd33a75fd3b87881c6eba82",
+  "source_phase": "G18F2C_ALPHA075_FIXED_CONFIRMATION",
+  "source_worktree_head": "227c16d45483d129af78e5540d66e0702a1096fd",
+  "synthetic": true
+}
