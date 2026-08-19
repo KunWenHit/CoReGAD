@@ -1,0 +1,57 @@
+{
+  "dataset": "Amazon",
+  "edge_order_sha256": "4f5c9dc306d7ea4da7cb07125e7a79dd203b260fa24d7a2d383ccb3d9683cc78",
+  "evaluation_mask_sha256": "9393d536c7cbe5b72e7cc649aab71c286736f0913e49f9dc006f26c9037619b0",
+  "evaluation_node_count": 10610,
+  "evaluation_node_ids_sha256": "a864630294ace2a3e6d1c0d42c70f3428140fe291d53930bc72a4a8dbddfcc43",
+  "feature_sha256": "ee8ad02c767c96102ef13bbc7dfa0d63a4290435ffa0bc2634df4a8808fe7aa7",
+  "fold_counts": {
+    "0": 2122,
+    "1": 2122,
+    "2": 2122,
+    "3": 2122,
+    "4": 2122
+  },
+  "identity_checks": {
+    "exact_match": true,
+    "fold_ids_valid": true,
+    "node_ids_in_bounds": true,
+    "support_and_evaluation_disjoint": true,
+    "support_nodes_are_normal": true
+  },
+  "label_sha256": "4ab37d9b08cd9f4eba68eb1cdbac6425e54657b2eb4b4fd55375d339bc6d7da2",
+  "node_ids_public": false,
+  "node_order_sha256": "77b6b27b599fbcd533d335bdd63c773cd4ee1096c8b23b041017b9db26689a1c",
+  "normal_label_budget": 1334,
+  "num_edges": 8796784,
+  "num_features": 25,
+  "num_nodes": 11944,
+  "outer_folds": 5,
+  "preprocessing": {
+    "edges": "historical final directed edge_index ordering",
+    "features": "historical final stored tensor; no refit or node reordering",
+    "labels": "loaded only by the evaluation bundle",
+    "node_ids": "canonical zero-based historical node order"
+  },
+  "raw_sha256": "4b7e3f9cccc62b736792707393ccd74332a1a0592dba128ac6b2989bf1ee9d63",
+  "raw_source_path": "SERVER_MANAGED_NOT_PUBLIC",
+  "source": {
+    "download_page": "",
+    "license_note": "MANUAL_LICENSE_REVIEW_REQUIRED",
+    "repository": "",
+    "source_manifest_sha256": "dcca95571a2ce669b3b979c0213c875b74590520afec56e22284bf4c2f5da494",
+    "source_priority": "existing_official_asset",
+    "source_url": ""
+  },
+  "source_of_truth": {
+    "fold_seed": 0,
+    "loader_chain": "g18f2c -> g18f2 -> g18r0c.load_split -> phase_g8 contracts/splits",
+    "phase": "G18F2C_ALPHA075_FIXED_CONFIRMATION",
+    "support_seed": 0
+  },
+  "split_manifest": "reproducibility/splits/Amazon.json",
+  "split_sha256": "cac87b648893813f375927fea14048aa296663db24ee2e0112b0221375d3df14",
+  "support_manifest": "reproducibility/supports/Amazon.json",
+  "support_node_ids_sha256": "caa35bd61b33f15446176fa890209984b890c26b24b6443568f0b58ba8fad156",
+  "support_sha256": "ace4bca18aaae1defc0e0fc1f80552e0e25a62e49ca7fe208d3ae442f2e06796"
+}

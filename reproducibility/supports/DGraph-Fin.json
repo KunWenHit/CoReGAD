@@ -1,0 +1,11 @@
+{
+  "dataset": "DGraph-Fin",
+  "generation_rule": "exact historical labeled-normal support; never resample",
+  "node_ids_public": false,
+  "normal_label_budget": 145210,
+  "support_and_evaluation_disjoint": true,
+  "support_node_ids_sha256": "1f824d8202af435d115931cef6459ea5c3a84c3a19e40c7ff624801325f07274",
+  "support_nodes_are_normal": true,
+  "support_seed": 0,
+  "support_sha256": "be89651d4c35f68bd1ee0dc599b668c41c5817cdf03df1a27daec49ce8b6236f"
+}

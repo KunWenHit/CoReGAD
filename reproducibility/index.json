@@ -1,0 +1,56 @@
+{
+  "dataset_count": 8,
+  "datasets": [
+    {
+      "dataset": "Amazon",
+      "exact_match": true,
+      "manifest": "datasets/Amazon.json",
+      "normal_label_budget": 1334
+    },
+    {
+      "dataset": "Weibo",
+      "exact_match": true,
+      "manifest": "datasets/Weibo.json",
+      "normal_label_budget": 904
+    },
+    {
+      "dataset": "YelpChi",
+      "exact_match": true,
+      "manifest": "datasets/YelpChi.json",
+      "normal_label_budget": 4712
+    },
+    {
+      "dataset": "Tolokers",
+      "exact_match": true,
+      "manifest": "datasets/Tolokers.json",
+      "normal_label_budget": 1102
+    },
+    {
+      "dataset": "T-Finance",
+      "exact_match": true,
+      "manifest": "datasets/T-Finance.json",
+      "normal_label_budget": 4505
+    },
+    {
+      "dataset": "Elliptic",
+      "exact_match": true,
+      "manifest": "datasets/Elliptic.json",
+      "normal_label_budget": 5041
+    },
+    {
+      "dataset": "T-Social",
+      "exact_match": true,
+      "manifest": "datasets/T-Social.json",
+      "normal_label_budget": 672813
+    },
+    {
+      "dataset": "DGraph-Fin",
+      "exact_match": true,
+      "manifest": "datasets/DGraph-Fin.json",
+      "normal_label_budget": 145210
+    }
+  ],
+  "hash_rule": "sha256(dtype + NUL + compact-json-shape + NUL + C-contiguous-bytes)",
+  "historical_source_git_head": "aa4a4f7c131af7a97366e2900f8af584db686b4e",
+  "node_ids_public": false
+}

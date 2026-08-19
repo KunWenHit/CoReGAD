@@ -1,0 +1,57 @@
+{
+  "dataset": "T-Social",
+  "edge_order_sha256": "b12ed6d6efcffe16050467f2ddccb65c9f2c58877688a7ef48caaba8680cba33",
+  "evaluation_mask_sha256": "8f014dde2e7849fd28c2868ad114a82dd46b010316d2da83564d00c1162be332",
+  "evaluation_node_count": 5108252,
+  "evaluation_node_ids_sha256": "0d63bbb4c3b44e279d2d7ccc78f4f611e332f8320753b89f33a024a5a6cbd375",
+  "feature_sha256": "e1069566b131414cb4f376ebc328026a457d58198c8df1d168192438c4270b71",
+  "fold_counts": {
+    "0": 1021651,
+    "1": 1021651,
+    "2": 1021650,
+    "3": 1021650,
+    "4": 1021650
+  },
+  "identity_checks": {
+    "exact_match": true,
+    "fold_ids_valid": true,
+    "node_ids_in_bounds": true,
+    "support_and_evaluation_disjoint": true,
+    "support_nodes_are_normal": true
+  },
+  "label_sha256": "a0827cb531814847ba0eb70154ea912d4e62de3a3147ebab11cfa2c399474950",
+  "node_ids_public": false,
+  "node_order_sha256": "409b5825821cc046eab9bd641ad714fa6f02e1f06ed715c72d8fd230ce5ed316",
+  "normal_label_budget": 672813,
+  "num_edges": 146211016,
+  "num_features": 10,
+  "num_nodes": 5781065,
+  "outer_folds": 5,
+  "preprocessing": {
+    "edges": "historical final directed edge_index ordering",
+    "features": "historical final stored tensor; no refit or node reordering",
+    "labels": "loaded only by the evaluation bundle",
+    "node_ids": "canonical zero-based historical node order"
+  },
+  "raw_sha256": "8d577114cff12f7de35eda2974f17825ef9febe20c661e95e8d21072a6dfc8d0",
+  "raw_source_path": "SERVER_MANAGED_NOT_PUBLIC",
+  "source": {
+    "download_page": "https://github.com/squareRoot3/Rethinking-Anomaly-Detection/blob/master/readme.md",
+    "license_note": "Official author repository Google Drive release; repository checkout has no explicit license file, so reuse license review remains required.",
+    "repository": "squareRoot3/Rethinking-Anomaly-Detection",
+    "source_manifest_sha256": "c828f60d5273be029f5db10ddf3c6bc1df9f0cc662e692fd69f3d5c7e5148809",
+    "source_priority": "dataset_author_official_google_drive",
+    "source_url": "https://drive.google.com/drive/folders/1PpNwvZx_YRSCDiHaBUmRIS3x1rZR7fMr"
+  },
+  "source_of_truth": {
+    "fold_seed": 0,
+    "loader_chain": "g18f2c -> g18f2 -> g18r0c.load_split -> phase_g8 contracts/splits",
+    "phase": "G18F2C_ALPHA075_FIXED_CONFIRMATION",
+    "support_seed": 0
+  },
+  "split_manifest": "reproducibility/splits/T-Social.json",
+  "split_sha256": "0043f191bd2751c1ad709bd34aa4af1d46e8f524c1b8650e7032f84266e267b5",
+  "support_manifest": "reproducibility/supports/T-Social.json",
+  "support_node_ids_sha256": "379a0331f620364907f0f9a6f2d347632f6c5d43ceca062d657748fa0fb35869",
+  "support_sha256": "9a2f7902f4f00f4e269089fc48a81d82a25c1fb047e1196bb71d70ebed665e26"
+}

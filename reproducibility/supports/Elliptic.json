@@ -1,0 +1,11 @@
+{
+  "dataset": "Elliptic",
+  "generation_rule": "exact historical labeled-normal support; never resample",
+  "node_ids_public": false,
+  "normal_label_budget": 5041,
+  "support_and_evaluation_disjoint": true,
+  "support_node_ids_sha256": "d052d641cfdf4c74cb21e8534c08bb89aed9407905f9e9094a1db7808bfa83d9",
+  "support_nodes_are_normal": true,
+  "support_seed": 0,
+  "support_sha256": "6f591887f45efadc40e5f1258b3342fe2842720529b01ebffa480329e2c6f4ca"
+}

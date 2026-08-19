@@ -1,0 +1,18 @@
+{
+  "dataset": "YelpChi",
+  "evaluation_mask_sha256": "ab53cd585187b6e5f6076aa7e82f674ada878e0f64bf88fc6d4ef7bab64edd26",
+  "evaluation_node_count": 41242,
+  "evaluation_node_ids_sha256": "564566c642166ebd7b0b37a003ace79c5a643592caa3ee76b17d38e839bcc5c6",
+  "fold_counts": {
+    "0": 8249,
+    "1": 8249,
+    "2": 8248,
+    "3": 8248,
+    "4": 8248
+  },
+  "fold_seed": 0,
+  "generation_rule": "exact historical manifest recovery; never regenerate or reshuffle",
+  "node_ids_public": false,
+  "outer_folds": 5,
+  "split_sha256": "ea4b034bd02b740f4753a00a46f03ae374eba076459f0e7f8f3f7c68ae3a1ef0"
+}

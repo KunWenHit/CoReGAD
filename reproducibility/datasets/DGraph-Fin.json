@@ -1,0 +1,57 @@
+{
+  "dataset": "DGraph-Fin",
+  "edge_order_sha256": "3d1b7d90106907d13cc7011657ca27a4ba793d4a1703e84f8b0bf893ce9b0db5",
+  "evaluation_mask_sha256": "e0f889fa61ab3bec6b1dc5548eaa7850871f65be0c2ccf67967ad82e48c2223d",
+  "evaluation_node_count": 3555340,
+  "evaluation_node_ids_sha256": "e79ff47ee56ed2d1153e4cb072a34ae453b7df2a0dd2efadc235135370de2c99",
+  "feature_sha256": "ef283e63004a9635b675bf4fbb4442bcb709488ae4268e8128d225c6195f4e0a",
+  "fold_counts": {
+    "0": 711068,
+    "1": 711068,
+    "2": 711068,
+    "3": 711068,
+    "4": 711068
+  },
+  "identity_checks": {
+    "exact_match": true,
+    "fold_ids_valid": true,
+    "node_ids_in_bounds": true,
+    "support_and_evaluation_disjoint": true,
+    "support_nodes_are_normal": true
+  },
+  "label_sha256": "ad4dbcc03f9f09f966be27512fd46a477e70ee48efc3b1789fd8fff0e4ae838b",
+  "node_ids_public": false,
+  "node_order_sha256": "ab8524b83b4214030a9ab1c155465a241f27159536ff8f59373c0a61882b5894",
+  "normal_label_budget": 145210,
+  "num_edges": 4300999,
+  "num_features": 17,
+  "num_nodes": 3700550,
+  "outer_folds": 5,
+  "preprocessing": {
+    "edges": "historical final directed edge_index ordering",
+    "features": "historical final stored tensor; no refit or node reordering",
+    "labels": "loaded only by the evaluation bundle",
+    "node_ids": "canonical zero-based historical node order"
+  },
+  "raw_sha256": "35aca506fdfbb3be70f49b95b81da34420f47f725ec31fe1ec643ff659dea21e",
+  "raw_source_path": "SERVER_MANAGED_NOT_PUBLIC",
+  "source": {
+    "download_page": "",
+    "license_note": "MANUAL_LICENSE_REVIEW_REQUIRED",
+    "repository": "",
+    "source_manifest_sha256": "2082af27e941c075c82bb13dfb2642bb943229490b2f9b816386e0aa95911f53",
+    "source_priority": "existing_official_asset",
+    "source_url": ""
+  },
+  "source_of_truth": {
+    "fold_seed": 0,
+    "loader_chain": "g18f2c -> g18f2 -> g18r0c.load_split -> phase_g8 contracts/splits",
+    "phase": "G18F2C_ALPHA075_FIXED_CONFIRMATION",
+    "support_seed": 0
+  },
+  "split_manifest": "reproducibility/splits/DGraph-Fin.json",
+  "split_sha256": "44d06ee3d0fcf9b7a06f8e87d1ead26f2fc06c2c671745a3e826586160d4662f",
+  "support_manifest": "reproducibility/supports/DGraph-Fin.json",
+  "support_node_ids_sha256": "1f824d8202af435d115931cef6459ea5c3a84c3a19e40c7ff624801325f07274",
+  "support_sha256": "be89651d4c35f68bd1ee0dc599b668c41c5817cdf03df1a27daec49ce8b6236f"
+}

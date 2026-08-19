@@ -1,0 +1,57 @@
+{
+  "dataset": "YelpChi",
+  "edge_order_sha256": "fe4c4fefcd39aa1edbab3885afaf6332c183ecacd9b2099ae35f296ed3ae27aa",
+  "evaluation_mask_sha256": "ab53cd585187b6e5f6076aa7e82f674ada878e0f64bf88fc6d4ef7bab64edd26",
+  "evaluation_node_count": 41242,
+  "evaluation_node_ids_sha256": "564566c642166ebd7b0b37a003ace79c5a643592caa3ee76b17d38e839bcc5c6",
+  "feature_sha256": "78398b5ac65d8861e2ba879f6251dacf27da1d6e98fe64ca757ab5bb548703fa",
+  "fold_counts": {
+    "0": 8249,
+    "1": 8249,
+    "2": 8248,
+    "3": 8248,
+    "4": 8248
+  },
+  "identity_checks": {
+    "exact_match": true,
+    "fold_ids_valid": true,
+    "node_ids_in_bounds": true,
+    "support_and_evaluation_disjoint": true,
+    "support_nodes_are_normal": true
+  },
+  "label_sha256": "2d00f3c55ff4b4cfff81744fe3eca36f28cd91daba135b34302d9b54f630e929",
+  "node_ids_public": false,
+  "node_order_sha256": "e7868f2b7cc21ad73a7ccffcb810ec259da3073cb5b0f38055d6af33fbe5dcb8",
+  "normal_label_budget": 4712,
+  "num_edges": 7693958,
+  "num_features": 32,
+  "num_nodes": 45954,
+  "outer_folds": 5,
+  "preprocessing": {
+    "edges": "historical final directed edge_index ordering",
+    "features": "historical final stored tensor; no refit or node reordering",
+    "labels": "loaded only by the evaluation bundle",
+    "node_ids": "canonical zero-based historical node order"
+  },
+  "raw_sha256": "04bd2dd061c67b438fdb93e17b88b86b10fe3a0155e5a31fe350dc0652953abf",
+  "raw_source_path": "SERVER_MANAGED_NOT_PUBLIC",
+  "source": {
+    "download_page": "",
+    "license_note": "MANUAL_LICENSE_REVIEW_REQUIRED",
+    "repository": "squareRoot3/GADBench",
+    "source_manifest_sha256": "fb1bc7c767edc275eb972a70874cf855ed145b83256258fe5b005a43960ce181",
+    "source_priority": "existing_official_asset",
+    "source_url": ""
+  },
+  "source_of_truth": {
+    "fold_seed": 0,
+    "loader_chain": "g18f2c -> g18f2 -> g18r0c.load_split -> phase_g8 contracts/splits",
+    "phase": "G18F2C_ALPHA075_FIXED_CONFIRMATION",
+    "support_seed": 0
+  },
+  "split_manifest": "reproducibility/splits/YelpChi.json",
+  "split_sha256": "ea4b034bd02b740f4753a00a46f03ae374eba076459f0e7f8f3f7c68ae3a1ef0",
+  "support_manifest": "reproducibility/supports/YelpChi.json",
+  "support_node_ids_sha256": "b449f6e10cadb5468e81808f7665c06924599c14070398479f33f3db8ad81dd8",
+  "support_sha256": "7421748b8703a6e7cba3fa6ffdd2668509d154e2cd0fd08eca00ecf404c36dfe"
+}

@@ -82,6 +82,13 @@ python scripts/train_coregad.py \
   --seed 0
 ```
 
+For `T-Social` and `DGraph-Fin`, use the mathematically equivalent scalable
+engine:
+
+```bash
+python scripts/train_coregad.py --engine scalable --scalable-cache ./cache ...
+```
+
 The normality core, nuisance estimator, residual energy head, and reliability
 gate are optimized in separate stages. `--smoke` reduces every stage to one
 epoch and is only an installation check; it is not a reproduction setting.
@@ -123,6 +130,9 @@ Fair baselines use the same normal/unlabeled support and OOF ownership.
 Methods whose original training contract requires anomaly labels are reported
 only as external supervised references and are excluded from the fair ranking.
 See [benchmark/README.md](benchmark/README.md).
+
+Exact public dataset identities (hashes and fixed support/split budgets, without
+restricted node-ID lists) are in [reproducibility/](reproducibility/README.md).
 
 ## Citation
 

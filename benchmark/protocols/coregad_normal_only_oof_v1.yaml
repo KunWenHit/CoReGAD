@@ -1,0 +1,24 @@
+protocol_id: coregad_normal_only_oof_v1
+outer_folds: 5
+training_supervision:
+  labeled_normal: exact historical support manifest
+  visible_unlabeled: outer folds not owned by the current scorer
+real_anomaly_labels_forbidden_from:
+  - training
+  - early_stopping
+  - checkpoint_selection
+  - hyperparameter_search
+  - pseudo_anomaly_selection
+  - teacher_fitting
+  - score_orientation
+  - threshold_selection
+evaluation:
+  labels_opened_after_oof_collection: true
+  primary_metric: AUPRC
+  secondary_metrics: [AUROC, Recall@K, Precision@K, NDCG@K]
+  k_rule: fixed anomaly count in the evaluation mask
+seed_semantics:
+  model_seeds: [0, 1, 2]
+  dataset_split_changes_with_model_seed: false
+  support_changes_with_model_seed: false
+  node_ownership_changes_with_model_seed: false

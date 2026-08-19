@@ -1,0 +1,11 @@
+{
+  "dataset": "YelpChi",
+  "generation_rule": "exact historical labeled-normal support; never resample",
+  "node_ids_public": false,
+  "normal_label_budget": 4712,
+  "support_and_evaluation_disjoint": true,
+  "support_node_ids_sha256": "b449f6e10cadb5468e81808f7665c06924599c14070398479f33f3db8ad81dd8",
+  "support_nodes_are_normal": true,
+  "support_seed": 0,
+  "support_sha256": "7421748b8703a6e7cba3fa6ffdd2668509d154e2cd0fd08eca00ecf404c36dfe"
+}

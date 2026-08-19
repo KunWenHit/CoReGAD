@@ -1,0 +1,57 @@
+{
+  "dataset": "T-Finance",
+  "edge_order_sha256": "97004b70eef66415281f32e67b64b15dd645783bae08007138d3ce8d0c7d538c",
+  "evaluation_mask_sha256": "39c176289d731bea78fad1b02630f2e6c33e9d1cba762cf2350c9adfce0949e3",
+  "evaluation_node_count": 34852,
+  "evaluation_node_ids_sha256": "97e26e95f73140f498767f9d2eddb3f5869af3d3a096a10baebea9bcb1f1158a",
+  "feature_sha256": "4ca83893f133d2aede1b1e015097990eb2fc3b649a2db4249f69651f5dbc4b5d",
+  "fold_counts": {
+    "0": 6971,
+    "1": 6971,
+    "2": 6970,
+    "3": 6970,
+    "4": 6970
+  },
+  "identity_checks": {
+    "exact_match": true,
+    "fold_ids_valid": true,
+    "node_ids_in_bounds": true,
+    "support_and_evaluation_disjoint": true,
+    "support_nodes_are_normal": true
+  },
+  "label_sha256": "30da93e2caf35102382d16c89cea27754d0b6cb11a3b5791888ee60eff32cf62",
+  "node_ids_public": false,
+  "node_order_sha256": "f499176d52ff06bb6735562aee9bd373902fe0840d7ae9c5e6ac8bba6db6249b",
+  "normal_label_budget": 4505,
+  "num_edges": 42445086,
+  "num_features": 10,
+  "num_nodes": 39357,
+  "outer_folds": 5,
+  "preprocessing": {
+    "edges": "historical final directed edge_index ordering",
+    "features": "historical final stored tensor; no refit or node reordering",
+    "labels": "loaded only by the evaluation bundle",
+    "node_ids": "canonical zero-based historical node order"
+  },
+  "raw_sha256": "b7d853ec4079e9f7137c03f78a044b1c33d0ff5ed6caa297b895542a7c8e3700",
+  "raw_source_path": "SERVER_MANAGED_NOT_PUBLIC",
+  "source": {
+    "download_page": "",
+    "license_note": "MANUAL_LICENSE_REVIEW_REQUIRED",
+    "repository": "",
+    "source_manifest_sha256": "397c636bfefc058bc44acaeb6cec830497d2e8bebc4dd72ffbd8dbdb4033b3ad",
+    "source_priority": "existing_official_asset",
+    "source_url": ""
+  },
+  "source_of_truth": {
+    "fold_seed": 0,
+    "loader_chain": "g18f2c -> g18f2 -> g18r0c.load_split -> phase_g8 contracts/splits",
+    "phase": "G18F2C_ALPHA075_FIXED_CONFIRMATION",
+    "support_seed": 0
+  },
+  "split_manifest": "reproducibility/splits/T-Finance.json",
+  "split_sha256": "7119ae16029d6493d5664f085211f9e8ebcf3b7164db977e5f75224f7fd01783",
+  "support_manifest": "reproducibility/supports/T-Finance.json",
+  "support_node_ids_sha256": "fc0315a0627683fd2b1b94c4653c04780b75fb9946cded6426ca8cd06e0334c5",
+  "support_sha256": "9318c0e96b8f1cbbfeade3e3487fad63083dacba61f56cef037de242ce918b8c"
+}

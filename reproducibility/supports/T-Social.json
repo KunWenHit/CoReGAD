@@ -1,0 +1,11 @@
+{
+  "dataset": "T-Social",
+  "generation_rule": "exact historical labeled-normal support; never resample",
+  "node_ids_public": false,
+  "normal_label_budget": 672813,
+  "support_and_evaluation_disjoint": true,
+  "support_node_ids_sha256": "379a0331f620364907f0f9a6f2d347632f6c5d43ceca062d657748fa0fb35869",
+  "support_nodes_are_normal": true,
+  "support_seed": 0,
+  "support_sha256": "9a2f7902f4f00f4e269089fc48a81d82a25c1fb047e1196bb71d70ebed665e26"
+}

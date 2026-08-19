@@ -1,0 +1,57 @@
+{
+  "dataset": "Tolokers",
+  "edge_order_sha256": "3b375fda7115015de50d7820e373c89917a210ff5e58d827552ec7aaf72aeca7",
+  "evaluation_mask_sha256": "a6920e9b3fccadf045df79ddb6423ff19654a28dd67e20488c01c354f1682f75",
+  "evaluation_node_count": 10656,
+  "evaluation_node_ids_sha256": "b551794743ce75acc151202d15c76993d7bb4010028915e0381ee40cf37e65cb",
+  "feature_sha256": "b42d95f57b5acc7b7722113c006983a0f8f573334a7049b6f33c7a75da697339",
+  "fold_counts": {
+    "0": 2132,
+    "1": 2131,
+    "2": 2131,
+    "3": 2131,
+    "4": 2131
+  },
+  "identity_checks": {
+    "exact_match": true,
+    "fold_ids_valid": true,
+    "node_ids_in_bounds": true,
+    "support_and_evaluation_disjoint": true,
+    "support_nodes_are_normal": true
+  },
+  "label_sha256": "4b2478696bf5cdb0c5140f792fcf10aae31977cb9f432cc6b43408bcf2c0551d",
+  "node_ids_public": false,
+  "node_order_sha256": "f51b042a44ba03f36c3855730ae80ed4f47be4bd7bbf60805c5c76398e695ee9",
+  "normal_label_budget": 1102,
+  "num_edges": 1038000,
+  "num_features": 10,
+  "num_nodes": 11758,
+  "outer_folds": 5,
+  "preprocessing": {
+    "edges": "historical final directed edge_index ordering",
+    "features": "historical final stored tensor; no refit or node reordering",
+    "labels": "loaded only by the evaluation bundle",
+    "node_ids": "canonical zero-based historical node order"
+  },
+  "raw_sha256": "dacf3ac94cec53d03cd2adb5255c08b33dee1656c33ca8164a464bd9450a1667",
+  "raw_source_path": "SERVER_MANAGED_NOT_PUBLIC",
+  "source": {
+    "download_page": "",
+    "license_note": "MANUAL_LICENSE_REVIEW_REQUIRED",
+    "repository": "",
+    "source_manifest_sha256": "ff1fe856e899a94bb63bde697c58544ff7d8d198a043034c84bf46e57e3b36a9",
+    "source_priority": "existing_official_asset",
+    "source_url": ""
+  },
+  "source_of_truth": {
+    "fold_seed": 0,
+    "loader_chain": "g18f2c -> g18f2 -> g18r0c.load_split -> phase_g8 contracts/splits",
+    "phase": "G18F2C_ALPHA075_FIXED_CONFIRMATION",
+    "support_seed": 0
+  },
+  "split_manifest": "reproducibility/splits/Tolokers.json",
+  "split_sha256": "13d8fd9798b5666b46906770d6c67071be83a43d71fc2c6725c6c6b84f26479b",
+  "support_manifest": "reproducibility/supports/Tolokers.json",
+  "support_node_ids_sha256": "d69aac736c2917b5e69b106e00cca4be4fcca37ecbef8b6f5354c8fd7219be96",
+  "support_sha256": "29a52c6596683c278606aa1676620933eb91ab112600618df9b841f3580aebde"
+}
