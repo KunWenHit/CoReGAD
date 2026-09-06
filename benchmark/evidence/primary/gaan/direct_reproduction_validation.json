@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "method": "GAAN",
+  "source_kind": "OFFICIAL_BENCHMARK_REIMPLEMENTATION",
+  "implementation_source": "mala-lab/GGAD",
+  "source_commit": "358fb4d4b4ee5b8b195445791a9e2b6d52487f2b",
+  "checkout_head": "c25456e4a294203f0d37978118f34f68d88a6104",
+  "environment": "/data1/wk/conda_envs/coregad_ggad",
+  "full_native_and_canonical_sanity": {
+    "dataset": "Weibo", "seed": 0, "epochs": 500, "real_optimizer_steps": 500,
+    "schedule_source": "fixed upstream Reddit default", "loss_first": 84.0484390258789,
+    "loss_last": 109.38131713867188, "loss_min": 84.0484390258789,
+    "score_count": 7501, "scores_finite": true, "elapsed_seconds": 16.223440885543823,
+    "server_output": "/data1/wk/codes/CoReGAD_RELEASE/outputs/baselines/full_native_sanity/GAAN/Weibo/seed_0",
+    "evidence_sha256": "7dd3d48585750e766e93191380d4c1b1a38832ca0e925446b121b56d4bb02045",
+    "scores_sha256": "018ceba70af7d2cabff1d6f4510c34f91043a20e599af9305f258d20831a8fd3"
+  },
+  "label_audit": {"training_bundle_keys":["edge_index","features","node_id","provenance"],"ground_truth_anomaly_label_present_or_accessed":false,"test_metrics_or_labels_called_during_training":false,"early_stopping_or_checkpoint_selection":false,"coregad_cross_fitting_injected":false},
+  "compatibility": {"mechanical_changes":["selected PyTorch default tensor device","vectorized row-major edge enumeration"],"numerical_semantics_changed":false},
+  "score_contract": {"fields":["node_id","anomaly_score"],"higher_is_more_anomalous":true,"node_ids_unique":true,"scores_finite":true}
+}

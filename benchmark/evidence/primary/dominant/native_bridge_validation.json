@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "method": "DOMINANT",
+  "source_commit": "83fa93931164aee5386fdc74c12a5d5c46a5d62f",
+  "checkout_head": "83fa93931164aee5386fdc74c12a5d5c46a5d62f",
+  "environment": "/data1/wk/conda_envs/baseline_primary_torch24",
+  "native_sanity": {
+    "dataset": "BlogCatalog",
+    "epochs": 1,
+    "returncode": 0,
+    "command": "CUDA_VISIBLE_DEVICES=4 PYTHONHASHSEED=0 /data1/wk/conda_envs/baseline_primary_torch24/bin/python run.py --dataset BlogCatalog --epoch 1 --device cuda",
+    "loss": 4.54940,
+    "auroc": 0.806621522001858,
+    "paper_metric_for_exact_one_epoch_protocol": null,
+    "absolute_delta": null,
+    "protocol_difference": "Upstream has no seed CLI and reports labels after training; fixed one epoch, no tuning or checkpoint selection.",
+    "log_sha256": "70e44d399189ac02f2d2b28b0bb4f330bfdcba0eb46ce6fa28b603a5204f771b",
+    "server_output": "/data1/wk/codes/CoReGAD_RELEASE/outputs/baselines/native_sanity_isolated_env/DOMINANT/BlogCatalog/seed_0"
+  },
+  "label_audit": {
+    "canonical_bundle_keys": ["edge_index", "features", "node_id", "provenance"],
+    "label_tensor_present_or_accessed": false,
+    "cross_fitting_injected": false,
+    "upstream_label_use_in_native_sanity": "post-training AUROC reporting only"
+  },
+  "canonical_smoke": {
+    "dataset": "Amazon",
+    "seed": 0,
+    "epochs": 1,
+    "loss_trace": [6755.17138671875],
+    "elapsed_seconds": 3.93367600440979,
+    "run_evidence_sha256": "1a33521919e2293aeaba858c4a71fb93fefff79f1f8869211d31e3993e2bcbe9",
+    "server_output": "/data1/wk/codes/CoReGAD_RELEASE/outputs/baselines/canonical_smoke_isolated_env/DOMINANT/Amazon/seed_0"
+  },
+  "score_contract": {
+    "fields": ["node_id", "anomaly_score"],
+    "higher_is_more_anomalous": true,
+    "score_count": 10610,
+    "node_ids_unique": true,
+    "node_ids_exactly_match_frozen_evaluation_set": true,
+    "node_ids_sorted": true,
+    "scores_finite": true,
+    "scores_sha256": "c67869346982d403f429c021f70314ddc0ad406c3e4ee738ac66a06545f63c4e"
+  }
+}

@@ -86,6 +86,7 @@ def test_public_pipeline_matches_frozen_historical_release() -> None:
             embeddings,
             degree,
             support_ratio,
+            spectral["low_spectral_component"],
         )
         _assert_strict(structural, fixture, "T")
 

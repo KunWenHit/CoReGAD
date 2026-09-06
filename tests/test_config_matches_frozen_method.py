@@ -15,8 +15,13 @@ def test_config_matches_frozen_method() -> None:
         (Path(__file__).parents[1] / "configs" / "coregad.yaml").read_text(encoding="utf-8")
     )
     assert config["method"]["outer_oof_folds"] == 5
+    assert config["method"]["model_variant"] == "FULL_F2"
     assert config["nuisance_estimator"]["inner_folds"] == INNER_FOLDS
     assert config["nuisance_estimator"]["random_fourier_dimension"] == RFF_DIM
     assert config["nuisance_estimator"]["ridge_lambda"] == RIDGE_LAMBDA
     assert config["controlled_structural_residualization"]["residual_strength"] == STRUCTURAL_RESIDUAL_STRENGTH
     assert config["residual_training"]["epochs"] == 300
+    assert config["factorized_routing"]["normal_tail_rho"] == 0.80
+    assert config["factorized_routing"]["wide_temperature"] == 2.0
+    assert config["factorized_routing"]["ecdf"] == "strict_lower"
+    assert config["factorized_routing"]["trainable_parameter_count"] == 0

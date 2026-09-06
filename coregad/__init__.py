@@ -1,6 +1,11 @@
 """CoReGAD: normal-only graph anomaly detection."""
 
-from .models.coregad import CoReGAD
+from .models.coregad import (
+    FULL_F2,
+    LEGACY_CONTROLLED_TIGHT,
+    MODEL_VARIANTS,
+    CoReGAD,
+)
 from .models.graph_context import GraphContextShaping
 from .models.normality_core import CrossFittedNormalityCore, FrozenNormalityCore
 from .models.spectral_reference import GlobalSpectralReference, SpectralDiscrepancy
@@ -18,6 +23,9 @@ __all__ = [
     "GlobalSpectralReference",
     "GraphContextShaping",
     "SpectralDiscrepancy",
+    "FULL_F2",
+    "LEGACY_CONTROLLED_TIGHT",
+    "MODEL_VARIANTS",
 ]
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"

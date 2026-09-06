@@ -49,6 +49,7 @@ def test_standard_scalable_parity(tmp_path) -> None:
         embeddings,
         degree,
         support,
+        standard_reference["low_spectral_component"],
     )
 
     operator = build_sparse_graph_operator(edge_index, n, visible, heldout)

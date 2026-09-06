@@ -1,17 +1,14 @@
 {
   "method_name": "CoReGAD",
-  "release_version": "0.1.2",
-  "release_kind": "licensing and repository metadata patch; no method change",
-  "historical_source_worktree_head": "227c16d45483d129af78e5540d66e0702a1096fd",
+  "release_version": "0.2.0",
+  "release_kind": "production F2 factorized-routing transition",
+  "historical_source_worktree_head": "aa4a4f7c131af7a97366e2900f8af584db686b4e",
   "residual_strength": 0.75,
-  "public_execution_surface": "METADATA_ONLY_SERVER_EXECUTION_EXCLUDED",
-  "server_execution_surface": "SERVER_ONLY_NOT_IN_PUBLIC_SNAPSHOT",
-  "method_identity": {
-    "decision": "RESTORE_GITHUB_FROZEN_IMPLEMENTATION",
-    "frozen_reference": "227c16d45483d129af78e5540d66e0702a1096fd",
-    "new_spectral_local_variation_authorized": false,
-    "structural_statistics": "layer_normalized_visible_neighbor_mean_variance"
-  },
+  "default_model": "F2_TIE_SAFE_FACTORIZED_ROUTER_T2",
+  "normal_tail_rho": 0.8,
+  "wide_temperature": 2.0,
+  "strict_lower_ecdf": true,
+  "router_trainable_parameter_count": 0,
   "outer_oof_visible_only_anchor": true,
   "training_gt_label_access": false,
   "license_decision_required": false,
@@ -28,11 +25,12 @@
   },
   "tests": {
     "status": "passed",
-    "count": 96,
+    "count": 79,
     "command": "python -m pytest -q"
   },
   "parity": {
     "historical_reference": true,
+    "canonical_f2_server_fixture": true,
     "standard_scalable": true,
     "tolerance": 1e-06
   },

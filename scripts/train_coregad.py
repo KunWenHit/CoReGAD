@@ -13,6 +13,7 @@ from coregad.data.datasets import load_graph_npz
 from coregad.data.oof import assemble_oof_scores
 from coregad.data.splits import read_split_manifest
 from coregad.training.pipeline import train_fold
+from coregad.models.coregad import MODEL_VARIANTS
 
 
 def parse_args() -> argparse.Namespace:
@@ -24,6 +25,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output", type=Path, default=Path("outputs/coregad"))
     parser.add_argument("--device", default="cpu")
     parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument(
+        "--variant",
+        choices=MODEL_VARIANTS,
+        default="FULL_F2",
+        help="Production F2 model or a frozen module ablation/legacy reduction.",
+    )
     parser.add_argument(
         "--engine",
         choices=("standard", "scalable"),
@@ -67,6 +74,7 @@ def main() -> int:
             residual_epochs=1 if args.smoke else 300,
             spectral_engine=args.engine,
             scalable_cache_dir=args.scalable_cache,
+            model_variant=args.variant,
         )
         fold_outputs.append((result.heldout_nodes, result.final_anomaly_score))
         owner_outputs.append(np.full(result.heldout_nodes.size, fold, dtype=np.int8))

@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "method": "Structure-aware PU-GNN",
+  "source_kind": "PAPER_DERIVED",
+  "source_commit": "paper:arxiv:2310.13538v1",
+  "environment": "/data1/wk/conda_envs/coregad_pu",
+  "compatibility": {"python":"3.10.20","torch":"2.4.0+cu124","dgl":"2.4.0+cu124","torch_geometric":"2.6.1","semantic_change":false},
+  "full_native_and_canonical_sanity": {
+    "dataset":"Elliptic","seed":0,"epochs":100,"real_optimizer_steps":100,
+    "loss_first":1.1284232139587402,"loss_last":0.8169317245483398,"loss_min":0.8169317245483398,
+    "score_count":41523,"scores_finite":true,"elapsed_seconds":1.3831336498260498,
+    "server_output":"/data1/wk/codes/CoReGAD_RELEASE/outputs/baselines/full_native_sanity/Structure-aware_PU-GNN/Elliptic/seed_0",
+    "evidence_sha256":"75e8b67bbb3b180f2f47a4ce74cb3877060ea63b611547b6529eb53b6241c44b",
+    "scores_sha256":"d11f43f34e56f0d8cd82d13418001c2375e24873ac0fa70dea3aec267da87a2e"
+  },
+  "label_audit": {"positive_class_semantics":"frozen normal support","ground_truth_anomaly_label_present_or_accessed":false,"anomaly_score":"1 - normal-positive probability","fair_ranking":false},
+  "native_contract": {"backbone":"two-layer GCN","distance_threshold":3,"negative_samples_per_edge":50,"alpha":0.01},
+  "score_contract": {"fields":["node_id","anomaly_score"],"higher_is_more_anomalous":true,"node_ids_unique":true,"scores_finite":true}
+}

@@ -1,0 +1,76 @@
+{
+  "patches": [
+    {
+      "method": "GGAD",
+      "official_repo": "https://github.com/mala-lab/GGAD.git",
+      "patch": "GGAD_coregad_protocol.patch",
+      "patch_sha256": "8a63799f08670816a1689973f7789be2caf0ac6f63bc56583473952427a6d258",
+      "protocol_commit": "c25456e4a294203f0d37978118f34f68d88a6104",
+      "upstream_sha": "358fb4d4b4ee5b8b195445791a9e2b6d52487f2b"
+    },
+    {
+      "method": "RHO",
+      "official_repo": "https://github.com/mala-lab/RHO.git",
+      "patch": "RHO_coregad_protocol.patch",
+      "patch_sha256": "1afe175e269e481b002debe22d634c4daf5bbf18fca7683bfb65b26e3f502bb1",
+      "protocol_commit": "e26d11085b9c15a79ac52091abeb886572ac338c",
+      "upstream_sha": "a394d5575dea6745215b15e0453e1f925ffcc1f2"
+    },
+    {
+      "method": "GraphNC",
+      "official_repo": "https://github.com/mala-lab/GraphNC.git",
+      "patch": "GraphNC_coregad_protocol.patch",
+      "patch_sha256": "9b4cf769702a28dee0b8a3707ca3d34bff2ca1617c208396c898a559e4edfbb5",
+      "protocol_commit": "94c3e5524b84b98a664ba1b9e8e4e556529ab897",
+      "upstream_sha": "4985138639d96c43b85001eefa3a54eee1caebf1"
+    },
+    {
+      "method": "PAGE",
+      "official_repo": "https://github.com/TingGuo301/PAGE.git",
+      "patch": "PAGE_coregad_protocol.patch",
+      "patch_sha256": "c51aa4988052934128aff7abc0960b43b0a88fcab4932e48182086b27faf3974",
+      "protocol_commit": "06ef61d24f491eeb6938302cd37822e91db237a0",
+      "upstream_sha": "b0ae63eefb85a4340850cf1de09f84455e264012"
+    },
+    {
+      "method": "TAQ-GAD",
+      "official_repo": "https://github.com/TingGuo301/TAQ-GAD.git",
+      "patch": "TAQ-GAD_coregad_protocol.patch",
+      "patch_sha256": "6389309d225c81b719de0ede8d516814b91e558a1854af862861091c57d0e847",
+      "protocol_commit": "bfc24efa57840fe75f4a789df443c876d9b5e428",
+      "upstream_sha": "290d64b6ae5df691d49710481d041636cf57abbd"
+    },
+    {
+      "method": "TAM",
+      "official_repo": "https://github.com/mala-lab/TAM-master.git",
+      "patch": "TAM_coregad_protocol.patch",
+      "patch_sha256": "31ac31e3e4faeb252feb182aeab31d699abf893ddacd4e797a9e10eb44c6bc3f",
+      "protocol_commit": "683d84f592586187ccfd467ec86588d03b9fea0c",
+      "upstream_sha": "e82ead0584b9b807d4db56a9ffdf89ff94c74dfa"
+    },
+    {
+      "method": "HUGE",
+      "official_repo": "https://github.com/CampanulaBells/HUGE-GAD.git",
+      "patch": "HUGE_coregad_protocol.patch",
+      "patch_sha256": "d558356b9974f09181b739a06bd404ee45599a05cae92a18d69f6a5f719407b6",
+      "protocol_commit": "b5605a48993c5c9cd20db701eb5f421446ab1269",
+      "upstream_sha": "bdf8d2aec6455b48d7322c0713e31d2f6fecc1b7"
+    },
+    {
+      "method": "OCGNN",
+      "official_repo": "https://github.com/WangXuhongCN/OCGNN.git",
+      "patch": "OCGNN_coregad_protocol.patch",
+      "patch_sha256": "9ca2daf7708e0149c0fabf22810661fbb59428d47af407d321d5f07b9e2d2101",
+      "protocol_commit": "628ff5a2d7e340c40feb3709756321ec4421d51b",
+      "upstream_sha": "ec7d11c5ae2f91f4165e384131c6a8358836ff58"
+    },
+    {
+      "method": "GAD-NR",
+      "official_repo": "https://github.com/Graph-COM/GAD-NR.git",
+      "patch": "GAD-NR_coregad_protocol.patch",
+      "patch_sha256": "13cb6680390b7f6f02bb5bcbc805fbc6ead2d3cb6deb947f63a9e2ce8fdbccb4",
+      "protocol_commit": "cb69bc73adb076aa52f8fd3a9fb58c737772ead4",
+      "upstream_sha": "b0a9590b10d0b9490e6d6cdfa60e7c50eb232c0d"
+    }
+  ]
+}

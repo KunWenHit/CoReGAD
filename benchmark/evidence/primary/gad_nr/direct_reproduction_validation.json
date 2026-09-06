@@ -1,0 +1,14 @@
+{
+  "status":"PASS",
+  "method":"GAD-NR",
+  "source_kind":"AUTHOR_OFFICIAL",
+  "source_commit":"b0a9590b10d0b9490e6d6cdfa60e7c50eb232c0d",
+  "checkout_head":"cb69bc73adb076aa52f8fd3a9fb58c737772ead4",
+  "environment":"/data1/wk/conda_envs/coregad_gadnr",
+  "compatibility":{"python":"3.10.20","torch":"2.4.0+cu124","torch_geometric":"2.6.1","dgl":"2.4.0+cu124","semantic_change":false},
+  "full_native_and_canonical_sanity":{"dataset":"Weibo","seed":0,"epochs":500,"real_optimizer_steps":500,"loss_first":2217.843994140625,"loss_last":63.218990325927734,"loss_min":63.218990325927734,"score_count":7501,"scores_finite":true,"elapsed_seconds":35.3970685005188,"server_output":"/data1/wk/codes/CoReGAD_RELEASE/outputs/baselines/full_native_sanity/GAD-NR/Weibo/seed_0","evidence_sha256":"13a2aa837d577d4965a946a7d37cfb79f9fd8e3f55098461822735fcbf284db6","scores_sha256":"1866a46fb0c36b22e12b544b8587c30db23d3480f19d06157e05f7129c19fc80"},
+  "notebook_cli_parity":{"status":"PASS","dataset":"Weibo canonical induced 256-node prefix","epochs":3,"native_notebook_loss_trace":[17.792678833007812,10.721206665039062,6.474700450897217],"extracted_cli_loss_trace":[18.361873626708984,10.954090118408203,6.567137718200684],"evidence_sha256":"3da6225c8a659f6bb18313cf37fa4b5751ed57e31424f18b0e529a0725b06b36"},
+  "label_audit":{"notebook_metric_calls_removed_from_training_child":true,"training_bundle_keys":["edge_index","features","node_id","provenance"],"ground_truth_anomaly_label_present_or_accessed":false,"score_selection_rule":"minimum unsupervised reconstruction objective"},
+  "native_contract":{"notebook":"GAD-NR_weibo.ipynb","mechanically_extracted_cells":[5,7,8,10],"optimizer":"Adam with separate degree-decoder learning rate","epochs":500},
+  "score_contract":{"fields":["node_id","anomaly_score"],"higher_is_more_anomalous":true,"node_ids_unique":true,"scores_finite":true}
+}

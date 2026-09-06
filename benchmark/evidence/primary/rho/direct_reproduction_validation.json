@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "method": "RHO",
+  "source_kind": "AUTHOR_OFFICIAL",
+  "source_commit": "a394d5575dea6745215b15e0453e1f925ffcc1f2",
+  "checkout_head": "e26d11085b9c15a79ac52091abeb886572ac338c",
+  "environment": "/data1/wk/conda_envs/coregad_rho",
+  "environment_basis": "/data1/wk/conda_envs/baseline_primary_torch24",
+  "installed_additions": {"matplotlib": "3.9.4", "ogb": "1.3.6"},
+  "compatibility_note": "The adapter imports the upstream RHO model unchanged; it preserves sparse normalized Laplacian propagation and the upstream batched NCE path.",
+  "full_native_and_canonical_sanity": {
+    "dataset": "Weibo",
+    "seed": 0,
+    "epochs": 100,
+    "schedule_source": "upstream global default",
+    "nce_batch_size": 1024,
+    "real_model_initialized": true,
+    "real_optimizer_steps": 100,
+    "loss_first": 18.58049774169922,
+    "loss_last": 16.311607360839844,
+    "loss_min": 16.311607360839844,
+    "score_count": 7501,
+    "scores_finite": true,
+    "elapsed_seconds": 9.803241729736328,
+    "server_output": "/data1/wk/codes/CoReGAD_RELEASE/outputs/baselines/full_native_sanity/RHO/Weibo/seed_0",
+    "evidence_sha256": "faa0b8c244f31ae3f60d7446732ff0c114b47e60c7f0c020236ea97f1ad1102d",
+    "scores_sha256": "bc76118e64044cce556031a3baf49cb9d0bcf170c36c235a284218c461bb5f6c"
+  },
+  "label_audit": {
+    "training_bundle_keys": ["edge_index", "features", "node_id", "provenance"],
+    "ground_truth_anomaly_label_present_or_accessed": false,
+    "normal_support_source": "frozen Weibo_seed0 support manifest",
+    "test_metrics_or_labels_called_during_training": false,
+    "early_stopping_or_checkpoint_selection": false,
+    "coregad_cross_fitting_injected": false
+  },
+  "score_contract": {"fields": ["node_id", "anomaly_score"], "higher_is_more_anomalous": true, "node_ids_unique": true, "scores_finite": true}
+}

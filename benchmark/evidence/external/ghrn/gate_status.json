@@ -1,0 +1,1 @@
+{"method":"GHRN","gates":{"SOURCE_PASS":{"status":"PASS"},"ENV_PASS":{"status":"PASS"},"NATIVE_SANITY_PASS":{"status":"PASS"},"LABEL_OR_SUPERVISION_AUDIT_PASS":{"status":"PASS"},"CANONICAL_BRIDGE_PASS":{"status":"PASS"},"SCORE_CONTRACT_PASS":{"status":"PASS"},"LAUNCHER_PASS":{"status":"PASS"}}}

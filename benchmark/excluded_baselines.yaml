@@ -1,0 +1,18 @@
+{
+  "schema_version": 3,
+  "inactive": [
+    {"method": "PAGE", "status": "INACTIVE_EXPLICITLY_REMOVED", "historical_source_preserved": true},
+    {"method": "TAQ", "status": "INACTIVE_EXPLICITLY_REMOVED", "historical_source_preserved": true},
+    {"method": "TAQ-GAD", "status": "INACTIVE_EXPLICITLY_REMOVED", "historical_source_preserved": true},
+    {
+      "method": "BMP",
+      "status": "EXCLUDED_NO_RECOVERABLE_OFFICIAL_SOURCE",
+      "historical_source_preserved": true,
+      "paper_derived_core_status": "ARCHIVED_INACTIVE_PROVENANCE_ONLY",
+      "active_launcher_candidate": false
+    },
+    {"method": "HUGE", "status": "INACTIVE_NOT_IN_FROZEN_21", "historical_source_preserved": true},
+    {"method": "HAGAN", "status": "INACTIVE_NO_VERIFIED_SOURCE", "historical_source_preserved": false},
+    {"method": "DGAM", "status": "INACTIVE_NO_VERIFIED_SOURCE", "historical_source_preserved": false}
+  ]
+}

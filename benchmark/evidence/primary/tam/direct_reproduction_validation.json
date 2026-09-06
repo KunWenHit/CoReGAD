@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "method": "TAM",
+  "source_kind": "AUTHOR_OFFICIAL",
+  "source_commit": "e82ead0584b9b807d4db56a9ffdf89ff94c74dfa",
+  "checkout_head": "683d84f592586187ccfd467ec86588d03b9fea0c",
+  "environment": "/data1/wk/conda_envs/coregad_tam",
+  "compatibility": {"python":"3.10.20","torch":"2.4.0+cu124","dgl":"2.4.0+cu124","torch_geometric":"2.6.1","semantic_change":false},
+  "full_native_and_canonical_sanity": {
+    "dataset":"Weibo","seed":0,"cutting_rounds":18,"trees":3,"epochs_per_lamnet":500,
+    "real_optimizer_steps":27000,"score_count":7501,"scores_finite":true,"elapsed_seconds":518.3514564037323,
+    "server_output":"/data1/wk/codes/CoReGAD_RELEASE/outputs/baselines/full_native_sanity/TAM/Weibo/seed_0",
+    "evidence_sha256":"558d5ed7c6201bfdf8d16e5b834c85afc564ea9200e14d9a2b7d4049a6eda4d6",
+    "scores_sha256":"82a62fc43a72d9888b4e7c8432918dc39ed51534bb82e096c74dbc2a8c578fd2"
+  },
+  "label_audit": {"ground_truth_anomaly_label_present_or_accessed":false,"test_metrics_or_labels_called_during_training":false,"early_stopping_or_checkpoint_selection":false,"coregad_cross_fitting_injected":false},
+  "native_contract": {"truncated_affinity_preserved":true,"one_class_homophily_preserved":true,"mechanical_compatibility_optimizations":["vectorized edge-distance calculation","elementwise symmetric degree normalization"]},
+  "score_contract": {"fields":["node_id","anomaly_score"],"higher_is_more_anomalous":true,"node_ids_unique":true,"scores_finite":true}
+}

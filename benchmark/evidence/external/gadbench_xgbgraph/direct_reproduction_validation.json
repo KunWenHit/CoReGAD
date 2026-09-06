@@ -1,0 +1,7 @@
+{
+  "status":"PASS","method":"GADBench / XGBGraph","source_kind":"AUTHOR_OFFICIAL","source_commit":"f9aa021ce9b6c6580427fb633b596843be76ddc6","checkout_head":"f9aa021ce9b6c6580427fb633b596843be76ddc6","environment":"/data1/wk/conda_envs/coregad_gadbench",
+  "full_native_and_canonical_sanity":{"dataset":"Weibo","seed":0,"graph_layers":2,"expanded_feature_dimension":1200,"boosting_rounds":100,"score_count":7501,"scores_finite":true,"elapsed_seconds":1.519320011138916,"server_output":"/data1/wk/codes/CoReGAD_RELEASE/outputs/baselines/full_native_sanity/GADBench_XGBGraph/Weibo/seed_0","evidence_sha256":"40aa12b96cb1e3e5ce4681eae8847e1d21b713e4cab41e4088e9cc97513f390a","scores_sha256":"31f74fc459dae548194d025fc16469fd417113f9c0a0a4c1e04350f0a981e14e"},
+  "supervision_audit":{"fair_ranking":false,"train_nodes":3362,"validation_nodes":1681,"validation_metric":"AUPRC","evaluation_is_separate":true},
+  "native_contract":{"graph_aggregator":"GADBench models/gnn.py:GIN_noparam","classifier":"XGBoost GPU histogram","n_estimators":100},
+  "score_contract":{"fields":["node_id","anomaly_score"],"higher_is_more_anomalous":true,"node_ids_unique":true,"scores_finite":true}
+}
