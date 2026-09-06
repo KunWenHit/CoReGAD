@@ -4,18 +4,23 @@
 
 The strict frozen historical parity test is a reproduction gate for the
 canonical release environment, not a claim that every future numerical kernel
-will produce elementwise-identical float32 results. The GitHub Actions release
-gate therefore uses Python 3.10 and the official PyTorch 2.4.0+cu124 wheel,
-matching the validated canonical environment as closely as the hosted runner
-allows. The workflow records the runner CPU, platform, Python, NumPy, SciPy,
-scikit-learn, PyTorch, pytest, thread count, and PyTorch build configuration
-before testing.
+will produce elementwise-identical float32 results. It is executed in the
+validated Python 3.10.20 / PyTorch 2.4.0+cu124 canonical environment, where the
+complete suite has 79 passing tests and the F2 parity maximum absolute error is
+zero.
 
 The fixture and its strict `atol=1e-6`, `rtol=0` comparison remain unchanged.
 The ordinary package constraint (`torch>=2.1`) continues to describe supported
-public installations; the workflow pin defines the narrower historical release
-gate. In addition to the complete test suite, CI runs
-`scripts/validate_f2_parity.py` explicitly.
+public installations.
+
+GitHub's hosted CPU runners validate package behavior, interfaces, safety,
+isolation, routing, configuration, and ordinary numerical stability. They use
+Python 3.10 and the official PyTorch 2.4.0+cu124 wheel, record the runner CPU,
+platform, dependency versions, thread count, and PyTorch build configuration,
+and run `scripts/validate_f2_parity.py` explicitly. They do not claim to execute
+the canonical strict historical gate: the generic suite explicitly ignores
+`tests/test_historical_reference_parity.py`, while retaining that test, its
+fixture, and its tolerance unchanged in the repository.
 
 CoReGAD v0.1.1 is a reproducibility-hardening release; it does not change the
 paper method. The residual strength remains fixed at `0.75`, the energy head

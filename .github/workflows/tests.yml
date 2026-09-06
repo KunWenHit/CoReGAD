@@ -43,7 +43,9 @@ jobs:
           if command -v lscpu >/dev/null 2>&1; then
             lscpu
           fi
-      - name: Run full test suite
-        run: python -m pytest -q
+      - name: Run generic hosted-runner suite
+        run: |
+          echo "canonical_historical_parity=NOT_RUN_ON_HOSTED_RUNNER"
+          python -m pytest -q --ignore=tests/test_historical_reference_parity.py
       - name: Validate F2 parity
         run: python scripts/validate_f2_parity.py
