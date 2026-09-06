@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "closure_date": "2026-08-10",
+  "active_total": 21,
+  "required_gates": [
+    "SOURCE_PASS",
+    "ENV_PASS",
+    "NATIVE_SANITY_PASS",
+    "LABEL_OR_SUPERVISION_AUDIT_PASS",
+    "CANONICAL_BRIDGE_PASS",
+    "SCORE_CONTRACT_PASS",
+    "LAUNCHER_PASS"
+  ],
+  "methods": [
+    {
+      "method": "DOMINANT",
+      "method_id": "dominant",
+      "output_name": "DOMINANT",
+      "protocol_class": "PRIMARY_TRANSDUCTIVE_NORMAL_ONLY",
+      "environment_path": "/data1/wk/conda_envs/baseline_primary_torch24",
+      "python_executable": "/data1/wk/conda_envs/baseline_primary_torch24/bin/python",
+      "native_source": "baselines/repos/DOMINANT_PYTORCH",
+      "source_commit": "83fa93931164aee5386fdc74c12a5d5c46a5d62f",
+      "native_entrypoint": "run.py",
+      "canonical_entrypoint": "benchmark/native_bridges/dominant.py",
+      "default_args": {"epochs": 100},
+      "supports_gpu": true,
+      "canonical_command": ["{python}", "-m", "benchmark.native_bridges.dominant", "--bundle", "{bundle}", "--score-nodes", "{score_nodes}", "--scores", "{scores}", "--evidence", "{evidence}", "--source", "{source}", "--seed", "{seed}", "--device", "{device}"],
+      "gates": {
+        "SOURCE_PASS": {"status": "PASS", "evidence": "benchmark/evidence/source_identity_20260809.json"},
+        "ENV_PASS": {"status": "PASS", "evidence": "benchmark/evidence/environments/primary_torch24.json"},
+        "NATIVE_SANITY_PASS": {"status": "PASS", "evidence": "benchmark/evidence/primary/dominant/native_bridge_validation.json"},
+        "LABEL_OR_SUPERVISION_AUDIT_PASS": {"status": "PASS", "evidence": "benchmark/evidence/primary/dominant/native_bridge_validation.json"},
+        "CANONICAL_BRIDGE_PASS": {"status": "PASS", "evidence": "benchmark/evidence/primary/dominant/native_bridge_validation.json"},
+        "SCORE_CONTRACT_PASS": {"status": "PASS", "evidence": "benchmark/evidence/primary/dominant/native_bridge_validation.json"},
+        "LAUNCHER_PASS": {"status": "PASS", "evidence": "tests/test_direct_reproduction_launcher.py"}
+      },
+      "execute_enabled": true,
+      "blocker": null
+    },
+    {
+      "method": "AnomalyDAE",
+      "method_id": "anomalydae",
+      "output_name": "AnomalyDAE",
+      "protocol_class": "PRIMARY_TRANSDUCTIVE_NORMAL_ONLY",
+      "environment_path": "/data1/wk/conda_envs/coregad_anomalydae",
+      "python_executable": "/data1/wk/conda_envs/coregad_anomalydae/bin/python",
+      "native_source": "baselines/repos/AnomalyDAE",
+      "source_commit": "1199bae1820cd923efb5a6ec2d32ab758968f465",
+      "native_entrypoint": "src/run.py",
+      "canonical_entrypoint": "benchmark/native_bridges/anomalydae.py",
+      "default_args": {"iterations":180,"hidden1":256,"hidden2":128,"theta":40.0,"eta":5.0,"alpha":0.7},
+      "supports_gpu": false,
+      "canonical_command": ["{python}","-m","benchmark.native_bridges.anomalydae","--bundle","{bundle}","--score-nodes","{score_nodes}","--scores","{scores}","--evidence","{evidence}","--source","{source}","--seed","{seed}","--device","{device}"],
+      "gates": {"SOURCE_PASS":{"status":"PASS","evidence":"benchmark/evidence/source_identity_20260809.json"},"ENV_PASS":{"status":"PASS","evidence":"benchmark/environment_inventory.json"},"NATIVE_SANITY_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/anomalydae/direct_reproduction_validation.json"},"LABEL_OR_SUPERVISION_AUDIT_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/anomalydae/direct_reproduction_validation.json"},"CANONICAL_BRIDGE_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/anomalydae/direct_reproduction_validation.json"},"SCORE_CONTRACT_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/anomalydae/direct_reproduction_validation.json"},"LAUNCHER_PASS":{"status":"PASS","evidence":"tests/test_direct_reproduction_launcher.py"}},
+      "execute_enabled": true,
+      "blocker": null
+    },
+    {
+      "method": "OCGNN",
+      "method_id": "ocgnn",
+      "output_name": "OCGNN",
+      "protocol_class": "PRIMARY_TRANSDUCTIVE_NORMAL_ONLY",
+      "environment_path": "/data1/wk/conda_envs/baseline_primary_torch24",
+      "python_executable": "/data1/wk/conda_envs/baseline_primary_torch24/bin/python",
+      "native_source": "baselines/repos/OCGNN",
+      "source_commit": "ec7d11c5ae2f91f4165e384131c6a8358836ff58",
+      "native_entrypoint": "main.py",
+      "canonical_entrypoint": "benchmark/native_bridges/ocgnn.py",
+      "default_args": {"epochs": 5000},
+      "supports_gpu": true,
+      "canonical_command": ["{python}", "-m", "benchmark.native_bridges.ocgnn", "--bundle", "{bundle}", "--support", "{support}", "--score-nodes", "{score_nodes}", "--scores", "{scores}", "--evidence", "{evidence}", "--source", "{source}", "--seed", "{seed}", "--device", "{device}"],
+      "gates": {
+        "SOURCE_PASS": {"status": "PASS", "evidence": "benchmark/evidence/source_identity_20260809.json"},
+        "ENV_PASS": {"status": "PASS", "evidence": "benchmark/evidence/environments/primary_torch24.json"},
+        "NATIVE_SANITY_PASS": {"status": "PASS", "evidence": "benchmark/evidence/primary/ocgnn/native_bridge_validation.json"},
+        "LABEL_OR_SUPERVISION_AUDIT_PASS": {"status": "PASS", "evidence": "benchmark/evidence/primary/ocgnn/native_bridge_validation.json"},
+        "CANONICAL_BRIDGE_PASS": {"status": "PASS", "evidence": "benchmark/evidence/primary/ocgnn/native_bridge_validation.json"},
+        "SCORE_CONTRACT_PASS": {"status": "PASS", "evidence": "benchmark/evidence/primary/ocgnn/native_bridge_validation.json"},
+        "LAUNCHER_PASS": {"status": "PASS", "evidence": "tests/test_direct_reproduction_launcher.py"}
+      },
+      "execute_enabled": true,
+      "blocker": null
+    },
+    {
+      "method": "AEGIS", "method_id": "aegis", "output_name": "AEGIS", "protocol_class": "PRIMARY_TRANSDUCTIVE_NORMAL_ONLY",
+      "environment_path": "/data1/wk/conda_envs/coregad_ggad", "python_executable": "/data1/wk/conda_envs/coregad_ggad/bin/python",
+      "native_source": "baselines/repos/GGAD", "source_commit": "358fb4d4b4ee5b8b195445791a9e2b6d52487f2b", "native_entrypoint": "aegis.py", "canonical_entrypoint": "benchmark/native_bridges/ggad_benchmark_family.py",
+      "default_args": {"reconstruction_epochs":10,"epochs_by_dataset":{"Amazon":800,"T-Finance":1500,"fallback":500}}, "supports_gpu": true,
+      "canonical_command": ["{python}","-m","benchmark.native_bridges.ggad_benchmark_family","--method","AEGIS","--bundle","{bundle}","--score-nodes","{score_nodes}","--scores","{scores}","--evidence","{evidence}","--source","{source}","--seed","{seed}","--device","{device}"],
+      "gates": {"SOURCE_PASS":{"status":"PASS","evidence":"benchmark/evidence/source_identity_20260809.json"},"ENV_PASS":{"status":"PASS","evidence":"benchmark/environment_inventory.json"},"NATIVE_SANITY_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/aegis/direct_reproduction_validation.json"},"LABEL_OR_SUPERVISION_AUDIT_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/aegis/direct_reproduction_validation.json"},"CANONICAL_BRIDGE_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/aegis/direct_reproduction_validation.json"},"SCORE_CONTRACT_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/aegis/direct_reproduction_validation.json"},"LAUNCHER_PASS":{"status":"PASS","evidence":"tests/test_direct_reproduction_launcher.py"}},
+      "execute_enabled": true, "blocker": null
+    },
+    {
+      "method": "GAAN", "method_id": "gaan", "output_name": "GAAN", "protocol_class": "PRIMARY_TRANSDUCTIVE_NORMAL_ONLY",
+      "environment_path": "/data1/wk/conda_envs/coregad_ggad", "python_executable": "/data1/wk/conda_envs/coregad_ggad/bin/python",
+      "native_source": "baselines/repos/GGAD", "source_commit": "358fb4d4b4ee5b8b195445791a9e2b6d52487f2b", "native_entrypoint": "gaan.py", "canonical_entrypoint": "benchmark/native_bridges/ggad_benchmark_family.py",
+      "default_args": {"epochs_by_dataset":{"Amazon":800,"T-Finance":1500,"Elliptic":600,"fallback":500}}, "supports_gpu": true,
+      "canonical_command": ["{python}","-m","benchmark.native_bridges.ggad_benchmark_family","--method","GAAN","--bundle","{bundle}","--score-nodes","{score_nodes}","--scores","{scores}","--evidence","{evidence}","--source","{source}","--seed","{seed}","--device","{device}"],
+      "gates": {"SOURCE_PASS":{"status":"PASS","evidence":"benchmark/evidence/source_identity_20260809.json"},"ENV_PASS":{"status":"PASS","evidence":"benchmark/environment_inventory.json"},"NATIVE_SANITY_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/gaan/direct_reproduction_validation.json"},"LABEL_OR_SUPERVISION_AUDIT_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/gaan/direct_reproduction_validation.json"},"CANONICAL_BRIDGE_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/gaan/direct_reproduction_validation.json"},"SCORE_CONTRACT_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/gaan/direct_reproduction_validation.json"},"LAUNCHER_PASS":{"status":"PASS","evidence":"tests/test_direct_reproduction_launcher.py"}},
+      "execute_enabled": true, "blocker": null
+    },
+    {
+      "method": "TAM", "method_id": "tam", "output_name": "TAM", "protocol_class": "PRIMARY_TRANSDUCTIVE_NORMAL_ONLY",
+      "environment_path": "/data1/wk/conda_envs/coregad_tam", "python_executable": "/data1/wk/conda_envs/coregad_tam/bin/python",
+      "native_source": "baselines/repos/TAM", "source_commit": "e82ead0584b9b807d4db56a9ffdf89ff94c74dfa", "native_entrypoint": "train.py", "canonical_entrypoint": "benchmark/native_bridges/tam.py",
+      "default_args": {"epochs":500,"cutting_rounds":18,"trees":3}, "supports_gpu": true,
+      "canonical_command": ["{python}","-m","benchmark.native_bridges.tam","--bundle","{bundle}","--score-nodes","{score_nodes}","--scores","{scores}","--evidence","{evidence}","--source","{source}","--seed","{seed}","--device","{device}"],
+      "gates": {"SOURCE_PASS":{"status":"PASS","evidence":"benchmark/evidence/source_identity_20260809.json"},"ENV_PASS":{"status":"PASS","evidence":"benchmark/environment_inventory.json"},"NATIVE_SANITY_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/tam/direct_reproduction_validation.json"},"LABEL_OR_SUPERVISION_AUDIT_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/tam/direct_reproduction_validation.json"},"CANONICAL_BRIDGE_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/tam/direct_reproduction_validation.json"},"SCORE_CONTRACT_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/tam/direct_reproduction_validation.json"},"LAUNCHER_PASS":{"status":"PASS","evidence":"tests/test_direct_reproduction_launcher.py"}},
+      "execute_enabled": true, "blocker": null
+    },
+    {
+      "method": "GAD-NR", "method_id": "gad_nr", "output_name": "GAD-NR", "protocol_class": "PRIMARY_TRANSDUCTIVE_NORMAL_ONLY",
+      "environment_path": "/data1/wk/conda_envs/coregad_gadnr", "python_executable": "/data1/wk/conda_envs/coregad_gadnr/bin/python",
+      "native_source": "baselines/repos/GAD-NR", "source_commit": "b0a9590b10d0b9490e6d6cdfa60e7c50eb232c0d", "native_entrypoint": "GAD-NR_weibo.ipynb", "canonical_entrypoint": "benchmark/native_bridges/gad_nr.py",
+      "default_args": {"epochs":500,"lr":0.01,"hidden_dimension":16,"sample_size":10}, "supports_gpu": true,
+      "canonical_command": ["{python}","-m","benchmark.native_bridges.gad_nr","--bundle","{bundle}","--score-nodes","{score_nodes}","--scores","{scores}","--evidence","{evidence}","--source","{source}","--seed","{seed}","--device","{device}"],
+      "gates": {"SOURCE_PASS":{"status":"PASS","evidence":"benchmark/evidence/source_identity_20260809.json"},"ENV_PASS":{"status":"PASS","evidence":"benchmark/environment_inventory.json"},"NATIVE_SANITY_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/gad_nr/direct_reproduction_validation.json"},"LABEL_OR_SUPERVISION_AUDIT_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/gad_nr/direct_reproduction_validation.json"},"CANONICAL_BRIDGE_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/gad_nr/direct_reproduction_validation.json"},"SCORE_CONTRACT_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/gad_nr/direct_reproduction_validation.json"},"LAUNCHER_PASS":{"status":"PASS","evidence":"tests/test_direct_reproduction_launcher.py"}},
+      "execute_enabled": true, "blocker": null
+    },
+    {
+      "method": "ADA-GAD", "method_id": "ada_gad", "output_name": "ADA-GAD", "protocol_class": "PRIMARY_TRANSDUCTIVE_NORMAL_ONLY",
+      "environment_path": "/data1/wk/conda_envs/coregad_adagad", "python_executable": "/data1/wk/conda_envs/coregad_adagad/bin/python",
+      "native_source": "baselines/repos/ADA-GAD", "source_commit": "71a3aca936ccfe430e3809864f256d4bf80b22ee", "native_entrypoint": "main.py", "canonical_entrypoint": "benchmark/native_bridges/ada_gad.py",
+      "default_args": {"upstream_dataset_config":"weibo","pretrain_epochs_per_encoder":20,"detection_epochs":20}, "supports_gpu": true,
+      "canonical_command": ["{python}","-m","benchmark.native_bridges.ada_gad","--bundle","{bundle}","--score-nodes","{score_nodes}","--scores","{scores}","--evidence","{evidence}","--source","{source}","--seed","{seed}","--device","{device}"],
+      "gates": {"SOURCE_PASS":{"status":"PASS","evidence":"benchmark/evidence/source_identity_20260809.json"},"ENV_PASS":{"status":"PASS","evidence":"benchmark/environment_inventory.json"},"NATIVE_SANITY_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/ada_gad/direct_reproduction_validation.json"},"LABEL_OR_SUPERVISION_AUDIT_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/ada_gad/direct_reproduction_validation.json"},"CANONICAL_BRIDGE_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/ada_gad/direct_reproduction_validation.json"},"SCORE_CONTRACT_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/ada_gad/direct_reproduction_validation.json"},"LAUNCHER_PASS":{"status":"PASS","evidence":"tests/test_direct_reproduction_launcher.py"}},
+      "execute_enabled": true, "blocker": null
+    },
+    {
+      "method": "GGAD", "method_id": "ggad", "output_name": "GGAD", "protocol_class": "PRIMARY_TRANSDUCTIVE_NORMAL_ONLY",
+      "environment_path": "/data1/wk/conda_envs/coregad_ggad", "python_executable": "/data1/wk/conda_envs/coregad_ggad/bin/python",
+      "native_source": "baselines/repos/GGAD", "source_commit": "358fb4d4b4ee5b8b195445791a9e2b6d52487f2b", "native_entrypoint": "run.py", "canonical_entrypoint": "benchmark/native_bridges/ggad.py",
+      "default_args": {"embedding_dim":300,"epochs_by_dataset":{"Amazon":800,"T-Finance":500,"Elliptic":150,"fallback":300}}, "supports_gpu": true,
+      "canonical_command": ["{python}","-m","benchmark.native_bridges.ggad","--bundle","{bundle}","--support","{support}","--score-nodes","{score_nodes}","--scores","{scores}","--evidence","{evidence}","--source","{source}","--seed","{seed}","--device","{device}"],
+      "gates": {
+        "SOURCE_PASS":{"status":"PASS","evidence":"benchmark/evidence/source_identity_20260809.json"},
+        "ENV_PASS":{"status":"PASS","evidence":"benchmark/environment_inventory.json"},
+        "NATIVE_SANITY_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/ggad/direct_reproduction_validation.json"},
+        "LABEL_OR_SUPERVISION_AUDIT_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/ggad/direct_reproduction_validation.json"},
+        "CANONICAL_BRIDGE_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/ggad/direct_reproduction_validation.json"},
+        "SCORE_CONTRACT_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/ggad/direct_reproduction_validation.json"},
+        "LAUNCHER_PASS":{"status":"PASS","evidence":"tests/test_direct_reproduction_launcher.py"}
+      },
+      "execute_enabled": true, "blocker": null
+    },
+    {
+      "method": "RHO", "method_id": "rho", "output_name": "RHO", "protocol_class": "PRIMARY_TRANSDUCTIVE_NORMAL_ONLY",
+      "environment_path": "/data1/wk/conda_envs/coregad_rho", "python_executable": "/data1/wk/conda_envs/coregad_rho/bin/python",
+      "native_source": "baselines/repos/RHO", "source_commit": "a394d5575dea6745215b15e0453e1f925ffcc1f2", "native_entrypoint": "train.py", "canonical_entrypoint": "benchmark/native_bridges/rho.py",
+      "default_args": {"epochs_by_dataset":{"Amazon":500,"Tolokers":500,"fallback":100},"batch_size_by_dataset":{"Amazon":0,"Tolokers":0,"fallback":1024}}, "supports_gpu": true,
+      "canonical_command": ["{python}","-m","benchmark.native_bridges.rho","--bundle","{bundle}","--support","{support}","--score-nodes","{score_nodes}","--scores","{scores}","--evidence","{evidence}","--source","{source}","--seed","{seed}","--device","{device}"],
+      "gates": {
+        "SOURCE_PASS":{"status":"PASS","evidence":"benchmark/evidence/source_identity_20260809.json"},
+        "ENV_PASS":{"status":"PASS","evidence":"benchmark/environment_inventory.json"},
+        "NATIVE_SANITY_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/rho/direct_reproduction_validation.json"},
+        "LABEL_OR_SUPERVISION_AUDIT_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/rho/direct_reproduction_validation.json"},
+        "CANONICAL_BRIDGE_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/rho/direct_reproduction_validation.json"},
+        "SCORE_CONTRACT_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/rho/direct_reproduction_validation.json"},
+        "LAUNCHER_PASS":{"status":"PASS","evidence":"tests/test_direct_reproduction_launcher.py"}
+      },
+      "execute_enabled": true, "blocker": null
+    },
+    {
+      "method": "GraphNC", "method_id": "graphnc", "output_name": "GraphNC", "protocol_class": "PRIMARY_TRANSDUCTIVE_NORMAL_ONLY",
+      "environment_path": "/data1/wk/conda_envs/coregad_graphnc", "python_executable": "/data1/wk/conda_envs/coregad_graphnc/bin/python",
+      "native_source": "baselines/repos/GraphNC", "source_commit": "4985138639d96c43b85001eefa3a54eee1caebf1", "native_entrypoint": "main.py", "canonical_entrypoint": "benchmark/native_bridges/graphnc.py",
+      "default_args": {"student_epochs_by_dataset":{"Amazon":1300,"T-Finance":2500,"Elliptic":2000,"Tolokers":1500,"YelpChi":1500,"fallback":1000},"teacher_schedule":"GGAD frozen defaults"}, "supports_gpu": true,
+      "canonical_command": ["{python}","-m","benchmark.native_bridges.graphnc","--bundle","{bundle}","--support","{support}","--score-nodes","{score_nodes}","--scores","{scores}","--evidence","{evidence}","--source","{source}","--ggad-source","{release_root}/baselines/repos/GGAD","--seed","{seed}","--device","{device}"],
+      "gates": {
+        "SOURCE_PASS":{"status":"PASS","evidence":"benchmark/evidence/source_identity_20260809.json"},
+        "ENV_PASS":{"status":"PASS","evidence":"benchmark/environment_inventory.json"},
+        "NATIVE_SANITY_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/graphnc/direct_reproduction_validation.json"},
+        "LABEL_OR_SUPERVISION_AUDIT_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/graphnc/direct_reproduction_validation.json"},
+        "CANONICAL_BRIDGE_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/graphnc/direct_reproduction_validation.json"},
+        "SCORE_CONTRACT_PASS":{"status":"PASS","evidence":"benchmark/evidence/primary/graphnc/direct_reproduction_validation.json"},
+        "LAUNCHER_PASS":{"status":"PASS","evidence":"tests/test_direct_reproduction_launcher.py"}
+      },
+      "execute_enabled": true, "blocker": null
+    },
+    {
+      "method": "Structure-aware PU-GNN", "method_id": "structure_aware_pu_gnn", "output_name": "Structure-aware_PU-GNN", "protocol_class": "PU_AUXILIARY",
+      "environment_path": "/data1/wk/conda_envs/coregad_pu", "python_executable": "/data1/wk/conda_envs/coregad_pu/bin/python",
+      "native_source": "coregad", "source_commit": "paper:arxiv:2310.13538v1", "native_entrypoint": "benchmark/paper_derived/structure_aware_pu_gnn.py", "canonical_entrypoint": "benchmark/native_bridges/structure_aware_pu_gnn.py",
+      "default_args": {"epochs":100,"hidden_dimension":16,"negative_samples":50}, "supports_gpu": true,
+      "canonical_command": ["{python}","-m","benchmark.native_bridges.structure_aware_pu_gnn","--bundle","{bundle}","--support","{support}","--score-nodes","{score_nodes}","--scores","{scores}","--evidence","{evidence}","--seed","{seed}","--device","{device}"],
+      "gates": {"SOURCE_PASS":{"status":"PASS","evidence":"benchmark/evidence/source_identity_20260809.json"},"ENV_PASS":{"status":"PASS","evidence":"benchmark/environment_inventory.json"},"NATIVE_SANITY_PASS":{"status":"PASS","evidence":"benchmark/evidence/pu/structure_aware_pu_gnn/direct_reproduction_validation.json"},"LABEL_OR_SUPERVISION_AUDIT_PASS":{"status":"PASS","evidence":"benchmark/evidence/pu/structure_aware_pu_gnn/direct_reproduction_validation.json"},"CANONICAL_BRIDGE_PASS":{"status":"PASS","evidence":"benchmark/evidence/pu/structure_aware_pu_gnn/direct_reproduction_validation.json"},"SCORE_CONTRACT_PASS":{"status":"PASS","evidence":"benchmark/evidence/pu/structure_aware_pu_gnn/direct_reproduction_validation.json"},"LAUNCHER_PASS":{"status":"PASS","evidence":"tests/test_direct_reproduction_launcher.py"}},
+      "execute_enabled": true, "blocker": null
+    },
+    {
+      "method": "BWGNN", "method_id": "bwgnn", "output_name": "BWGNN", "protocol_class": "EXTERNAL_SUPERVISED_REFERENCE",
+      "environment_path": "/data1/wk/conda_envs/coregad_gadbench", "python_executable": "/data1/wk/conda_envs/coregad_gadbench/bin/python",
+      "native_source": "baselines/repos/BWGNN", "source_commit": "de0631f039bbd19c1890b483cc01f1007f596af7", "native_entrypoint": "main.py", "canonical_entrypoint": "benchmark/native_bridges/bwgnn.py",
+      "default_args": {"epochs":100,"hidden_dimension":64,"order":2,"supervision_trial":0}, "supports_gpu": true,
+      "canonical_command": ["{python}","-m","benchmark.native_bridges.bwgnn","--bundle","{bundle}","--label-source","{label_source}","--score-nodes","{score_nodes}","--scores","{scores}","--evidence","{evidence}","--source","{source}","--seed","{seed}","--device","{device}"],
+      "gates": {"SOURCE_PASS":{"status":"PASS","evidence":"benchmark/evidence/source_identity_20260809.json"},"ENV_PASS":{"status":"PASS","evidence":"benchmark/environment_inventory.json"},"NATIVE_SANITY_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/bwgnn/direct_reproduction_validation.json"},"LABEL_OR_SUPERVISION_AUDIT_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/bwgnn/direct_reproduction_validation.json"},"CANONICAL_BRIDGE_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/bwgnn/direct_reproduction_validation.json"},"SCORE_CONTRACT_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/bwgnn/direct_reproduction_validation.json"},"LAUNCHER_PASS":{"status":"PASS","evidence":"tests/test_direct_reproduction_launcher.py"}},
+      "execute_enabled": true, "blocker": null
+    },
+    {
+      "method": "GHRN", "method_id": "ghrn", "output_name": "GHRN", "protocol_class": "EXTERNAL_SUPERVISED_REFERENCE",
+      "environment_path": "/data1/wk/conda_envs/coregad_gadbench", "python_executable": "/data1/wk/conda_envs/coregad_gadbench/bin/python",
+      "native_source": "baselines/repos/GHRN", "source_commit": "d47e047b76df429c0c0a8444f5d9a5dea57f6801", "native_entrypoint": "main.py", "canonical_entrypoint": "benchmark/native_bridges/ghrn.py",
+      "default_args": {"stage1_epochs":100,"delete_ratio":0.015,"stage2_epochs":100,"supervision_trial":0}, "supports_gpu": true,
+      "canonical_command": ["{python}","-m","benchmark.native_bridges.ghrn","--bundle","{bundle}","--label-source","{label_source}","--score-nodes","{score_nodes}","--scores","{scores}","--evidence","{evidence}","--source","{source}","--seed","{seed}","--device","{device}"],
+      "gates": {"SOURCE_PASS":{"status":"PASS","evidence":"benchmark/evidence/source_identity_20260809.json"},"ENV_PASS":{"status":"PASS","evidence":"benchmark/environment_inventory.json"},"NATIVE_SANITY_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/ghrn/direct_reproduction_validation.json"},"LABEL_OR_SUPERVISION_AUDIT_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/ghrn/direct_reproduction_validation.json"},"CANONICAL_BRIDGE_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/ghrn/direct_reproduction_validation.json"},"SCORE_CONTRACT_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/ghrn/direct_reproduction_validation.json"},"LAUNCHER_PASS":{"status":"PASS","evidence":"tests/test_direct_reproduction_launcher.py"}},
+      "execute_enabled": true, "blocker": null
+    },
+    {
+      "method": "GADBench / XGBGraph", "method_id": "gadbench_xgbgraph", "output_name": "GADBench_XGBGraph", "protocol_class": "EXTERNAL_SUPERVISED_REFERENCE",
+      "environment_path": "/data1/wk/conda_envs/coregad_gadbench", "python_executable": "/data1/wk/conda_envs/coregad_gadbench/bin/python",
+      "native_source": "baselines/repos/GADBench", "source_commit": "f9aa021ce9b6c6580427fb633b596843be76ddc6", "native_entrypoint": "benchmark.py", "canonical_entrypoint": "benchmark/native_bridges/xgbgraph.py",
+      "default_args": {"model":"XGBGraph","trial":0,"graph_layers":2,"aggregation":"mean","n_estimators":100}, "supports_gpu": true,
+      "canonical_command": ["{python}","-m","benchmark.native_bridges.xgbgraph","--bundle","{bundle}","--label-source","{label_source}","--score-nodes","{score_nodes}","--scores","{scores}","--evidence","{evidence}","--source","{source}","--seed","{seed}","--device","{device}"],
+      "gates": {"SOURCE_PASS":{"status":"PASS","evidence":"benchmark/evidence/source_identity_20260809.json"},"ENV_PASS":{"status":"PASS","evidence":"benchmark/environment_inventory.json"},"NATIVE_SANITY_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/gadbench_xgbgraph/direct_reproduction_validation.json"},"LABEL_OR_SUPERVISION_AUDIT_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/gadbench_xgbgraph/direct_reproduction_validation.json"},"CANONICAL_BRIDGE_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/gadbench_xgbgraph/direct_reproduction_validation.json"},"SCORE_CONTRACT_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/gadbench_xgbgraph/direct_reproduction_validation.json"},"LAUNCHER_PASS":{"status":"PASS","evidence":"tests/test_direct_reproduction_launcher.py"}},
+      "execute_enabled": true, "blocker": null
+    },
+    {
+      "method": "ConsisGAD", "method_id": "consisgad", "output_name": "ConsisGAD", "protocol_class": "EXTERNAL_SUPERVISED_REFERENCE",
+      "environment_path": "/data1/wk/conda_envs/coregad_consisgad", "python_executable": "/data1/wk/conda_envs/coregad_consisgad/bin/python",
+      "native_source": "baselines/repos/ConsisGAD", "source_commit": "36811c5bc79be49c9740f25a1f260496bb4736af", "native_entrypoint": "main.py", "canonical_entrypoint": "benchmark/native_bridges/consisgad.py",
+      "default_args": {"epochs":100,"train_iterations":128,"batch_size":128,"unlabeled_ratio":4,"supervision_trial":0}, "supports_gpu": true,
+      "canonical_command": ["{python}","-m","benchmark.native_bridges.consisgad","--bundle","{bundle}","--label-source","{label_source}","--score-nodes","{score_nodes}","--scores","{scores}","--evidence","{evidence}","--source","{source}","--seed","{seed}","--device","{device}"],
+      "gates": {"SOURCE_PASS":{"status":"PASS","evidence":"benchmark/evidence/source_identity_20260809.json"},"ENV_PASS":{"status":"PASS","evidence":"benchmark/environment_inventory.json"},"NATIVE_SANITY_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/consisgad/direct_reproduction_validation.json"},"LABEL_OR_SUPERVISION_AUDIT_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/consisgad/direct_reproduction_validation.json"},"CANONICAL_BRIDGE_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/consisgad/direct_reproduction_validation.json"},"SCORE_CONTRACT_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/consisgad/direct_reproduction_validation.json"},"LAUNCHER_PASS":{"status":"PASS","evidence":"tests/test_direct_reproduction_launcher.py"}},
+      "execute_enabled": true, "blocker": null
+    },
+    {
+      "method": "SpaceGNN", "method_id": "spacegnn", "output_name": "SpaceGNN", "protocol_class": "EXTERNAL_SUPERVISED_REFERENCE",
+      "environment_path": "/data1/wk/conda_envs/coregad_spacegnn", "python_executable": "/data1/wk/conda_envs/coregad_spacegnn/bin/python",
+      "native_source": "baselines/repos/SpaceGNN", "source_commit": "921c03ff879b239dab9b319b296fef3bc3bda2d2", "native_entrypoint": "main.py", "canonical_entrypoint": "benchmark/native_bridges/spacegnn.py",
+      "default_args": {"epochs":25,"hidden_dimension":128,"layers":6,"batch_size":50,"alpha":0.5,"beta":1.0,"supervision_trial":0}, "supports_gpu": true,
+      "canonical_command": ["{python}","-m","benchmark.native_bridges.spacegnn","--bundle","{bundle}","--label-source","{label_source}","--score-nodes","{score_nodes}","--scores","{scores}","--evidence","{evidence}","--source","{source}","--seed","{seed}","--device","{device}"],
+      "gates": {"SOURCE_PASS":{"status":"PASS","evidence":"benchmark/evidence/source_identity_20260809.json"},"ENV_PASS":{"status":"PASS","evidence":"benchmark/environment_inventory.json"},"NATIVE_SANITY_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/spacegnn/direct_reproduction_validation.json"},"LABEL_OR_SUPERVISION_AUDIT_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/spacegnn/direct_reproduction_validation.json"},"CANONICAL_BRIDGE_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/spacegnn/direct_reproduction_validation.json"},"SCORE_CONTRACT_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/spacegnn/direct_reproduction_validation.json"},"LAUNCHER_PASS":{"status":"PASS","evidence":"tests/test_direct_reproduction_launcher.py"}},
+      "execute_enabled": true, "blocker": null
+    },
+    {
+      "method": "DSGAD", "method_id": "dsgad", "output_name": "DSGAD", "protocol_class": "EXTERNAL_SUPERVISED_REFERENCE",
+      "environment_path": "/data1/wk/conda_envs/coregad_dsgad", "python_executable": "/data1/wk/conda_envs/coregad_dsgad/bin/python",
+      "native_source": "baselines/repos/DSGAD", "source_commit": "bf7e0ac31a4d28c82c796b339d06b4a1a5308158", "native_entrypoint": "t.py", "canonical_entrypoint": "benchmark/native_bridges/dsgad.py",
+      "default_args": {"run":1,"epochs":100,"hidden_dimension":64,"order":2,"mixed_filters":2,"supervision_trial":0}, "supports_gpu": true,
+      "canonical_command": ["{python}","-m","benchmark.native_bridges.dsgad","--bundle","{bundle}","--label-source","{label_source}","--score-nodes","{score_nodes}","--scores","{scores}","--evidence","{evidence}","--source","{source}","--seed","{seed}","--device","{device}"],
+      "gates": {"SOURCE_PASS":{"status":"PASS","evidence":"benchmark/evidence/source_identity_20260809.json"},"ENV_PASS":{"status":"PASS","evidence":"benchmark/environment_inventory.json"},"NATIVE_SANITY_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/dsgad/direct_reproduction_validation.json"},"LABEL_OR_SUPERVISION_AUDIT_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/dsgad/direct_reproduction_validation.json"},"CANONICAL_BRIDGE_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/dsgad/direct_reproduction_validation.json"},"SCORE_CONTRACT_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/dsgad/direct_reproduction_validation.json"},"LAUNCHER_PASS":{"status":"PASS","evidence":"tests/test_direct_reproduction_launcher.py"}},
+      "execute_enabled": true, "blocker": null
+    },
+    {
+      "method": "APF", "method_id": "apf", "output_name": "APF", "protocol_class": "EXTERNAL_SUPERVISED_REFERENCE",
+      "environment_path": "/data1/wk/conda_envs/coregad_modern_dgl", "python_executable": "/data1/wk/conda_envs/coregad_modern_dgl/bin/python",
+      "native_source": "baselines/repos/APF", "source_commit": "0f42fd9344fa4c54e175fae45cb40e6981e6b54a", "native_entrypoint": "train.py", "canonical_entrypoint": "benchmark/native_bridges/apf.py",
+      "default_args": {"pretrain_epochs":300,"pretrain_patience":20,"finetune_epochs":500,"hidden_dimension":32,"order":3,"fine_tuner":"NDAdaptive","supervision_trial":0}, "supports_gpu": true,
+      "canonical_command": ["{python}","-m","benchmark.native_bridges.apf","--bundle","{bundle}","--label-source","{label_source}","--score-nodes","{score_nodes}","--scores","{scores}","--evidence","{evidence}","--source","{source}","--seed","{seed}","--device","{device}"],
+      "gates": {"SOURCE_PASS":{"status":"PASS","evidence":"benchmark/evidence/source_identity_20260809.json"},"ENV_PASS":{"status":"PASS","evidence":"benchmark/environment_inventory.json"},"NATIVE_SANITY_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/apf/direct_reproduction_validation.json"},"LABEL_OR_SUPERVISION_AUDIT_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/apf/direct_reproduction_validation.json"},"CANONICAL_BRIDGE_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/apf/direct_reproduction_validation.json"},"SCORE_CONTRACT_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/apf/direct_reproduction_validation.json"},"LAUNCHER_PASS":{"status":"PASS","evidence":"tests/test_direct_reproduction_launcher.py"}},
+      "execute_enabled": true, "blocker": null
+    },
+    {
+      "method": "SAGAD", "method_id": "sagad", "output_name": "SAGAD", "protocol_class": "EXTERNAL_SUPERVISED_REFERENCE",
+      "environment_path": "/data1/wk/conda_envs/coregad_modern_dgl", "python_executable": "/data1/wk/conda_envs/coregad_modern_dgl/bin/python",
+      "native_source": "baselines/repos/SAGAD", "source_commit": "faddcbca117b475c8468e87a65c8428b616b694b", "native_entrypoint": "main.py", "canonical_entrypoint": "benchmark/native_bridges/sagad.py",
+      "default_args": {"epochs":500,"patience":50,"hidden_dimension":128,"order":5,"fusion":"NodeDimGated","supervision_trial":0}, "supports_gpu": true,
+      "canonical_command": ["{python}","-m","benchmark.native_bridges.sagad","--bundle","{bundle}","--label-source","{label_source}","--score-nodes","{score_nodes}","--scores","{scores}","--evidence","{evidence}","--source","{source}","--seed","{seed}","--device","{device}"],
+      "gates": {"SOURCE_PASS":{"status":"PASS","evidence":"benchmark/evidence/source_identity_20260809.json"},"ENV_PASS":{"status":"PASS","evidence":"benchmark/environment_inventory.json"},"NATIVE_SANITY_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/sagad/direct_reproduction_validation.json"},"LABEL_OR_SUPERVISION_AUDIT_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/sagad/direct_reproduction_validation.json"},"CANONICAL_BRIDGE_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/sagad/direct_reproduction_validation.json"},"SCORE_CONTRACT_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/sagad/direct_reproduction_validation.json"},"LAUNCHER_PASS":{"status":"PASS","evidence":"tests/test_direct_reproduction_launcher.py"}},
+      "execute_enabled": true, "blocker": null
+    },
+    {
+      "method": "HSMAD", "method_id": "hsmad", "output_name": "HSMAD", "protocol_class": "EXTERNAL_SUPERVISED_REFERENCE",
+      "environment_path": "/data1/wk/conda_envs/coregad_hsmad", "python_executable": "/data1/wk/conda_envs/coregad_hsmad/bin/python",
+      "native_source": "baselines/repos/HSMAD", "source_commit": "7810e8e7dfe2143c4e4aa2ba804a0bfdc6543a5a", "native_entrypoint": "main.py", "canonical_entrypoint": "benchmark/native_bridges/hsmad.py",
+      "default_args": {"epochs":1000,"patience":100,"hidden_dimension":64,"order":2,"quantile":0.5,"supervision_trial":0}, "supports_gpu": true,
+      "canonical_command": ["{python}","-m","benchmark.native_bridges.hsmad","--bundle","{bundle}","--label-source","{label_source}","--score-nodes","{score_nodes}","--scores","{scores}","--evidence","{evidence}","--source","{source}","--seed","{seed}","--device","{device}"],
+      "gates": {"SOURCE_PASS":{"status":"PASS","evidence":"benchmark/evidence/source_identity_20260809.json"},"ENV_PASS":{"status":"PASS","evidence":"benchmark/environment_inventory.json"},"NATIVE_SANITY_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/hsmad/direct_reproduction_validation.json"},"LABEL_OR_SUPERVISION_AUDIT_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/hsmad/direct_reproduction_validation.json"},"CANONICAL_BRIDGE_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/hsmad/direct_reproduction_validation.json"},"SCORE_CONTRACT_PASS":{"status":"PASS","evidence":"benchmark/evidence/external/hsmad/direct_reproduction_validation.json"},"LAUNCHER_PASS":{"status":"PASS","evidence":"tests/test_direct_reproduction_launcher.py"}},
+      "execute_enabled": true, "blocker": null
+    }
+  ]
+}

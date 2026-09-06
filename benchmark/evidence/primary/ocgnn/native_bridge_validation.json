@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "method": "OCGNN",
+  "source_commit": "ec7d11c5ae2f91f4165e384131c6a8358836ff58",
+  "checkout_head": "628ff5a2d7e340c40feb3709756321ec4421d51b",
+  "environment": "/data1/wk/conda_envs/baseline_primary_torch24",
+  "native_sanity": {
+    "dataset": "cora",
+    "epochs": 1,
+    "seed": 0,
+    "returncode": 0,
+    "command": "CUDA_VISIBLE_DEVICES=5 PYTHONHASHSEED=0 /data1/wk/conda_envs/baseline_primary_torch24/bin/python main.py --dataset cora --seed 0 --n-epochs 1 --gpu 0 --module GraphSAGE",
+    "train_loss_as_printed_times_100000": 5764398.5748,
+    "test_auroc": 0.2882,
+    "test_auprc": 0.3825,
+    "paper_metric_for_exact_one_epoch_protocol": null,
+    "absolute_delta": null,
+    "protocol_difference": "One epoch sanity only; upstream fixed-epoch run reports validation/test labels but early stopping was disabled.",
+    "compatibility_patch": "benchmark/patches/ocgnn_dgl24_compat.patch",
+    "applied_patch_sha256": "00ae5607584a3f9f302f8873504d2f2ff85a73f14bffe290b34078ee2871b4fb",
+    "log_sha256": "54ec9fe0292d1e47b87c456930cb662dee8dc992d9166065b360deb9ba290277",
+    "server_output": "/data1/wk/codes/CoReGAD_RELEASE/outputs/baselines/native_sanity_isolated_env/OCGNN/cora/seed_0"
+  },
+  "label_audit": {
+    "canonical_bundle_keys": ["edge_index", "features", "node_id", "provenance"],
+    "training_label_access": "frozen normal support IDs only",
+    "anomaly_label_tensor_present_or_accessed": false,
+    "cross_fitting_injected": false,
+    "early_stopping": false
+  },
+  "canonical_smoke": {
+    "dataset": "Amazon",
+    "seed": 0,
+    "epochs": 1,
+    "normal_support_count": 1334,
+    "normal_support_sha256": "ace4bca18aaae1defc0e0fc1f80552e0e25a62e49ca7fe208d3ae442f2e06796",
+    "loss_trace": [375994155008.0],
+    "elapsed_seconds": 2.514247179031372,
+    "run_evidence_sha256": "803ec1c18421939e5a753a9684d5c0b045da39420b1071ed4213575fdc2168b6",
+    "server_output": "/data1/wk/codes/CoReGAD_RELEASE/outputs/baselines/canonical_smoke_isolated_env/OCGNN/Amazon/seed_0"
+  },
+  "score_contract": {
+    "fields": ["node_id", "anomaly_score"],
+    "higher_is_more_anomalous": true,
+    "score_formula": "squared distance to center minus radius squared",
+    "score_count": 10610,
+    "node_ids_unique": true,
+    "node_ids_exactly_match_frozen_evaluation_set": true,
+    "node_ids_sorted": true,
+    "scores_finite": true,
+    "scores_sha256": "cc3c3bc070953803e732ad0d8f8f8680a0754fb094209b7ae45d9bfc0ea6c09e"
+  }
+}

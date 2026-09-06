@@ -1,0 +1,10 @@
+{
+  "status":"PASS","method":"AnomalyDAE","source_kind":"AUTHOR_OFFICIAL",
+  "source_commit":"1199bae1820cd923efb5a6ec2d32ab758968f465","checkout_head":"1199bae1820cd923efb5a6ec2d32ab758968f465",
+  "environment":"/data1/wk/conda_envs/coregad_anomalydae",
+  "compatibility":{"python":"3.10.20","tensorflow_cpu":"2.15.1","api":"tensorflow.compat.v1","numpy":"1.26.4","semantic_change":false},
+  "full_native_and_canonical_sanity":{"dataset":"Weibo","seed":0,"iterations":180,"real_optimizer_steps":180,"loss_first":569931.75,"loss_last":65987.46875,"score_count":7501,"scores_finite":true,"elapsed_seconds":268.5225648880005,"server_output":"/data1/wk/codes/CoReGAD_RELEASE/outputs/baselines/full_native_sanity/AnomalyDAE/Weibo/seed_0","evidence_sha256":"defda2d25fb12ad07ccd5ea88bb843f56181bafc41c37dda4fe59f768728444f","scores_sha256":"b0c10242f244d70b88cbaa853939ac763ae344fcb814b7254a45fa87e7c1cb7d"},
+  "label_audit":{"ground_truth_anomaly_label_present_or_accessed":false,"test_metrics_or_labels_called_during_training":false,"early_stopping_or_checkpoint_selection":false,"coregad_cross_fitting_injected":false},
+  "native_contract":{"model":"baselines/repos/AnomalyDAE/src","iterations":180,"hidden1":256,"hidden2":128,"theta":40.0,"eta":5.0,"alpha":0.7,"schedule_source":"upstream BlogCatalog default used as fixed label-free fallback"},
+  "score_contract":{"fields":["node_id","anomaly_score"],"higher_is_more_anomalous":true,"node_ids_unique":true,"scores_finite":true}
+}

@@ -1,0 +1,7 @@
+{
+  "status":"PASS","method":"GHRN","source_kind":"AUTHOR_OFFICIAL","source_commit":"d47e047b76df429c0c0a8444f5d9a5dea57f6801","checkout_head":"d47e047b76df429c0c0a8444f5d9a5dea57f6801","environment":"/data1/wk/conda_envs/coregad_gadbench",
+  "full_native_and_canonical_sanity":{"dataset":"Weibo","seed":0,"stage1_epochs":100,"delete_ratio":0.015,"removed_edges":6245,"stage2_epochs":100,"real_optimizer_steps":200,"stage1_loss_first":1.0537397861480713,"stage1_loss_last":0.015119334682822227,"stage2_loss_first":0.6892043352127075,"stage2_loss_last":0.005769970361143351,"score_count":7501,"scores_finite":true,"elapsed_seconds":4.10135293006897,"server_output":"/data1/wk/codes/CoReGAD_RELEASE/outputs/baselines/full_native_sanity/GHRN/Weibo/seed_0","evidence_sha256":"d0fc7fc97c11a45fb06beecc4f20dd6a25389129ce6427ed9321bf3fbaf75427","scores_sha256":"545ddc91abeee43f7ba074738e7c8b4d5cb3412836cf0eac829353632bdd75bc"},
+  "supervision_audit":{"fair_ranking":false,"train_nodes":3362,"validation_nodes":1681,"stage_checkpoint_selection":"validation weighted cross-entropy","evaluation_is_separate":true},
+  "native_contract":{"stage1":"BWGNN base predictions","pruning":"official high-frequency Laplacian indicator","stage2":"BWGNN on pruned graph"},
+  "score_contract":{"fields":["node_id","anomaly_score"],"higher_is_more_anomalous":true,"node_ids_unique":true,"scores_finite":true}
+}

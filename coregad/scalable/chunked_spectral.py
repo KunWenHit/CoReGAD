@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import math
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -11,7 +12,6 @@ from torch import nn
 
 from coregad.models.spectral_reference import (
     GLOBAL_SPECTRAL_LOGITS,
-    LAYER_NORM_EPS,
     SpectralDiscrepancy,
 )
 from coregad.scalable.memory import memory_snapshot
@@ -51,56 +51,6 @@ def _load_full_to_device(
         host = np.array(values[begin:end], dtype=np.float32, copy=True)
         output[begin:end].copy_(torch.from_numpy(host).to(device))
     return output
-
-
-def _structural_statistics_rows(
-    *,
-    operator: SparseGraphOperator,
-    normalized_embeddings: torch.Tensor,
-    begin: int,
-    end: int,
-) -> torch.Tensor:
-    """Compute the frozen local structural channels for one CSR row block."""
-
-    hidden_dim = int(normalized_embeddings.shape[1])
-    local_sum = normalized_embeddings.new_zeros((end - begin, hidden_dim))
-    local_square_sum = normalized_embeddings.new_zeros((end - begin, hidden_dim))
-    rows_np, columns_np, _ = operator.row_slice(begin, end)
-    if columns_np.size:
-        # ``fold_safe_normalized_adjacency`` coalesces duplicate sparse entries.
-        pairs = np.unique(
-            np.stack([rows_np, columns_np.astype(np.int64, copy=False)], axis=1),
-            axis=0,
-        )
-        rows = torch.from_numpy(pairs[:, 0]).to(normalized_embeddings.device)
-        columns = torch.from_numpy(pairs[:, 1]).to(normalized_embeddings.device)
-        local_sum.index_add_(0, rows, normalized_embeddings[columns])
-        local_square_sum.index_add_(
-            0, rows, normalized_embeddings[columns].square()
-        )
-    count = torch.from_numpy(
-        operator.visible_degree[begin:end].astype(np.float32)
-    ).to(normalized_embeddings.device).clamp_min(1.0).unsqueeze(1)
-    local_mean = local_sum / count
-    local_variance = torch.clamp(
-        local_square_sum / count - local_mean.square(), min=0.0
-    )
-    local_embedding_variation = torch.sqrt(local_variance).mean(dim=1)
-    visible_degree = torch.from_numpy(
-        operator.visible_degree[begin:end].astype(np.float32)
-    ).to(normalized_embeddings.device)
-    local_embedding_variation = torch.where(
-        visible_degree > 0,
-        local_embedding_variation,
-        torch.zeros_like(local_embedding_variation),
-    )
-    support = torch.from_numpy(
-        operator.support_ratio[begin:end].astype(np.float32)
-    ).to(normalized_embeddings.device)
-    return torch.stack(
-        [torch.log1p(visible_degree), support, local_embedding_variation],
-        dim=1,
-    )
 
 
 def compute_chunked_graph_features(
@@ -150,9 +100,6 @@ def compute_chunked_graph_features(
     normality_head.eval()
     standard_parity = cache_dtype == "float32"
     with torch.no_grad():
-        normalized_embeddings = torch.nn.functional.layer_norm(
-            node_embeddings, (hidden,), eps=LAYER_NORM_EPS
-        )
         for begin in range(0, n, row_chunk):
             end = min(n, begin + row_chunk)
             low = operator.propagate_rows(
@@ -194,11 +141,17 @@ def compute_chunked_graph_features(
                     normality_head,
                     spectral_components=components,
                 )["spectral_discrepancy"]
-            structural = _structural_statistics_rows(
-                operator=operator,
-                normalized_embeddings=normalized_embeddings,
-                begin=begin,
-                end=end,
+            degree = torch.from_numpy(
+                operator.visible_degree[begin:end].astype(np.float32)
+            ).to(device)
+            support = torch.from_numpy(
+                operator.support_ratio[begin:end].astype(np.float32)
+            ).to(device)
+            local_variation = torch.linalg.vector_norm(
+                embeddings - low, dim=1
+            ) / math.sqrt(hidden)
+            structural = torch.stack(
+                [torch.log1p(degree), support, local_variation], dim=1
             )
             band_disk[begin:end] = band.detach().cpu().numpy().astype(cache_dtype)
             high_disk[begin:end] = high.detach().cpu().numpy().astype(cache_dtype)

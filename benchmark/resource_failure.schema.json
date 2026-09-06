@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CoReGAD baseline resource failure",
+  "type": "object",
+  "required": [
+    "method", "dataset", "seed", "source_commit", "adapter_commit",
+    "environment", "exact_command", "timestamp", "resource_status"
+  ],
+  "properties": {
+    "resource_status": {"enum": ["OOM", "OOT"]},
+    "method": {"type": "string"},
+    "dataset": {"type": "string"},
+    "seed": {"type": "integer"},
+    "source_commit": {"type": "string"},
+    "adapter_commit": {"type": "string"},
+    "environment": {"type": "object"},
+    "exact_command": {"type": "array", "items": {"type": "string"}},
+    "gpu_model": {"type": ["string", "null"]},
+    "gpu_total_memory": {"type": ["string", "null"]},
+    "cpu_ram": {"type": ["string", "null"]},
+    "last_log_lines": {"type": "array", "items": {"type": "string"}},
+    "exception_type": {"type": ["string", "null"]},
+    "cuda_oom_message": {"type": ["string", "null"]},
+    "peak_memory": {"type": ["string", "number", "null"]},
+    "wall_clock_limit": {"type": ["string", "number", "null"]},
+    "elapsed_time": {"type": ["string", "number", "null"]},
+    "progress": {"type": ["string", "number", "null"]},
+    "epoch_or_iteration": {"type": ["string", "integer", "null"]},
+    "hardware": {"type": ["object", "null"]},
+    "timestamp": {"type": "string"}
+  }
+}

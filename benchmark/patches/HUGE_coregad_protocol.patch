@@ -1,0 +1,51 @@
+From b5605a48993c5c9cd20db701eb5f421446ab1269 Mon Sep 17 00:00:00 2001
+From: KunWenHit <25s103303@stu.hit.edu.cn>
+Date: Sun, 9 Aug 2026 13:24:45 +0800
+Subject: [PATCH] chore: add CoReGAD protocol adapter
+
+---
+ run_coregad_protocol.py | 32 ++++++++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+ create mode 100644 run_coregad_protocol.py
+
+diff --git a/run_coregad_protocol.py b/run_coregad_protocol.py
+new file mode 100644
+index 0000000..d9388f0
+--- /dev/null
++++ b/run_coregad_protocol.py
+@@ -0,0 +1,32 @@
++#!/usr/bin/env python
++"""Repository-local entry point for the shared CoReGAD benchmark adapter."""
++
++from __future__ import annotations
++
++import os
++import sys
++from pathlib import Path
++
++
++def _protocol_root() -> Path:
++    configured = os.environ.get("COREGAD_BASELINE_ROOT")
++    root = (
++        Path(configured).expanduser().resolve()
++        if configured
++        else Path(__file__).resolve().parents[2]
++    )
++    protocol = root / "protocol"
++    if not (protocol / "coregad_protocol_runner.py").is_file():
++        raise RuntimeError(
++            "Cannot locate the shared protocol. Set COREGAD_BASELINE_ROOT to the "
++            "directory containing repos/ and protocol/."
++        )
++    return protocol
++
++
++if __name__ == "__main__":
++    protocol = _protocol_root()
++    sys.path.insert(0, str(protocol))
++    from coregad_protocol_runner import main
++
++    raise SystemExit(main(method=Path(__file__).resolve().parent.name))
+-- 
+2.51.0.windows.1
+

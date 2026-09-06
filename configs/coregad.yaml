@@ -1,5 +1,7 @@
 method:
   name: CoReGAD
+  version: 0.2.0
+  model_variant: FULL_F2
   outer_oof_folds: 5
 
 normality_core:
@@ -58,7 +60,27 @@ structural_reliability:
 bounded_graph_residual_correction:
   gamma_initial: 0.1
   base_logit_coefficient: 1.0
-  formula: gamma_times_reliability_times_tanh_energy
+  formula: normal_calibrated_factorized_four_endpoint_mixture
+  legacy_mode: LEGACY_CONTROLLED_TIGHT
+
+factorized_routing:
+  enabled: true
+  mode: factorized
+  calibration_reference: outer_train_normal_support_only
+  normal_tail_rho: 0.80
+  wide_temperature: 2.0
+  ecdf: strict_lower
+  shared_energy_head: true
+  route_gradient: stop_gradient
+  trainable_parameter_count: 0
+  evidence_composite: geometric_mean_reliability_channel_support_suppression
+  bound_composite: geometric_mean_reliability_channel_support_energy_rank
+
+ablation_variants:
+  full: FULL_F2
+  without_m1: WO_M1_GRAPH_RESIDUAL_EVIDENCE
+  without_m2: WO_M2_RELIABILITY
+  without_m3: WO_M3_FACTORIZED_ROUTING
 
 residual_training:
   optimizer: Adam
@@ -69,6 +91,7 @@ residual_training:
   correction_penalty: 0.001
 
 seed_policy:
-  released_validation_seeds: [0, 1, 2]
+  official_full_seeds: [0, 1, 2, 42, 123, 2023, 2024, 2025, 2026, 3407]
+  legacy_v0_1_validation_seeds: [0, 1, 2]
   split_seed: 0
   deterministic_fold_ownership: true
