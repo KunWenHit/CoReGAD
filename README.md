@@ -1,13 +1,14 @@
 # CoReGAD
 
-Controlled Partial Residualization of Structural–Spectral Evidence
+Normal-Calibrated Factorized Evidence–Bound Routing
 for Normal-Only Graph Anomaly Detection
 
 CoReGAD is a normal-only graph anomaly detection framework that separates
 attribute-driven normality learning from graph-spectral anomaly evidence. It
 learns a cross-fitted normality core and applies controlled structural
 residualization to spectral discrepancies, suppressing low-order structural
-shortcuts while retaining useful relation-dependent anomaly cues.
+shortcuts while retaining useful relation-dependent anomaly cues. The default
+production model is **CoReGAD-F2** (`F2_TIE_SAFE_FACTORIZED_ROUTER_T2`).
 
 ## Overview
 
@@ -17,6 +18,8 @@ shortcuts while retaining useful relation-dependent anomaly cues.
 - Five-fold out-of-fold evaluation support.
 - Stage-wise learning with explicit freezing boundaries.
 - Controlled residual strength fixed at `0.75` in the released model.
+- Strict-lower normal calibration with tail threshold `rho = 0.80`.
+- Parameter-free factorized evidence and bound routing with wide temperature `2`.
 
 Training consumes only two declared sets: labeled normal nodes and unlabeled
 visible nodes. The training command deliberately does not load the `y` array.
@@ -32,13 +35,26 @@ reference combines low-, band-, and high-frequency graph components. Two
 node-varying discrepancies compare the frozen embedding and decision with that
 reference.
 
+The latest pipeline is:
+
+```text
+Stable Attribute Normality Base
+→ Complementary Graph Residual Evidence
+→ Structural Nuisance Control
+→ Node-wise Reliability
+→ Normal-Calibrated Factorized Evidence–Bound Routing
+→ Bounded Graph Correction
+→ Final Anomaly Score
+```
+
 Three low-order statistics—log degree, visible-neighborhood support ratio, and
 local embedding variation—feed a five-fold cross-fitted nuisance estimator.
-The released detector subtracts exactly `0.75` times the structure-predictable
-spectral component. The residual energy head receives only the resulting two
-spectral channels; the reliability gate receives only the three structural
-statistics. Their bounded correction is added to the base anomaly logit with a
-fixed coefficient of one.
+CoReGAD retains both the raw discrepancy and the controlled discrepancy after
+subtracting exactly `0.75` times the structure-predictable component. One
+shared energy head maps both evidence paths. Normal-only, strict-lower ECDFs
+then produce a detached evidence route and bound route. These routes mix four
+finite corrections: Controlled/Raw × Tight/Wide (`tau = 2`). The correction is
+added to the base anomaly logit with a fixed coefficient of one.
 
 See [docs/METHOD.md](docs/METHOD.md) for the equations and stage boundaries.
 
@@ -81,6 +97,12 @@ python scripts/train_coregad.py \
   --device cpu \
   --seed 0
 ```
+
+`FULL_F2` is the default. Frozen ablations are available with `--variant`:
+`WO_M1_GRAPH_RESIDUAL_EVIDENCE`, `WO_M2_RELIABILITY`, and
+`WO_M3_FACTORIZED_ROUTING`. The last reduces exactly to the historical
+Controlled+Tight correction. `LEGACY_CONTROLLED_TIGHT` remains available for
+reproducing the v0.1 detector.
 
 For `T-Social` and `DGraph-Fin`, use the mathematically equivalent scalable
 engine:

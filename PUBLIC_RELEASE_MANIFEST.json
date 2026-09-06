@@ -1,9 +1,14 @@
 {
   "method_name": "CoReGAD",
-  "release_version": "0.1.1",
-  "release_kind": "reproducibility hardening; no method change",
+  "release_version": "0.2.0",
+  "release_kind": "production F2 factorized-routing transition",
   "historical_source_worktree_head": "aa4a4f7c131af7a97366e2900f8af584db686b4e",
   "residual_strength": 0.75,
+  "default_model": "F2_TIE_SAFE_FACTORIZED_ROUTER_T2",
+  "normal_tail_rho": 0.8,
+  "wide_temperature": 2.0,
+  "strict_lower_ecdf": true,
+  "router_trainable_parameter_count": 0,
   "license_decision_required": true,
   "datasets": {
     "target": 8,
@@ -18,11 +23,12 @@
   },
   "tests": {
     "status": "passed",
-    "count": 37,
+    "count": 79,
     "command": "python -m pytest -q"
   },
   "parity": {
     "historical_reference": true,
+    "canonical_f2_server_fixture": true,
     "standard_scalable": true,
     "tolerance": 1e-06
   }

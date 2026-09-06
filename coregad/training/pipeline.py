@@ -6,7 +6,16 @@ from pathlib import Path
 import numpy as np
 import torch
 
-from coregad.models.coregad import CoReGAD
+from coregad.models.coregad import (
+    FULL_F2,
+    WO_M1_GRAPH_RESIDUAL_EVIDENCE,
+    CoReGAD,
+    normalize_model_variant,
+)
+from coregad.models.routing import (
+    build_routing_batch,
+    fit_normal_channel_percentiles,
+)
 from coregad.models.spectral_reference import (
     GlobalSpectralReference,
     SpectralDiscrepancy,
@@ -46,8 +55,10 @@ def train_fold(
     spectral_engine: str = "standard",
     scalable_cache_dir: str | Path | None = None,
     scalable_basis_cache_dtype: str = "float32",
+    model_variant: str = FULL_F2,
 ) -> FoldOutput:
     device = torch.device(device)
+    model_variant = normalize_model_variant(model_variant)
     normal_tensor = torch.as_tensor(normal_nodes, dtype=torch.long)
     training_unlabeled_tensor = torch.as_tensor(
         training_unlabeled_nodes, dtype=torch.long
@@ -71,6 +82,60 @@ def train_fold(
     with torch.no_grad():
         pre_context_output = normality.pre_context_core(scaled)
         normality_output = normality.frozen_core(scaled)
+    if model_variant == WO_M1_GRAPH_RESIDUAL_EVIDENCE:
+        heldout_index = heldout_tensor.to(device)
+        base_score = normality_output["base_anomaly_score"][heldout_index]
+        count = len(heldout_nodes)
+        zeros = np.zeros(count, dtype=np.float32)
+        artifacts: dict[str, object] = {
+            "normality_core_state_dict": {
+                key: value.detach().cpu()
+                for key, value in normality.frozen_core.state_dict().items()
+            },
+            "graph_context_state_dict": {
+                key: value.detach().cpu()
+                for key, value in normality.graph_context_shaping.state_dict().items()
+            },
+            "detector_state_dict": {},
+            "residualizer": None,
+            "feature_mean": normality.feature_mean,
+            "feature_scale": normality.feature_scale,
+            "fold": int(fold),
+            "model_seed": int(model_seed),
+            "model_variant": model_variant,
+            "normal_nodes": np.asarray(normal_nodes, dtype=np.int64),
+            "training_unlabeled_nodes": np.asarray(
+                training_unlabeled_nodes, dtype=np.int64
+            ),
+            "heldout_nodes": np.asarray(heldout_nodes, dtype=np.int64),
+            "spectral_engine": None,
+            "scalable_metadata": None,
+            "hierarchical_graph_branch_disabled": True,
+            "diagnostics": {
+                "node_id": np.asarray(heldout_nodes, dtype=np.int64),
+                "pre_context_teacher_base_anomaly_score": pre_context_output[
+                    "base_anomaly_score"
+                ][heldout_index]
+                .detach()
+                .cpu()
+                .numpy()
+                .astype(np.float64),
+                "post_context_frozen_normality_score": base_score
+                .detach()
+                .cpu()
+                .numpy()
+                .astype(np.float64),
+                "graph_correction": zeros,
+                "evidence_route": zeros.copy(),
+                "bound_route": zeros.copy(),
+                "used_for_training_or_selection": False,
+            },
+        }
+        return FoldOutput(
+            heldout_nodes=np.asarray(heldout_nodes, dtype=np.int64),
+            final_anomaly_score=base_score.detach().cpu().numpy().astype(np.float64),
+            artifacts=artifacts,
+        )
     visible_nodes = torch.cat([normal_tensor, training_unlabeled_tensor])
     engine = str(spectral_engine).strip().lower()
     if engine not in {"standard", "scalable"}:
@@ -147,6 +212,10 @@ def train_fold(
             ),
         ]
     )
+    normal_mask = roles == 0
+    training_raw_evidence = training_residual[
+        "spectral_discrepancy_normalized"
+    ].detach()
     detector: CoReGAD = train_residual_detector(
         controlled_spectral_residual=training_residual[
             "controlled_spectral_residual"
@@ -160,17 +229,45 @@ def train_fold(
         roles=roles,
         seed=2026080700 + int(model_seed) * 100 + int(fold),
         epochs=residual_epochs,
+        raw_spectral_evidence=training_raw_evidence,
+        model_variant=model_variant,
+    )
+    normal_channel_percentiles = fit_normal_channel_percentiles(
+        training_raw_evidence, normal_mask
+    )
+    training_batch = build_routing_batch(
+        raw_evidence=training_raw_evidence,
+        controlled_evidence=training_residual[
+            "controlled_spectral_residual"
+        ],
+        structural_statistics=training_residual[
+            "structural_statistics_normalized"
+        ],
+        base_anomaly_logit=normality_output["base_anomaly_logit"][train_index],
+        normal_mask=normal_mask,
+        normal_channel_percentiles=normal_channel_percentiles,
     )
     heldout_index = heldout_tensor.to(device)
     evaluation_residual = residualizer.transform(
         discrepancy[heldout_index],
         statistics[heldout_index],
     )
+    evaluation_batch = build_routing_batch(
+        raw_evidence=evaluation_residual["spectral_discrepancy_normalized"],
+        controlled_evidence=evaluation_residual["controlled_spectral_residual"],
+        structural_statistics=evaluation_residual[
+            "structural_statistics_normalized"
+        ],
+        base_anomaly_logit=normality_output["base_anomaly_logit"][heldout_index],
+        normal_mask=torch.zeros(
+            len(heldout_nodes), dtype=torch.bool, device=device
+        ),
+        normal_channel_percentiles=normal_channel_percentiles,
+    )
     with torch.no_grad():
-        final = detector(
-            evaluation_residual["controlled_spectral_residual"],
-            evaluation_residual["structural_statistics_normalized"],
-            normality_output["base_anomaly_logit"][heldout_index],
+        final = detector.forward_batch(
+            evaluation_batch,
+            calibration_batch=training_batch,
         )
     artifacts: dict[str, object] = {
         "normality_core_state_dict": {
@@ -189,6 +286,7 @@ def train_fold(
         "feature_scale": normality.feature_scale,
         "fold": int(fold),
         "model_seed": int(model_seed),
+        "model_variant": model_variant,
         "normal_nodes": np.asarray(normal_nodes, dtype=np.int64),
         "training_unlabeled_nodes": np.asarray(
             training_unlabeled_nodes, dtype=np.int64
@@ -220,6 +318,28 @@ def train_fold(
             "controlled_spectral_residual": evaluation_residual[
                 "controlled_spectral_residual"
             ]
+            .detach()
+            .cpu()
+            .numpy()
+            .astype(np.float32),
+            "raw_spectral_evidence": evaluation_residual[
+                "spectral_discrepancy_normalized"
+            ]
+            .detach()
+            .cpu()
+            .numpy()
+            .astype(np.float32),
+            "structural_reliability": final["structural_reliability"]
+            .detach()
+            .cpu()
+            .numpy()
+            .astype(np.float32),
+            "evidence_route": final["evidence_route"]
+            .detach()
+            .cpu()
+            .numpy()
+            .astype(np.float32),
+            "bound_route": final["bound_route"]
             .detach()
             .cpu()
             .numpy()
